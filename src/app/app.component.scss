@@ -7,6 +7,18 @@
     color : rgb(118,128,137)
 }
 
-.nav-link:hover{
-    color: rgb(100, 100, 255);
+.nav-link.link{
+    width: 100%;
+}
+
+// .nav-link:hover{
+//     color: rgb(100, 100, 255);
+// }
+
+.sidenav{
+    width : 200px;
+    padding-top : 20px;
+    margin-top : 50px;
+    padding-left : 10px;
+    padding-right : 10px;
 }
