@@ -7,7 +7,8 @@ import {
   MatMenuModule,
   MatToolbarModule,
   MatIconModule,
-  MatCardModule
+  MatCardModule,
+  MatSidenavContainer
 } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,7 +26,8 @@ import { AppComponent } from './app.component';
     MatMenuModule,
     MatToolbarModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    MatSidenavContainer
   ],
   exports : [
     MatButtonModule,
