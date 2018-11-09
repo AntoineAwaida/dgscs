@@ -6,16 +6,24 @@ import { MaterialModule } from './material'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { TasksComponent } from './tasks/tasks.component';
+import { MissionsComponent } from './missions/missions.component';
+import { WorkpackagesComponent } from './workpackages/workpackages.component';
+import { GroupsComponent } from './groups/groups.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TasksComponent,
+    MissionsComponent,
+    WorkpackagesComponent,
+    GroupsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule, 
-    MaterialModule
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
