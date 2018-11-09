@@ -7,5 +7,10 @@
 $backgroundGrey : rgb(246,248,249);
 
 body{
-    background-color: $backgroundGrey
+    background-color: $backgroundGrey;
+}
+
+.full{
+    margin: 0;
+    min-height: 100vh;
 }

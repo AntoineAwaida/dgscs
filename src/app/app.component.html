@@ -1,28 +1,31 @@
 <nav class="navbar navbar-expand fixed-top">
   <ul class="navbar-nav">
     <li class="nav-item"><a class="nav-link link" (click)="toogleSidenav()"><i class="fas fa-bars menu"></i></a></li>
+    <li class="nav-item"><a class="nav-link link menu" routerLink="/dashboard"><i class="fas fa-tachometer-alt"></i> dashboard</a></li>
   </ul>
 </nav>
 
-<mat-sidenav-container>
+<mat-sidenav-container class="full">
 
   <mat-sidenav class="sidenav" [opened]="sidenavOpened" mode="over">
     <button class="sidenavissue"></button>
-      <button type="button" class="close" (click)="toogleSidenav()">
-          <span [ngStyle]="{ fontSize : '80%' }">&times;</span>
-      </button>
-      <br>
+    <button type="button" class="close" (click)="toogleSidenav()">
+      <span [ngStyle]="{ fontSize : '80%' }">&times;</span>
+    </button>
+    <br>
     <ul class="navbar-nav">
-      <li class="nav-item"><a mat-button routerLink="/missions" class="nav-link link">Mes Missions</a></li>
-      <li class="nav-item"><a mat-button routerLink="/workpackages" class="nav-link link">Mes Work Packages</a></li>
-      <li class="nav-item"><a mat-button routerLink="/tasks" class="nav-link link">Mes tâches</a></li>
+      <li class="nav-item"><a mat-button routerLink="/missions" (click)="toogleSidenav()" class="nav-link link">Mes Missions</a></li>
+      <li class="nav-item"><a mat-button routerLink="/workpackages" (click)="toogleSidenav()" class="nav-link link">Mes Work Packages</a></li>
+      <li class="nav-item"><a mat-button routerLink="/tasks" (click)="toogleSidenav()" class="nav-link link">Mes tâches</a></li>
     </ul>
   </mat-sidenav>
 
   <mat-sidenav-content class="container" [ngStyle]="{ marginTop : '80px'}">
-  <router-outlet></router-outlet>
-
-  Comment on fait pour n'afficher ce contenu que sur l'index??
-  
+    <div class="row">
+      <div class="col-lg-1 col-12"></div>
+      <div class="col-lg-10 col-12">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
