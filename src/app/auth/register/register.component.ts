@@ -63,7 +63,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       (res:any) => {
         this.auth.saveToken(res.token);
         console.log("Enregistrement du user terminé");
-        this.router.navigateByUrl('user');
+        this.router.navigateByUrl('dashboard');
     },
     (error) => {
       console.log("Impossible d'enregistrer le user");

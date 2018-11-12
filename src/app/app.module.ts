@@ -22,6 +22,7 @@ import { WorkpackagesComponent } from './workpackages/workpackages.component';
 import { GroupsComponent } from './groups/groups.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { LoginComponent } from './auth/login/login.component';
 
 const appRoutes: Routes = [
   { path: 'missions', component: MissionsComponent },
@@ -30,6 +31,7 @@ const appRoutes: Routes = [
   { path: 'tasks', component: TasksComponent },
   {path: 'register', component: RegisterComponent},
   { path: '', pathMatch : 'full', redirectTo : 'dashboard'},
+  {path: 'login', component: LoginComponent},
   // { path : '**', redirectTo : 'not-found'}
 ]
 
@@ -41,7 +43,8 @@ const appRoutes: Routes = [
     WorkpackagesComponent,
     GroupsComponent,
     DashboardComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     HttpClientModule,

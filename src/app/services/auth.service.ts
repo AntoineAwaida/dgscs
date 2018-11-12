@@ -79,7 +79,7 @@ export class AuthService {
     this.token = '';
     window.localStorage.removeItem('mean-token');
     console.log("Utilisateur déconnecté")
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/dashboard');
   }
 
   public getPayload(){
