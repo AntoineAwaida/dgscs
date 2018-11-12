@@ -7,10 +7,14 @@ import {MissionsComponent} from './missions/missions.component'
 
 import {WorkpackagesComponent} from './workpackages/workpackages.component'
 
+import {RegisterComponent} from './auth/register/register.component'
+
+
 const routes: Routes = [
    {path: 'tasks', component: TasksComponent},
    {path: 'missions', component: MissionsComponent },
-   {path: 'workpackages', component: WorkpackagesComponent}
+   {path: 'workpackages', component: WorkpackagesComponent},
+   {path: 'register', component: RegisterComponent}
 ];
 
 @NgModule({

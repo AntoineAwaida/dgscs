@@ -7,6 +7,13 @@ import { MaterialModule } from './material'
 import { Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
 
+import { AuthService } from './services/auth.service';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './services/token.interceptor';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TasksComponent } from './tasks/tasks.component';
@@ -14,13 +21,14 @@ import { MissionsComponent } from './missions/missions.component';
 import { WorkpackagesComponent } from './workpackages/workpackages.component';
 import { GroupsComponent } from './groups/groups.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 const appRoutes: Routes = [
   { path: 'missions', component: MissionsComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'work-packages', component: WorkpackagesComponent },
   { path: 'tasks', component: TasksComponent },
-  // { path : 'not-found', component : FourOhFourComponent},
+  {path: 'register', component: RegisterComponent},
   { path: '', pathMatch : 'full', redirectTo : 'dashboard'},
   // { path : '**', redirectTo : 'not-found'}
 ]
@@ -32,16 +40,27 @@ const appRoutes: Routes = [
     MissionsComponent,
     WorkpackagesComponent,
     GroupsComponent,
-    DashboardComponent
+    DashboardComponent,
+    RegisterComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule, 
+    FormsModule,
+    ReactiveFormsModule,
     MaterialModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
