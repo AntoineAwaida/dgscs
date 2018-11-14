@@ -4,6 +4,7 @@
 @import '~@fortawesome/fontawesome-free/css/all.css';
 
 /* You can add global styles to this file, and also import other style files */
+
 $backgroundGrey : rgb(246,248,249);
 
 body{
@@ -13,4 +14,15 @@ body{
 .full{
     margin: 0;
     min-height: 100vh;
+}
+
+.login{
+    background-color: none;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.6), 
+        rgba(0, 0, 0, 0.6)
+        ), url('./assets/background.jpg');
+    background-size: 1920px 1345px;
+    background-attachment: fixed;
+    background-position: center;
 }

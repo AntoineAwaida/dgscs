@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService, TokenPayload } from '../../services/auth.service'
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -12,7 +12,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 
 
-export class RegisterComponent implements OnInit, OnDestroy {
+export class RegisterComponent implements OnInit {
 
   credentials: TokenPayload = {
     email: '',
@@ -28,18 +28,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
   constructor(private formBuilder: FormBuilder, private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
-
-    const body = document.getElementsByTagName('body')[0];
-    body.classList.add('login');
     setTimeout(() => {this.in = true}, 200);
     this.initForm();
-    // this.auth.create10(20);
     
-  }
-
-  ngOnDestroy(): void {
-    const body = document.getElementsByTagName('body')[0];
-    body.classList.remove('login');
   }
 
   initForm() {

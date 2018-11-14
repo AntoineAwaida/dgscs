@@ -4,9 +4,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from './material'
 
-import { Routes } from '@angular/router';
-import { RouterModule } from '@angular/router';
-
 import { AuthService } from './services/auth.service';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -24,16 +21,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 
-const appRoutes: Routes = [
-  { path: 'missions', component: MissionsComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'work-packages', component: WorkpackagesComponent },
-  { path: 'tasks', component: TasksComponent },
-  {path: 'register', component: RegisterComponent},
-  { path: '', pathMatch : 'full', redirectTo : 'dashboard'},
-  {path: 'login', component: LoginComponent},
-  // { path : '**', redirectTo : 'not-found'}
-]
 
 @NgModule({
   declarations: [
@@ -54,7 +41,6 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    RouterModule.forRoot(appRoutes),
   ],
   providers: [
     AuthService,

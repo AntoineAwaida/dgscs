@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService, TokenPayload } from '../../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -39,7 +39,7 @@ import {
 })
 
 
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
 
   credentials: TokenPayload = {
     email: '',
@@ -57,8 +57,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.initForm();
-    const body = document.getElementsByTagName('body')[0];
-    body.classList.add('login');
     setTimeout(() => {this.in = true}, 200)
 
     this.route.queryParams
@@ -67,10 +65,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
-    const body = document.getElementsByTagName('body')[0];
-    body.classList.remove('login');
-  }
 
   initForm() {
     this.f = this.formBuilder.group({
