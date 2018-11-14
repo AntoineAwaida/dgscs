@@ -1,38 +1,37 @@
-
 <div class="login-form">
-        
-  <form [formGroup]="f2" (ngSubmit)="onSubmit(f2)">
-      
-      <h2 class="text-center">Bienvenue sur Dgscs</h2>
-      <div class="form-group">
-              <input type="text" class="form-control" placeholder="Prénom" 
-                   formControlName="first_name">
-          </div>
-      <div class="form-group">
-              <input type="text" class="form-control" placeholder="Nom" 
-                   formControlName="last_name">
-          </div>
-      <div class="form-group">
-          <input type="email" class="form-control" placeholder="Email" 
-               formControlName="email" (keyup)="onChangeUserError()">
-          <small [ngStyle]="{color:'red', fontSize:'70%'}" *ngIf="(f2.controls.email.status!='VALID')&&(f2.controls.email.value!='')">Merci d'entrer un email valide</small>
-          <small [ngStyle]="{color:'red', fontSize:'70%'}" *ngIf="userError">Il y a déjà un compte associé à cet email</small>
-      </div>
-      <div class="form-group">
-          <input type="password" class="form-control" placeholder="Mot de passe" 
-              formControlName="password" (keyup)="onChange()">
-              <small [ngStyle]="{color:'red', fontSize:'70%'}" *ngIf="(f2.controls.password.status!='VALID')&&(f2.controls.password.value!='')">Le mot de passe doit avoir plus de 8 caractères</small>
 
-      </div>
-      <div class="form-group">
-              <input type="password" class="form-control" placeholder="Confirmation du mot de passe" 
-                  formControlName="password2">
-                  <small [ngStyle]="{color:'red', fontSize:'70%'}" *ngIf="(f2.controls.password2.value!='')&&(f2.controls.password.value!='')&&(f2.value.password!=f2.value.password2)">Les mots de passe ne sont pas identiques</small>
-          </div>
-      <div class="form-group">
-          <button type="submit" class="btn btn-primary btn-block" [disabled]="(f2.invalid)||(f2.value.password!=f2.value.password2)||(userError)">Créer un compte</button>
-      </div>
-  
-  <p class="text-center">Vous avez déjà un compte ? <br><a routerLink="/login">Se connecter</a></p>
-</form>
+    <form [formGroup]="f2" (ngSubmit)="onSubmit(f2)">
+
+        <h2 class="text-center">Bienvenue sur la plateforme du CS<sup>3</sup></h2>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Prénom" formControlName="first_name">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Nom" formControlName="last_name">
+        </div>
+        <div class="form-group">
+            <input type="email" class="form-control" placeholder="Email" formControlName="email" (keyup)="onChangeUserError()">
+            <small [ngStyle]="{color:'red', fontSize:'70%'}" *ngIf="(f2.controls.email.status!='VALID')&&(f2.controls.email.value!='')">Merci
+                d'entrer un email valide</small>
+            <small [ngStyle]="{color:'red', fontSize:'70%'}" *ngIf="userError">Il y a déjà un compte associé à cet
+                email</small>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Mot de passe" formControlName="password" (keyup)="onChange()">
+            <small [ngStyle]="{color:'red', fontSize:'70%'}" *ngIf="(f2.controls.password.status!='VALID')&&(f2.controls.password.value!='')">Le
+                mot de passe doit avoir plus de 8 caractères</small>
+
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Confirmation du mot de passe" formControlName="password2">
+            <small [ngStyle]="{color:'red', fontSize:'70%'}" *ngIf="(f2.controls.password2.value!='')&&(f2.controls.password.value!='')&&(f2.value.password!=f2.value.password2)">Les
+                mots de passe ne sont pas identiques</small>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block" [disabled]="(f2.invalid)||(f2.value.password!=f2.value.password2)||(userError)">Créer
+                un compte</button>
+        </div>
+
+        <p class="text-center">Vous avez déjà un compte ? <br><a routerLink="/login">Se connecter</a></p>
+    </form>
 </div>
