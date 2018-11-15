@@ -16,5 +16,10 @@ export class AppComponent {
   toogleSidenav() {
     this.sidenavOpened = !this.sidenavOpened
   }
+
+  logout(){
+    this.sidenavOpened=false;
+    this.auth.logout();
+  }
 }
 

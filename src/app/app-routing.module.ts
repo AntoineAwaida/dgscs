@@ -15,8 +15,8 @@ const appRoutes: Routes = [
   { path: 'dashboard', canActivate:[AuthGuardService], component: DashboardComponent },
   { path: 'work-packages',  canActivate:[AuthGuardService], component: WorkpackagesComponent },
   { path: 'tasks',  canActivate:[AuthGuardService], component: TasksComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'register', canActivate:[AuthGuardService], component: RegisterComponent },
+  { path: 'login', canActivate:[AuthGuardService], component: LoginComponent },
   { path: '', pathMatch : 'full', redirectTo : 'dashboard'},
   // { path : '**', redirectTo : 'not-found'}
 ]
