@@ -3,7 +3,7 @@
     <li class="nav-item"><a class="nav-link link" (click)="toogleSidenav()"><i class="fas fa-bars menu"></i></a></li>
     <li class="nav-item"><a class="nav-link link menu" (click)="sidenavOpened=false" routerLink="/dashboard"><i class="fas fa-tachometer-alt"></i> dashboard</a></li>
     <li *ngIf="auth.isLoggedIn()" class="nav-item"><a class="nav-link link menu" routerLink="/groups"> Groupes </a></li>
-    <li *ngIf="auth.isLoggedIn()" class="nav-item"><a class="nav-link link menu" routerLink="/admin"> Admin </a></li>
+    <li *ngIf="auth.isLoggedIn()" class="nav-item"><a class="nav-link link menu" routerLink="/admin"> Administrateur </a></li>
     <li *ngIf="auth.isLoggedIn()" class="nav-item"><a class="nav-link link menu" routerLink="/login" (click)="logout()"> Se déconnecter </a></li>
     
     <li *ngIf="auth.isLoggedIn()" class="nav-item">
