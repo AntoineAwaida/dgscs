@@ -24,7 +24,6 @@ import { LoginComponent } from './auth/login/login.component';
 import { AdminGroupsComponent } from './admin/admin-groups/admin-groups.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { AddGroupsFormComponent } from './admin/admin-groups/add-groups-form/add-groups-form.component';
-import { TestComponent } from './tasks/test/test.component';
 
 
 @NgModule({
@@ -39,8 +38,7 @@ import { TestComponent } from './tasks/test/test.component';
     LoginComponent,
     AdminGroupsComponent,
     AdminDashboardComponent,
-    AddGroupsFormComponent,
-    TestComponent
+    AddGroupsFormComponent
   ],
   imports: [
     HttpClientModule,
