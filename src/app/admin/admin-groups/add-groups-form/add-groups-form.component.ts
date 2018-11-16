@@ -15,6 +15,7 @@ export class AddGroupsFormComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.getUsers()
   }
 
   onSubmit(f) {
@@ -33,18 +34,17 @@ export class AddGroupsFormComponent implements OnInit {
 
   }
 
-  /*
+  
   getUsers() {
     this.userService.getUsers()
     .subscribe((res:any) => {
-      const users = res.data.users;
-      console.log(users);
+      console.log(res);
     },(error) => {
       console.log(error);
       console.log("impossible de reçevoir user");
     })
   }
-  */
+  
 
 
 }
