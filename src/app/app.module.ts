@@ -12,6 +12,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './services/token.interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
+import { AdminRoutingModule } from './admin/admin-routing.module';
 import { AppComponent } from './app.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { MissionsComponent } from './missions/missions.component';
@@ -20,6 +21,9 @@ import { GroupsComponent } from './groups/groups.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
+import { AdminGroupsComponent } from './admin/admin-groups/admin-groups.component';
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { AddGroupsFormComponent } from './admin/admin-groups/add-groups-form/add-groups-form.component';
 
 
 @NgModule({
@@ -31,12 +35,16 @@ import { LoginComponent } from './auth/login/login.component';
     GroupsComponent,
     DashboardComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    AdminGroupsComponent,
+    AdminDashboardComponent,
+    AddGroupsFormComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
+    AdminRoutingModule,
     BrowserAnimationsModule, 
     FormsModule,
     ReactiveFormsModule,

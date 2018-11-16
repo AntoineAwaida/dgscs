@@ -1,0 +1,11 @@
+<div *ngIf="displayed">
+  <h3> Ajouter un groupe </h3>
+  <form class="card-body" (ngSubmit)="onSubmit(f)" #f="ngForm">
+
+    <div class="form-group">
+      <input type="text" maxlength="24" placeholder="Nom du groupe" class="form-control" name="name"  [(ngModel)]="name" required>
+      <small>{{ 24-name.length }} caractères restants.</small>
+    </div>
+
+  </form>
+  </div> 

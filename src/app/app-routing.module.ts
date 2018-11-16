@@ -7,10 +7,13 @@ import { WorkpackagesComponent } from './workpackages/workpackages.component'
 import { RegisterComponent } from './auth/register/register.component'
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './auth/login/login.component';
+import { AdminGroupsComponent } from './admin/admin-groups/admin-groups.component'
+import { GroupsComponent } from './groups/groups.component';
 
 import { AuthGuardService } from './services/auth-guard.service';
 
 const appRoutes: Routes = [
+  { path: 'groups', canActivate:[AuthGuardService], component: GroupsComponent},
   { path: 'missions', canActivate:[AuthGuardService], component: MissionsComponent },
   { path: 'dashboard', canActivate:[AuthGuardService], component: DashboardComponent },
   { path: 'work-packages',  canActivate:[AuthGuardService], component: WorkpackagesComponent },
