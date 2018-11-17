@@ -6,5 +6,42 @@
       <input type="text" maxlength="24" placeholder="Nom du groupe" class="form-control" name="name"  [(ngModel)]="name" required>
     </div>
 
-  </form>
-  </div> 
+  
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" [ngStyle]="{height:'calc(2.25rem + 2px)'}"><i class="fa fa-search"></i></span>
+      </div>
+
+        <div id="myDropdown" class="dropdown-content">
+          <input type="search" class="form-control" (keyup)="onSearch()" placeholder="Rechercher un membre..."
+          [(ngModel)]="recherche" [ngModelOptions]="{standalone: true}">
+          <div *ngFor="let user_s of users_searched">
+            <a class="pointer" (click)="addUser(user_s)">{{user_s.first_name + " " + user_s.last_name}}</a>
+          </div>
+        </div>
+    </div>
+  <br />
+  <h3>Membres du groupe</h3>
+  <div *ngFor="let member of members" class="grouplist">
+    <button class="btn btn-danger nopointer">{{member.first_name + " " + member.last_name + " | "}}<div class="pointer"  (click)="deleteUser(member)"><i class="fa fa-times"></i></div></button>
+  </div>
+
+  <br />
+
+<button class="btn btn-info" type="submit" value="submit">Créer le groupe</button>
+
+</form>
+
+<div *ngIf="sent">
+  <div class="alert alert-success" role="alert">
+    Le groupe a été créé!
+  </div>
+</div>
+
+<div *ngIf="error">
+  <div class="alert alert-danger" role="alert">
+    {{error}}
+  </div>
+</div>
+
+</div> 

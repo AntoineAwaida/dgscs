@@ -25,6 +25,7 @@ import { AdminGroupsComponent } from './admin/admin-groups/admin-groups.componen
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { AddGroupsFormComponent } from './admin/admin-groups/add-groups-form/add-groups-form.component';
 
+import { FilterPipe } from './filter.pipe'
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AddGroupsFormComponent } from './admin/admin-groups/add-groups-form/add
     LoginComponent,
     AdminGroupsComponent,
     AdminDashboardComponent,
-    AddGroupsFormComponent
+    AddGroupsFormComponent,
+    FilterPipe
   ],
   imports: [
     HttpClientModule,
