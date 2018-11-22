@@ -14,7 +14,6 @@ import { TokenInterceptor } from './services/token.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AdminRoutingModule } from './admin/admin-routing.module';
 import { AppComponent } from './app.component';
-import { TasksComponent } from './tasks/tasks.component';
 import { MissionsComponent } from './missions/missions.component';
 import { WorkpackagesComponent } from './workpackages/workpackages.component';
 import { GroupsComponent } from './groups/groups.component';
@@ -25,12 +24,16 @@ import { AdminGroupsComponent } from './admin/admin-groups/admin-groups.componen
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { AddGroupsFormComponent } from './admin/admin-groups/add-groups-form/add-groups-form.component';
 
-import { FilterPipe } from './filter.pipe'
+import { FilterPipe } from './filter.pipe';
+import { TaskDetailsComponent} from './tasks/task-details/task-details.component';
+import { TaskFormComponent } from './tasks/task-form/task-form.component'
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import { TasksComponent } from 'src/app/tasks/task/task.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    TasksComponent,
     MissionsComponent,
     WorkpackagesComponent,
     GroupsComponent,
@@ -40,7 +43,11 @@ import { FilterPipe } from './filter.pipe'
     AdminGroupsComponent,
     AdminDashboardComponent,
     AddGroupsFormComponent,
-    FilterPipe
+    FilterPipe,
+    TaskDetailsComponent,
+    TaskFormComponent,
+    TaskDetailsComponent,
+    TasksComponent
   ],
   imports: [
     HttpClientModule,
@@ -51,6 +58,8 @@ import { FilterPipe } from './filter.pipe'
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    MatButtonModule, 
+    MatCheckboxModule
   ],
   providers: [
     AuthService,

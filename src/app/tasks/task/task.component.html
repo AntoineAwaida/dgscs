@@ -1,0 +1,14 @@
+<h2>My Tasks</h2>
+<ul class="tasks">
+  <li *ngFor="let task of tasks">
+      <a routerLink="/detail/{{task.id}}">
+      <span class="badge badge">{{task.id}}</span> {{task.name}}
+    </a>
+
+  </li>
+
+  <a routerLink = "/formulaire">
+    <button type="create" class="btn btn-success">Create new task</button>
+
+</a>
+</ul>

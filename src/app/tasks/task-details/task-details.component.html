@@ -1,0 +1,22 @@
+<div *ngIf="task">
+  <h2>{{task.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{task.id}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="task.name" placeholder="name"/>
+    </label>
+    <label>Description:
+      <input [(ngModel)]="task.description" placeholder="description"/>
+    </label>
+    <label>Starting Date:
+        <input [(ngModel)]="task.startingDate" placeholder="starting date"/>
+    </label>
+    <label>Ending Date:
+      <input [(ngModel)]="task.endingDate" placeholder="ending date"/>
+    </label>
+
+
+
+  </div>
+  
+</div>
