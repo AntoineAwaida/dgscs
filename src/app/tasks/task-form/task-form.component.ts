@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Task} from '../task';
 import {NgForm} from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material';
+import { DatepickerModule } from 'angular-mat-datepicker';
 
 @Component({
   selector: 'app-task-form',

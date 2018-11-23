@@ -1,30 +1,38 @@
 <div class="container">
-  <h1>Create a new task !</h1>
+  <h1>Fill in the form to create a new task</h1>
   <form (ngSubmit)="onSubmit(f)" #f="ngForm">
     <div class="form-group">
-      <label for="name">Titre</label>
+      <label for="name">Title</label>
       <input type="text" class="form-control" id="name" name="montitre" ngModel required>
       <p>{{ f.value.montitre }}</p>
     </div>
 
     <div class="form-group">
-      <label for="description">Desciption de la tâche</label>
+      <label for="description">Task description</label>
       <input type="text" class="form-control" id="description" required>
     </div>
 
 
     
     <div class="form-group">
-        <label for="startingDate">Date de début</label>
-        <input type="text" class="form-control" id="startingDate">
+        <label for="startingDate">Starting Date </label>
+          <div>
+          <input matInput [matDatepicker]="startingDate">
+          <mat-datepicker-toggle matSuffix [for]="startingDate"></mat-datepicker-toggle>
+          <mat-datepicker #startingDate></mat-datepicker>
+        </div>
       </div>
 
       <div class="form-group">
-          <label for="endingDate">Date de fin</label>
-          <input type="text" class="form-control" id="endingDate">
+          <label for="endingDate">Ending Date</label>
+          <div>
+          <input matInput [matDatepicker]="endingDate">
+          <mat-datepicker-toggle matSuffix [for]="endingDate"></mat-datepicker-toggle>
+          <mat-datepicker #endingDate></mat-datepicker>
+        </div>
         </div>
           
-
+ 
       <button type="submit" class="btn btn-success" [disabled]="!f.form.valid">Submit</button>
 
   </form>
