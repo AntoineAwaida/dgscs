@@ -3,8 +3,9 @@
   <h2>My list of tasks</h2>
   <ol>
   <li *ngFor="let task of tasks">
-      <a routerLink="/detail/{{task.id}}">
-      {{task.name}}
+      <a>
+      <button routerLink="/detail/{{task.id}}" mat-button>{{task.name}}</button>
+      
     </a>
 
   </li>

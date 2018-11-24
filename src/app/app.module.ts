@@ -30,8 +30,10 @@ import { TaskFormComponent } from './tasks/task-form/task-form.component'
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import { TasksComponent } from 'src/app/tasks/task/task.component';
 
-import {MatDatepickerModule, MatDatepicker} from '@angular/material/datepicker';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
 import {MatNativeDateModule} from '@angular/material';
+import {MatListModule} from '@angular/material/list';
 
 
 @NgModule({
@@ -66,6 +68,7 @@ import {MatNativeDateModule} from '@angular/material';
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatListModule,
     
   ],
   providers: [
