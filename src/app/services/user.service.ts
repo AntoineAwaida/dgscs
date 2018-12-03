@@ -16,7 +16,7 @@ public getUsers(): Observable<Object> {
 }
 
 public getUser(userid): Observable<Object> {
-  return this.httpClient.get("http://localhost:3000/api/users/getuser", userid)
+  return this.httpClient.get("http://localhost:3000/api/users/getuser/" + userid)
 }
 
 

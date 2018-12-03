@@ -58,7 +58,7 @@ export class AddGroupsFormComponent implements OnInit {
     //ça marche pas actuellement...
 
     
-    await this.groupsService.getGroups().subscribe((res:any) => {
+    await this.groupsService.getGroupsObs().subscribe((res:any) => {
       this.groups = res;
       console.log(this.groups)
     },(error) => {
@@ -85,12 +85,16 @@ export class AddGroupsFormComponent implements OnInit {
         console.log(res)
         this.sent = true;
         setTimeout(() => {this.sent = false}, 4000);
+        this.members = [];
       }, (error) => {
+        console.log(error);
         this.error = error;
       })
 
 
     }
+
+    
     
 
     }
