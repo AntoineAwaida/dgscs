@@ -58,7 +58,7 @@ export class AddGroupsFormComponent implements OnInit {
     //ça marche pas actuellement...
 
     
-    await this.groupsService.getGroupsObs().subscribe((res:any) => {
+    await this.groupsService.getGroups().subscribe((res:any) => {
       this.groups = res;
       console.log(this.groups)
     },(error) => {

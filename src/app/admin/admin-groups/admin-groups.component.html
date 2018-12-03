@@ -2,3 +2,10 @@
 
 <button class="btn btn-success" (click)="toggleAddForm()">Ajouter un groupe</button>
 <div><app-add-groups-form [displayed]="this.showAddForm"></app-add-groups-form></div>
+
+<div>
+<table mat-table [dataSource]="this.groups">
+    <th>Nom</th>
+    <th>Membres</th>
+
+</table></div>
