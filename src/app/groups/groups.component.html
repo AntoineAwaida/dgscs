@@ -7,7 +7,7 @@
             </div>
             <div class="card-body">
               <ul *ngFor="let user of group.members">
-                <li>{{user}}</li>
+                <li>{{user.first_name + ' '+ user.last_name}}</li>
               </ul>
             </div>
         </div>
