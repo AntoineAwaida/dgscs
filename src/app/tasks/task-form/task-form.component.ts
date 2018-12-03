@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Task} from '../task';
-import {NgForm} from '@angular/forms';
-import { MatNativeDateModule } from '@angular/material';
-import { DatepickerModule } from 'angular-mat-datepicker';
+import {NgForm, FormGroup} from '@angular/forms';
+
 
 @Component({
   selector: 'app-task-form',
@@ -10,16 +9,23 @@ import { DatepickerModule } from 'angular-mat-datepicker';
   styleUrls: ['./task-form.component.scss']
 })
 export class TaskFormComponent implements OnInit {
-  model = new Task(11,"blabla","descprtion","01/10","10/10");
-  titre = "";
+createdTask : Task;
+name : String;
+description : String;
+startingDate : String;
+endingDate : String;
+
   
-  onSubmit(form: NgForm ) {
-    console.log(form.value);
-    console.log(this.titre);
+  onSubmit(form : NgForm) {
+   this.name=form.value['title'];
+   this.description=form.value['description'];
+   this.startingDate=form.value['startingDate'];
+   this.endingDate=form.value['endingDate'];
+  console.log(this.startingDate);
+  console.log(this.endingDate);
+  console.log(this.name);
+  console.log(this.description);
 }
 
   ngOnInit() {
-  }
-// TODO: Remove this when we're done
-get diagnostic() { return JSON.stringify(this.model); }
-}
+  }}
