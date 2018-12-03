@@ -26,11 +26,7 @@ export class GroupsService {
     return this.httpClient.post("http://localhost:3000/api/groups/creategroup",group)
   }
 
-  public getGroupsObs(): Observable<Object>{
-    return this.httpClient.get("http://localhost:3000/api/groups/getgroups")
-  }
-
   public getGroups(): Observable<Object>{
-    return this.httpClient.get<any>("http://localhost:3000/api/groups/getgroups")
+    return this.httpClient.get("http://localhost:3000/api/groups/getgroups")
   }
 }

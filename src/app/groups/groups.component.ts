@@ -23,18 +23,17 @@ export class GroupsComponent implements OnInit {
   constructor(private groupsService: GroupsService, private userService: UserService) { }
 
   async ngOnInit() {
-    await this.getGroups();
+   await this.getGroups();
+
   }
 
   getGroups(){
-    this.groupsService.getGroups().pipe(
-      flatMap((groups: any[]) => {
-        let members = groups.map(grp => grp.members)
-                            .reduce((res, arr) => res.concat(arr), [])
-                            .map(member => this.userService.getUser(member))
-        return forkJoin(members);
-        
-      })
-    ).subscribe(u => console.log(u))
+    this.groupsService.getGroups().subscribe((res: any) => {
+      this.groups = res;
+      console.log(this.groups)
+    },
+    (error) => {
+      console.log(error);
+    })
   }
 }
