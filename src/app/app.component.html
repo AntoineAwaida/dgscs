@@ -5,13 +5,15 @@
     <li *ngIf="auth.isLoggedIn()" class="nav-item"><a class="nav-link link menu" routerLink="/groups"> Groupes </a></li>
     <li *ngIf="auth.isLoggedIn()" class="nav-item"><a class="nav-link link menu" routerLink="/admin"> Administrateur </a></li>
     <li *ngIf="auth.isLoggedIn()" class="nav-item"><a class="nav-link link menu" routerLink="/login" (click)="logout()"> Se déconnecter </a></li>
-    
+  </ul>
+  <ul class="navbar-nav ml-auto link">
     <li *ngIf="auth.isLoggedIn()" class="nav-item">
-      <div class="small nav-link active">{{ auth.getPayload().first_name }} {{
+      <div class="nav-link active bold">{{ auth.getPayload().first_name }} {{
         auth.getPayload().last_name }}
       </div>
     </li>
   </ul>
+  
 </nav>
 
 <mat-sidenav-container class="full" [ngClass]="{ login : !auth.isLoggedIn()}">
