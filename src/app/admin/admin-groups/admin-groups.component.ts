@@ -8,11 +8,12 @@ import { MatTableDataSource } from '@angular/material'
 export interface Group {
   name:string;
   members:string;
+  id:string;
 }
 
 
-function createGroup(config: Group): {name:string; members:string}{
-  let group = {name: config.name, members: config.members}
+function createGroup(config: Group): {name:string; members:string; id:string}{
+  let group = {name: config.name, members: config.members, id:config.id}
   return group
 };
 
@@ -37,7 +38,7 @@ export class AdminGroupsComponent implements OnInit {
 
   groups_array:Group[] = [];
 
-  displayedColumns: string [] = ['name','members']
+  displayedColumns: string [] = ['name','members', 'actions']
 
   dataSource = new MatTableDataSource(this.groups_array);
   applyFilter(filterValue: string) {
@@ -59,7 +60,7 @@ export class AdminGroupsComponent implements OnInit {
         e.members.forEach((member)=> {
           user+= member.first_name + ",";
         })
-        let group = createGroup({name:e.name,members:user})
+        let group = createGroup({name:e.name,members:user, id:e._id})
         this.groups_array.push(group)
       })
       console.log(this.groups_array)
