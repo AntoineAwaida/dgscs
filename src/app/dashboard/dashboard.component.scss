@@ -1,7 +1,15 @@
 .moduleBtn{
-    margin : 10px;
+    margin : 15px;
 }
 
 .moduleBtn:hover{
     background-color : rgb(50, 64, 153);
+}
+
+
+@media (max-width: 768px) {
+    .moduleBtn{
+        margin : 0px;
+        margin-bottom: 15px;
+    }
 }
