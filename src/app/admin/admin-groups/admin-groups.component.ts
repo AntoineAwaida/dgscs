@@ -29,7 +29,8 @@ export class AdminGroupsComponent implements OnInit {
 
   
   
-  
+  msg:string;
+  error:string;
 
   showAddForm: boolean = false;
   constructor(private groupsService: GroupsService) { }
@@ -69,6 +70,23 @@ export class AdminGroupsComponent implements OnInit {
      (error) => {
        console.log(error);
      })
+   }
+
+   delete(id){
+     const result = confirm("Voulez-vous vraiment supprimer ce groupe?")
+     if (result){
+      this.groupsService.deleteGroup(id).subscribe((res:any) => {
+        this.msg = res;
+        setTimeout(() => {this.msg=null}, 4000)
+       },
+       (error)=> {
+         this.error = error;
+         setTimeout(() => {this.error=null}, 4000)
+       })
+
+
+     }
+     
    }
 
   toggleAddForm(){

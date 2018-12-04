@@ -122,9 +122,12 @@ export class AddGroupsFormComponent implements OnInit {
   }
   
   addUser(user){
-    this.members.push(user)
-    this.recherche = ''
-    this.users_searched = []
+    //vérifie d'abord s'il n'y a pas déjà cet utilisateur ajouté à la liste des membres...
+    if (!this.members.some(e => e._id == user._id)){
+      this.members.push(user)
+    }
+      this.recherche = ''
+      this.users_searched = []
   }
 
   deleteUser(member){
