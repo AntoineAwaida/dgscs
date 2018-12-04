@@ -11,12 +11,15 @@ import { TaskService } from '../task.service';
 })
 export class TasksComponent implements OnInit {
   tasks : Task[];
+  selectedTask : Task;
   constructor(private taskService: TaskService ) { }
  
   ngOnInit() {
     this.getTasks();
   }
- 
+  onSelect(task: Task): void {
+    this.selectedTask = task;
+  }
   getTasks(): void {
     this.taskService.getTask().subscribe(tasks => this.tasks = tasks);
   } 

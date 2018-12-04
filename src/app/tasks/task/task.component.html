@@ -1,17 +1,46 @@
 
 <ul class="tasks">
+  <div class="listOfTasks">
   <h2>My list of tasks</h2>
   <ol>
-  <li *ngFor="let task of tasks">
-      <a>
-      <button routerLink="/detail/{{task.id}}" mat-button>{{task.name}}</button>
-      
-    </a>
-
+  
+  <li *ngFor="let task of tasks"
+  [class.selected]="task===selectedTask"
+  (click)="onSelect(task)">
+    <button mat-button>{{task.name}}</button>
   </li>
+
 </ol>
-  <a routerLink = "/formulaire">
-    <button type="create" class="btn btn-success">Create new task</button>
+<a routerLink = "/formulaire">
+  <button type="create" class="btn btn-success">Create new task</button>
 
 </a>
+</div>
+  <div *ngIf="selectedTask">
+      <div class="descriptionOfTask">
+
+          <h2> Task {{selectedTask.id}} details</h2>
+        <ul>
+         
+             <li>Name: {{selectedTask.name}} </li>
+             <li>Description: {{selectedTask.description}}</li>
+            
+             <li>Starting Date: {{selectedTask.startingDate}}
+             </li>
+             <li>Ending Date: {{selectedTask.endingDate}}</li>
+           </ul>
+        
+         
+        
+          </div>
+        
+    <div class="chat">
+       <h2>Chat</h2>
+    </div>
+
+    <div class="related">
+      <h3>WP reliés</h3>
+      <h3>Sous-tâches de ma tâche</h3>
+    </div>
+  </div>
 </ul>
