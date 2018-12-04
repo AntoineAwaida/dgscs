@@ -2,6 +2,21 @@ import { Component, OnInit } from '@angular/core';
 
 import {GroupsService} from '../../services/groups.service'
 
+import { MatTableDataSource } from '@angular/material'
+
+
+export interface Group {
+  name:string;
+  members:string;
+}
+
+
+function createGroup(config: Group): {name:string; members:string}{
+  let group = {name: config.name, members: config.members}
+  return group
+};
+
+
 @Component({
   selector: 'app-admin-groups',
   templateUrl: './admin-groups.component.html',
@@ -9,10 +24,27 @@ import {GroupsService} from '../../services/groups.service'
 })
 export class AdminGroupsComponent implements OnInit {
 
+  
+
+  
+  
+  
+
   showAddForm: boolean = false;
   constructor(private groupsService: GroupsService) { }
 
   groups:Array<any> = [];
+
+  groups_array:Group[] = [];
+
+  displayedColumns: string [] = ['name','members']
+
+  dataSource = new MatTableDataSource(this.groups_array);
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  
 
   async ngOnInit() {
     await this.getGroups();
@@ -21,8 +53,17 @@ export class AdminGroupsComponent implements OnInit {
  
    getGroups(){
      this.groupsService.getGroups().subscribe((res: any) => {
-       this.groups = res;
-       console.log(this.groups)
+      this.groups = res;
+      this.groups.forEach((e)=> {
+        let user = "";
+        e.members.forEach((member)=> {
+          user+= member.first_name + ",";
+        })
+        let group = createGroup({name:e.name,members:user})
+        this.groups_array.push(group)
+      })
+      console.log(this.groups_array)
+      this.dataSource = new MatTableDataSource(this.groups_array);
      },
      (error) => {
        console.log(error);

@@ -26,7 +26,7 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
 import { AddGroupsFormComponent } from './admin/admin-groups/add-groups-form/add-groups-form.component';
 
 import { FilterPipe } from './filter.pipe'
-import { MatTableModule } from '@angular/material';
+import { MatTableModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -53,7 +53,9 @@ import { MatTableModule } from '@angular/material';
     ReactiveFormsModule,
     MaterialModule,
     FlexLayoutModule,
-    MatTableModule
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [
     AuthService,

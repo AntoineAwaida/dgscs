@@ -3,10 +3,6 @@ import { GroupsService } from '../services/groups.service';
 import { UserService } from '../services/user.service';
 
 
-import { tap,flatMap } from 'rxjs/operators'
-
-import { forkJoin } from 'rxjs';
-
 
 
 
