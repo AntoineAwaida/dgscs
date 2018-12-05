@@ -1,6 +1,10 @@
 <br />
 
-<button class="btn btn-success" (click)="toggleAddForm()">Ajouter un groupe</button>
+<button class="btn btn-success" (click)="toggleAddForm()">
+        <div *ngIf="!this.showAddForm">Ajouter un groupe</div>
+        <div *ngIf="this.showAddForm">Fermer</div>
+
+</button>
 <div *ngIf="this.showAddForm"><app-add-groups-form (onSubmitted)="onSubmitted($event)" [groupid]="this.group_to_edit"></app-add-groups-form></div>
 
 <div *ngIf="this.showTable">
