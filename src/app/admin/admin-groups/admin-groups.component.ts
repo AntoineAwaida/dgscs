@@ -32,7 +32,13 @@ export class AdminGroupsComponent implements OnInit {
   msg:string;
   error:string;
 
+
+  
+  group_to_edit:string;
+  
   showAddForm: boolean = false;
+  showTable:boolean = true;
+
   constructor(private groupsService: GroupsService) { }
 
   groups:Array<any> = [];
@@ -54,6 +60,7 @@ export class AdminGroupsComponent implements OnInit {
    }
  
    getGroups(){
+     this.groups_array = []
      this.groupsService.getGroups().subscribe((res: any) => {
       this.groups = res;
       this.groups.forEach((e)=> {
@@ -78,6 +85,7 @@ export class AdminGroupsComponent implements OnInit {
       this.groupsService.deleteGroup(id).subscribe((res:any) => {
         this.msg = res;
         setTimeout(() => {this.msg=null}, 4000)
+        this.getGroups()
        },
        (error)=> {
          this.error = error;
@@ -89,8 +97,23 @@ export class AdminGroupsComponent implements OnInit {
      
    }
 
+  toggleEditForm(groupid){
+    this.showAddForm = !this.showAddForm
+    this.showTable = !this.showTable
+    this.group_to_edit = groupid
+  }
+
   toggleAddForm(){
     this.showAddForm = !this.showAddForm
+    this.showTable = !this.showTable
+    this.group_to_edit = null;
+  }
+
+  onSubmitted(msg){
+    this.toggleAddForm()
+    this.msg = msg;
+    setTimeout(() => {this.msg = null}, 4000);
+    this.getGroups()
   }
 
 }

@@ -30,6 +30,14 @@ export class GroupsService {
     return this.httpClient.get("http://localhost:3000/api/groups/getgroups")
   }
 
+  public getGroup(groupid:string): Observable<Object>{
+    return this.httpClient.get("http://localhost:3000/api/groups/getgroup/"+ groupid)
+  }
+
+  public editGroup(group:Group, groupid:string): Observable<Object>{
+    return this.httpClient.put("http://localhost:3000/api/groups/editgroup/"+ groupid, group)
+  }
+
   public deleteGroup(groupid: string): Observable<Object>{
     return this.httpClient.delete("http://localhost:3000/api/groups/deletegroup/"+groupid)
   }

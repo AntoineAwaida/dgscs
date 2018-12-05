@@ -1,9 +1,9 @@
-<div *ngIf="displayed">
+
   <h3> Ajouter un groupe </h3>
   <form class="card-body" (ngSubmit)="onSubmit(f)" #f="ngForm">
 
     <div class="form-group">
-      <input type="text" maxlength="24" placeholder="Nom du groupe" class="form-control" name="name"  [(ngModel)]="name" required>
+      <input type="text" maxlength="24" placeholder="Nom du groupe" class="form-control" name="name" [(ngModel)]="name" required>
     </div>
 
   
@@ -28,13 +28,19 @@
 
   <br />
 
-<button class="btn btn-info" type="submit" value="submit">Créer le groupe</button>
+<div *ngIf="!editform">
+  <button class="btn btn-info" type="submit" value="submit">Créer le groupe</button>
+</div>
+<div *ngIf="editform">
+  <button class="btn btn-warning" type="submit" value="submit">Modifier le groupe</button>
+</div>
+
 
 </form>
 
 <div *ngIf="sent">
   <div class="alert alert-success" role="alert">
-    Le groupe a été créé!
+    {{sent}}
   </div>
 </div>
 
@@ -43,5 +49,3 @@
     {{error}}
   </div>
 </div>
-
-</div> 
