@@ -166,12 +166,12 @@ export class AddGroupsFormComponent implements OnInit {
   }
   
   getUsers() {
-    this.userService.getUsers()
+    this.userService.getActiveUsers()
     .subscribe((res:any) => {
       this.users = res;
     },(error) => {
       console.log(error);
-      console.log("impossible de reçevoir user");
+      console.log("impossible de recevoir user");
     })
   }
 

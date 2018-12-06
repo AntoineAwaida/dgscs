@@ -26,7 +26,8 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
 import { AddGroupsFormComponent } from './admin/admin-groups/add-groups-form/add-groups-form.component';
 
 import { FilterPipe } from './filter.pipe'
-import { MatTableModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatTableModule, MatFormFieldModule, MatInputModule, MatPaginatorModule } from '@angular/material';
+import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { MatTableModule, MatFormFieldModule, MatInputModule } from '@angular/mat
     AdminGroupsComponent,
     AdminDashboardComponent,
     AddGroupsFormComponent,
-    FilterPipe
+    FilterPipe,
+    AdminUsersComponent
   ],
   imports: [
     HttpClientModule,
@@ -56,6 +58,7 @@ import { MatTableModule, MatFormFieldModule, MatInputModule } from '@angular/mat
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
+    MatPaginatorModule
   ],
   providers: [
     AuthService,

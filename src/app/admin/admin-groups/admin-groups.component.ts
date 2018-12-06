@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import {GroupsService} from '../../services/groups.service'
 
-import { MatTableDataSource } from '@angular/material'
+import { MatTableDataSource, MatPaginator } from '@angular/material'
 
 
 export interface Group {
@@ -18,6 +18,7 @@ function createGroup(config: Group): {name:string; members:string; id:string}{
 };
 
 
+
 @Component({
   selector: 'app-admin-groups',
   templateUrl: './admin-groups.component.html',
@@ -27,7 +28,7 @@ export class AdminGroupsComponent implements OnInit {
 
   
 
-  
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   
   msg:string;
   error:string;
@@ -56,7 +57,6 @@ export class AdminGroupsComponent implements OnInit {
 
   async ngOnInit() {
     await this.getGroups();
- 
    }
  
    getGroups(){
@@ -73,6 +73,7 @@ export class AdminGroupsComponent implements OnInit {
       })
       console.log(this.groups_array)
       this.dataSource = new MatTableDataSource(this.groups_array);
+      this.dataSource.paginator = this.paginator;
      },
      (error) => {
        console.log(error);

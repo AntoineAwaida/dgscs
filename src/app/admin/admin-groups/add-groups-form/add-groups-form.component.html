@@ -29,10 +29,10 @@
   <br />
 
 <div *ngIf="!editform">
-  <button class="btn btn-info" type="submit" value="submit">Créer le groupe</button>
+  <button mat-raised-button [color]="'info'" type="submit" value="submit">Créer le groupe</button>
 </div>
 <div *ngIf="editform">
-  <button class="btn btn-warning" type="submit" value="submit">Modifier le groupe</button>
+  <button mat-raised-button [color]="'edit'" type="submit" value="submit">Modifier le groupe</button>
 </div>
 
 
