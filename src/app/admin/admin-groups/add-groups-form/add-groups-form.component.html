@@ -23,7 +23,7 @@
   <br />
   <h3>Membres du groupe</h3>
   <div *ngFor="let member of members" class="grouplist">
-    <button class="btn btn-danger nopointer">{{member.first_name + " " + member.last_name + " | "}}<div class="pointer"  (click)="deleteUser(member)"><i class="fa fa-times"></i></div></button>
+    <button type="button" class="btn btn-danger nopointer">{{member.first_name + " " + member.last_name + " | "}}<div class="pointer"  (click)="deleteUser(member)"><i class="fa fa-times"></i></div></button>
   </div>
 
   <br />

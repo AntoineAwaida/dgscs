@@ -23,6 +23,10 @@ public getUser(userid): Observable<Object> {
   return this.httpClient.get("http://localhost:3000/api/users/getuser/" + userid)
 }
 
+public getPendingUsers(): Observable<Object> {
+  return this.httpClient.get("http://localhost:3000/api/users/getpendingusers")
+}
+
 public deactivateUser(userid): Observable<Object> {
   return this.httpClient.get("http://localhost:3000/api/users/deactivateuser/" + userid)
 }

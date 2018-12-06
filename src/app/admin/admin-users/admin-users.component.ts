@@ -15,6 +15,7 @@ export class AdminUsersComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
+  ready:boolean = false;
   msg:string;
   error:string;
 
@@ -42,6 +43,7 @@ export class AdminUsersComponent implements OnInit {
     this.userService.getUsers().subscribe((res:any) => {
       this.dataSource = new MatTableDataSource(res);
       this.dataSource.paginator = this.paginator;
+      this.ready = true;
     },
     (error)=> {
       console.log(error)

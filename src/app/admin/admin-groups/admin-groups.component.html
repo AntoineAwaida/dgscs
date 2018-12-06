@@ -1,5 +1,7 @@
 <br />
 
+
+<div *ngIf = "this.ready">
 <button mat-raised-button [color]="'success'" (click)="toggleAddForm()">
         <div *ngIf="!this.showAddForm">Ajouter un groupe</div>
         <div *ngIf="this.showAddForm">Fermer</div>
@@ -7,61 +9,66 @@
 </button>
 <div *ngIf="this.showAddForm"><app-add-groups-form (onSubmitted)="onSubmitted($event)" [groupid]="this.group_to_edit"></app-add-groups-form></div>
 
-<div *ngIf="this.showTable">
+        <div *ngIf="this.showTable">
 
-        <mat-form-field>
-                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrez...">
-        </mat-form-field>
-      
-        <div class="mat-elevation-z8">
-
-
-                        <table mat-table [dataSource]="dataSource">
+                <mat-form-field>
+                        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrez...">
+                </mat-form-field>
+        
+                <div class="mat-elevation-z8">
 
 
-                                <!-- Name Column -->
-                                <ng-container matColumnDef="name">
-                                        <th mat-header-cell *matHeaderCellDef> Name </th>
-                                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                                </ng-container>
-                        
-                        
-                                <!-- Members Column -->
-                                <ng-container matColumnDef="members">
-                                        <th mat-header-cell *matHeaderCellDef> Membres </th>
-                                        <td mat-cell *matCellDef="let element"> {{element.members}} </td>
-                                </ng-container>
-                        
-                        
-                                <ng-container matColumnDef="actions">
-                                                <th mat-header-cell *matHeaderCellDef> Actions </th>
-                                                <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary" (click)="toggleEditForm(element.id)"> Editer </button>
-                                                <button mat-raised-button color="warn" style="margin-left:5px" (click)="delete(element.id)"> Supprimer </button> </td>
-                                </ng-container>
-                                        
-                        
-                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                <table mat-table [dataSource]="dataSource">
 
-                        </table>
+
+                                        <!-- Name Column -->
+                                        <ng-container matColumnDef="name">
+                                                <th mat-header-cell *matHeaderCellDef> Name </th>
+                                                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                        </ng-container>
                                 
-                        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                                
+                                        <!-- Members Column -->
+                                        <ng-container matColumnDef="members">
+                                                <th mat-header-cell *matHeaderCellDef> Membres </th>
+                                                <td mat-cell *matCellDef="let element"> {{element.members}} </td>
+                                        </ng-container>
+                                
+                                
+                                        <ng-container matColumnDef="actions">
+                                                        <th mat-header-cell *matHeaderCellDef> Actions </th>
+                                                        <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary" (click)="toggleEditForm(element.id)"> Editer </button>
+                                                        <button mat-raised-button color="warn" style="margin-left:5px" (click)="delete(element.id)"> Supprimer </button> </td>
+                                        </ng-container>
+                                                
+                                
+                                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                                </table>
+                                        
+                                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 
 
 
-        </div>
-        <br/>
-
-        <div *ngIf="msg">
-                <div class="alert alert-success" role="alert">
-                        {{msg}}
                 </div>
-        </div>
+                <br/>
 
-        <div *ngIf="error">
-                <div class="alert alert-danger" role="alert">
-                        {{error}}
+                <div *ngIf="msg">
+                        <div class="alert alert-success" role="alert">
+                                {{msg}}
+                        </div>
                 </div>
-        </div>
 
+                <div *ngIf="error">
+                        <div class="alert alert-danger" role="alert">
+                                {{error}}
+                        </div>
+                </div>
+
+        </div>
+</div>
+<div *ngIf="!this.ready" fxLayoutAlign="space-around center" style="overflow:hidden">
+        <div class="loader">
+        </div> 
 </div>

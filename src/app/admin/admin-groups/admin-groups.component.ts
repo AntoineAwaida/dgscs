@@ -33,6 +33,8 @@ export class AdminGroupsComponent implements OnInit {
   msg:string;
   error:string;
 
+  ready:boolean = false;
+
 
   
   group_to_edit:string;
@@ -77,6 +79,7 @@ export class AdminGroupsComponent implements OnInit {
       console.log(this.groups_array)
       this.dataSource = new MatTableDataSource(this.groups_array);
       this.dataSource.paginator = this.paginator;
+      this.ready = true;
      },
      (error) => {
        console.log(error);
