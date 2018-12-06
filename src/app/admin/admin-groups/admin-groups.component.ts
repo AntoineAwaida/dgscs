@@ -65,9 +65,12 @@ export class AdminGroupsComponent implements OnInit {
       this.groups = res;
       this.groups.forEach((e)=> {
         let user = "";
-        e.members.forEach((member)=> {
-          user+= member.first_name + ",";
-        })
+        for(let i=0; i<e.members.length-1; i++){
+          let member = e.members[i];
+          user += member.first_name + ", ";
+        }
+        user += e.members[e.members.length-1].first_name
+
         let group = createGroup({name:e.name,members:user, id:e._id})
         this.groups_array.push(group)
       })
