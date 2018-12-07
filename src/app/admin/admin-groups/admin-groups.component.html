@@ -37,8 +37,8 @@
                                 
                                         <ng-container matColumnDef="actions">
                                                         <th mat-header-cell *matHeaderCellDef> Actions </th>
-                                                        <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary" (click)="toggleEditForm(element.id)"> Editer </button>
-                                                        <button mat-raised-button color="warn" style="margin-left:5px" (click)="delete(element.id)"> Supprimer </button> </td>
+                                                        <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary" style="width:100px" (click)="toggleEditForm(element.id)"> Editer </button>
+                                                        <button mat-raised-button color="warn" style="margin-left:5px; width:100px" (click)="delete(element.id)"> Supprimer </button> </td>
                                         </ng-container>
                                                 
                                 

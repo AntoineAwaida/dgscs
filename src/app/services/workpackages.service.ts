@@ -31,4 +31,19 @@ export class WorkpackagesService {
     return this.httpClient.get(api + "workpackages/getwp");
   }
 
+
+  public activate(id:string): Observable<Object> {
+    return this.httpClient.get(api + "workpackages/activate/" + id)
+  }
+
+  public deactivate(id:string): Observable<Object> {
+    return this.httpClient.get(api + "workpackages/deactivate/" + id)
+  }
+
+  public readonly(id:string): Observable<Object> {
+    return this.httpClient.get(api + "workpackages/readonly/" + id)
+  }
+
+
+
 }

@@ -60,4 +60,41 @@ export class AdminWorkpackagesComponent implements OnInit {
     this.getWorkPackages()
   }
 
+  activate(id){
+    this.workpackageService.activate(id).subscribe((res:any)=> {
+      this.msg = res;
+      setTimeout(() => {this.msg = null}, 4000);
+      this.getWorkPackages();
+    },
+    (error => {
+      this.error = error;
+      console.log(error);
+    }))
+  }
+
+  deactivate(id){
+    this.workpackageService.deactivate(id).subscribe((res:any)=> {
+      this.msg = res;
+      setTimeout(() => {this.msg = null}, 4000);
+      this.getWorkPackages();
+    },
+    (error => {
+      this.error = error;
+      console.log(error);
+    }))
+  }
+
+  readonly(id){
+    this.workpackageService.readonly(id).subscribe((res:any)=> {
+      this.msg = res;
+      setTimeout(() => {this.msg = null}, 4000);
+      this.getWorkPackages();
+    },
+    (error => {
+      this.error = error;
+      console.log(error);
+    }))
+  }
+
+
 }
