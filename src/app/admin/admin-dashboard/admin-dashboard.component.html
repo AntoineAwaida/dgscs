@@ -2,8 +2,10 @@
 
 <nav class="nav nav-tabs">
   <a class="nav-item nav-link" [class.active]="isActive('/admin')"  routerLink="/admin" data-toggle="tab"> Dashboard </a>
-  <a class="nav-item nav-link" [class.active]="isActive('/admin/groups')" routerLink="/admin/groups" data-toggle="tab"> Groupes </a>
   <a class="nav-item nav-link" [class.active]="isActive('/admin/users')" routerLink="/admin/users" data-toggle="tab"> Utilisateurs </a>
+  <a class="nav-item nav-link" [class.active]="isActive('/admin/groups')" routerLink="/admin/groups" data-toggle="tab"> Groupes </a>
+  <a class="nav-item nav-link" [class.active]="isActive('/admin/workpackages')" routerLink="/admin/workpackages" data-toggle="tab"> WorkPackages </a>
+  
 </nav>
 
 <router-outlet></router-outlet>
@@ -12,82 +14,8 @@
 <div *ngIf="isActive('/admin')"> 
 
 <br />
+        <h1>Votre panneau d'administration</h1>
 
-  <div *ngIf="this.ready">
-          <mat-form-field>
-                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrez...">
-          </mat-form-field>
-
-          <div class="mat-elevation-z8">
-
-
-                  <table mat-table [dataSource]="dataSource">
-
-
-
-                          <ng-container matColumnDef="first_name">
-                                  <th mat-header-cell *matHeaderCellDef> Prénom </th>
-                                  <td mat-cell *matCellDef="let element"> {{element.first_name}} </td>
-                          </ng-container>
-
-
-                          <ng-container matColumnDef="last_name">
-                                  <th mat-header-cell *matHeaderCellDef> Nom </th>
-                                  <td mat-cell *matCellDef="let element"> {{element.last_name}} </td>
-                          </ng-container>
-
-
-
-                          <ng-container matColumnDef="actions">
-                                  <th mat-header-cell *matHeaderCellDef> Actions </th>
-                                  <td mat-cell *matCellDef="let element">
-                                          <div *ngIf="element.status == 'pending'">
-                                                  <button mat-raised-button [color]="'success'" style="margin-left:5px" (click)="activate(element._id)">
-                                                          Activer </button>
-                                                  <button mat-raised-button color="warn" style="margin-left:5px" (click)="deactivate(element._id)">
-                                                          Désactiver </button>
-                                          </div>
-                                          <div *ngIf="element.status == 'active' || element.status == 'admin'">
-                                                  <button mat-raised-button color="warn" style="margin-left:5px" (click)="deactivate(element._id)">
-                                                          Désactiver </button>
-                                          </div>
-                                          <div *ngIf="element.status == 'inactive'">
-                                                  <button mat-raised-button [color]="'success'" style="margin-left:5px" (click)="activate(element._id)">
-                                                          Activer </button>
-                                          </div>
-                                  </td>
-
-                          </ng-container>
-
-
-                          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-                  </table>
-
-                  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-
-
-
-          </div>
-          <br />
-
-
-          <div *ngIf="msg">
-                  <div class="alert alert-success" role="alert">
-                          {{msg}}
-                  </div>
-          </div>
-
-          <div *ngIf="error">
-                  <div class="alert alert-danger" role="alert">
-                          {{error}}
-                  </div>
-          </div>
-  </div>
-  <div *ngIf="!this.ready" fxLayoutAlign="space-around center" style="overflow:hidden">
-          <div class="loader">
-          </div> 
-  </div>
+        <app-pending-users></app-pending-users>
 
 </div>

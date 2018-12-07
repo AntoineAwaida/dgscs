@@ -25,7 +25,6 @@ export class AddGroupsFormComponent implements OnInit {
 
   editform:string; //a une valeur si c'est un formulaire d'édition (bouton jaune, requête put...)
 
-  sent:string;
   error:String = null;
   members:Array<any> = [];
   name:string;

@@ -61,30 +61,30 @@ export class AdminGroupsComponent implements OnInit {
     await this.getGroups();
    }
  
-   getGroups(){
-     this.groups_array = []
-     this.groupsService.getGroups().subscribe((res: any) => {
-      this.groups = res;
-      this.groups.forEach((e)=> {
-        let user = "";
-        for(let i=0; i<e.members.length-1; i++){
-          let member = e.members[i];
-          user += member.first_name + ", ";
-        }
-        user += e.members[e.members.length-1].first_name
+  getGroups(){
+    this.groups_array = []
+    this.groupsService.getGroups().subscribe((res: any) => {
+    this.groups = res;
+    this.groups.forEach((e)=> {
+      let user = "";
+      for(let i=0; i<e.members.length-1; i++){
+        let member = e.members[i];
+        user += member.first_name + ", ";
+      }
+      user += e.members[e.members.length-1].first_name
 
-        let group = createGroup({name:e.name,members:user, id:e._id})
-        this.groups_array.push(group)
-      })
-      console.log(this.groups_array)
-      this.dataSource = new MatTableDataSource(this.groups_array);
-      this.dataSource.paginator = this.paginator;
-      this.ready = true;
-     },
-     (error) => {
-       console.log(error);
-     })
-   }
+      let group = createGroup({name:e.name,members:user, id:e._id})
+      this.groups_array.push(group)
+    })
+    this.dataSource = new MatTableDataSource(this.groups_array);
+    setTimeout(() => this.dataSource.paginator = this.paginator);
+    this.ready = true;
+    },
+    (error) => {
+      this.error = error;
+      console.log(error);
+    })
+  }
 
    delete(id){
      const result = confirm("Voulez-vous vraiment supprimer ce groupe?")

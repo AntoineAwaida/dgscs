@@ -22,11 +22,9 @@ export class AdminUsersComponent implements OnInit {
   constructor(private userService : UserService) { }
 
 
-  users:Array<any> = [];
-
   displayedColumns: string [] = ['first_name','last_name', 'actions']
 
-  dataSource = new MatTableDataSource(this.users);
+  dataSource = new MatTableDataSource();
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
@@ -35,14 +33,14 @@ export class AdminUsersComponent implements OnInit {
 
   async ngOnInit() {
     await this.getUsers();
-   }
+  }
 
   
   async getUsers(){
 
     this.userService.getUsers().subscribe((res:any) => {
       this.dataSource = new MatTableDataSource(res);
-      this.dataSource.paginator = this.paginator;
+      setTimeout(() => this.dataSource.paginator = this.paginator);
       this.ready = true;
     },
     (error)=> {

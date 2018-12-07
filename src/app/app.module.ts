@@ -28,6 +28,9 @@ import { AddGroupsFormComponent } from './admin/admin-groups/add-groups-form/add
 import { FilterPipe } from './filter.pipe'
 import { MatTableModule, MatFormFieldModule, MatInputModule, MatPaginatorModule } from '@angular/material';
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
+import { PendingUsersComponent } from './admin/admin-dashboard/pending-users/pending-users.component';
+import { AdminWorkpackagesComponent } from './admin/admin-workpackages/admin-workpackages.component';
+import { AddWorkpackagesFormComponent } from './admin/admin-workpackages/add-workpackages-form/add-workpackages-form.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
     AdminDashboardComponent,
     AddGroupsFormComponent,
     FilterPipe,
-    AdminUsersComponent
+    AdminUsersComponent,
+    PendingUsersComponent,
+    AdminWorkpackagesComponent,
+    AddWorkpackagesFormComponent
   ],
   imports: [
     HttpClientModule,

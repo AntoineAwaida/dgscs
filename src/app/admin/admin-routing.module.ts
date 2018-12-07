@@ -5,6 +5,7 @@ import {AdminDashboardComponent} from './admin-dashboard/admin-dashboard.compone
 import { AdminGroupsComponent } from './admin-groups/admin-groups.component';
 import { AuthGuardService } from '../services/auth-guard.service';
 import { AdminUsersComponent } from './admin-users/admin-users.component';
+import { AdminWorkpackagesComponent } from './admin-workpackages/admin-workpackages.component';
 
 const adminRoutes: Routes = [
   {
@@ -12,7 +13,8 @@ const adminRoutes: Routes = [
     component: AdminDashboardComponent,
     children: [
        { path: 'groups', component: AdminGroupsComponent },
-       { path: 'users', component: AdminUsersComponent }
+       { path: 'users', component: AdminUsersComponent }, 
+       { path: 'workpackages', component: AdminWorkpackagesComponent}
     ]
   }
   // { path : '**', redirectTo : 'not-found'}
