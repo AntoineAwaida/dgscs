@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, Input } from '@angular/core';
 import { WorkpackagesService } from 'src/app/services/workpackages.service';
 
 import { Group, GroupsService } from '../../../services/groups.service'
@@ -13,6 +13,19 @@ import { EventEmitter } from '@angular/core';
 export class AddWorkpackagesFormComponent implements OnInit {
 
   @Output() onSubmitted: EventEmitter<any> = new EventEmitter<any>();
+
+  @Input() 
+  set wpedit(wpedit:string){
+    if (wpedit){
+      this.editform = wpedit;
+      this.getWorkPackage(wpedit);
+    }
+  };
+
+  editform:string;
+
+  name:string;
+  description:string;
 
   groups_searched: Array<any> =[];
   groups:Array<any> = [];
@@ -38,7 +51,7 @@ export class AddWorkpackagesFormComponent implements OnInit {
 
     if (!f.value.name){
 
-      this.error = "Merci de bien remplir un nom de groupe, et d'ajouter au moins 1 membre au groupe."
+      this.error = "Merci de bien remplir un nom de workpackage."
       setTimeout(() => {this.error=null}, 4000)
       this.waiting_result = false;
 
@@ -59,15 +72,36 @@ export class AddWorkpackagesFormComponent implements OnInit {
         groups: this.groups_selected
       } 
 
-      this.workpackagesService.createWorkPackage(workpackage).subscribe((res:any)=> {
-        this.onSubmitted.emit(res);
-        this.waiting_result = false;
-      },
-      (error)=> {
-        this.error = error;
-        console.log(error);
-        this.waiting_result = false;
-      })
+
+      if (!this.editform){
+
+        this.workpackagesService.createWorkPackage(workpackage).subscribe((res:any)=> {
+          this.onSubmitted.emit(res);
+          this.waiting_result = false;
+        },
+        (error)=> {
+          this.error = error;
+          console.log(error);
+          this.waiting_result = false;
+        })
+
+      }
+
+      else {
+
+        this.workpackagesService.editWorkPackage(workpackage, this.editform).subscribe((res:any)=> {
+          this.onSubmitted.emit(res);
+          this.waiting_result = false;
+        },
+        (error)=> {
+          this.error = error;
+          console.log(error);
+          this.waiting_result = false;
+        })
+
+
+      }
+      
     }
 
 
@@ -100,6 +134,22 @@ export class AddWorkpackagesFormComponent implements OnInit {
     (error)=> {
       this.error = error;
       console.log(error);
+    })
+  }
+
+  getWorkPackage(id){
+    this.workpackagesService.getWorkPackage(id).subscribe((res:any) => {
+
+      this.name = res.name
+      this.status = res.status
+      this.description = res.description
+      this.groups_selected = res.groups
+      
+
+    },
+    (error) => {
+      this.error = error
+      console.log(error)
     })
   }
 

@@ -45,7 +45,13 @@
 
   <br />
 
-  <button mat-raised-button [color]="'info'" type="submit" value="submit" [disabled]="this.waiting_result">Créer le groupe</button>
+  <div *ngIf="!this.editform">
+      <button mat-raised-button [color]="'info'" type="submit" value="submit" [disabled]="this.waiting_result">Créer le WorkPackage</button>
+  </div>
+
+  <div *ngIf="this.editform">
+    <button mat-raised-button [color]="'edit'" type="submit" value="submit" [disabled]="this.waiting_result">Modifier le WorkPackage</button>
+  </div>
 
 
 </form>

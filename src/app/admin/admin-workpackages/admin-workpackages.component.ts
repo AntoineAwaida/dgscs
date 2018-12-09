@@ -1,8 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 
 
-import { MatTableDataSource, MatPaginator } from '@angular/material'
+import { MatTableDataSource, MatPaginator, MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material'
 import { WorkpackagesService } from 'src/app/services/workpackages.service';
+
+import {ActionsDialogComponent} from './actions-dialog/actions-dialog.component'
+
 
 @Component({
   selector: 'app-admin-workpackages',
@@ -14,6 +17,8 @@ export class AdminWorkpackagesComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
+
+  wp_to_edit:string;
   msg:string;
   showAddForm:boolean = false;
   showTable:boolean = true;
@@ -28,7 +33,27 @@ export class AdminWorkpackagesComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  constructor(private workpackageService: WorkpackagesService) { }
+  constructor(private workpackageService: WorkpackagesService, public dialog: MatDialog) { }
+
+  openDialog(e):void {
+
+    const dialogRef = this.dialog.open(ActionsDialogComponent, {
+      data: {id : e._id, status: e.status }
+    })
+
+    const sub = dialogRef.componentInstance.onEditRequest.subscribe((res:any) => {
+      this.toggleEditForm(res);
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      sub.unsubscribe();
+      this.getWorkPackages();
+      this.msg = result;
+      setTimeout(() => {this.msg = null}, 4000);
+    });
+
+  }
+
 
   ngOnInit() {
     this.getWorkPackages();
@@ -51,6 +76,13 @@ export class AdminWorkpackagesComponent implements OnInit {
   toggleAddForm(){
     this.showAddForm = !this.showAddForm
     this.showTable = !this.showTable
+    this.wp_to_edit = null;
+  }
+
+  toggleEditForm(wpid){
+    this.showAddForm = !this.showAddForm
+    this.showTable = !this.showTable
+    this.wp_to_edit = wpid
   }
 
   onSubmitted(msg){
@@ -58,42 +90,6 @@ export class AdminWorkpackagesComponent implements OnInit {
     this.msg = msg;
     setTimeout(() => {this.msg = null}, 4000);
     this.getWorkPackages()
-  }
-
-  activate(id){
-    this.workpackageService.activate(id).subscribe((res:any)=> {
-      this.msg = res;
-      setTimeout(() => {this.msg = null}, 4000);
-      this.getWorkPackages();
-    },
-    (error => {
-      this.error = error;
-      console.log(error);
-    }))
-  }
-
-  deactivate(id){
-    this.workpackageService.deactivate(id).subscribe((res:any)=> {
-      this.msg = res;
-      setTimeout(() => {this.msg = null}, 4000);
-      this.getWorkPackages();
-    },
-    (error => {
-      this.error = error;
-      console.log(error);
-    }))
-  }
-
-  readonly(id){
-    this.workpackageService.readonly(id).subscribe((res:any)=> {
-      this.msg = res;
-      setTimeout(() => {this.msg = null}, 4000);
-      this.getWorkPackages();
-    },
-    (error => {
-      this.error = error;
-      console.log(error);
-    }))
   }
 
 

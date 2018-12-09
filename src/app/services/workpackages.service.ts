@@ -26,9 +26,17 @@ export class WorkpackagesService {
     return this.httpClient.post(api + "workpackages/createwp",wp)
   }
 
+  public editWorkPackage(wp: WorkPackage, wpid:string): Observable<Object> {
+    return this.httpClient.put(api + "workpackages/editwp/" + wpid, wp)
+  }
+
 
   public getWorkPackages(): Observable<Object> {
     return this.httpClient.get(api + "workpackages/getwp");
+  }
+
+  public getWorkPackage(id:string): Observable<Object> {
+    return this.httpClient.get(api + "workpackages/getwp/" +id);
   }
 
 
