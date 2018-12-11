@@ -14,7 +14,7 @@
       </div>
 
       
-     <form (ngSubmit)="onDate(f)" #f="ngForm">
+     
       <div class="form-group">
 
         <label for="startingDate"></label>
@@ -26,13 +26,13 @@
         <mat-datepicker #startingDate></mat-datepicker>
       </mat-form-field>
         </div>
-</form>
+
         <div class="form-group">
 
             <label for="endingDate"></label>
              
             <mat-form-field>
-            <input matInput  [min]= f.startingDate [matDatepicker]="endingDate" placeholder="Date de fin" name="endingDate" ngModel required >
+            <input matInput   [matDatepicker]="endingDate" placeholder="Date de fin" name="endingDate" ngModel required >
             <mat-datepicker-toggle matSuffix [for]="endingDate"></mat-datepicker-toggle>
             <mat-datepicker #endingDate></mat-datepicker>
           </mat-form-field>
@@ -41,4 +41,8 @@
         <button type="submit" class="btn btn-success" [disabled]="!f.form.valid">Submit</button>
 
     </form>
+</div>
+
+<div *ngIf="this.error">
+  <div class="alert alert-danger"> {{this.error}} </div>
 </div>

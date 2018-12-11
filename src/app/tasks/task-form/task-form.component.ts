@@ -14,19 +14,24 @@ name : String;
 description : String;
 startingDate : Date;
 endingDate : Date;
+error:string;
 
   onSubmit(form : NgForm) {
    this.name=form.value['title'];
    this.description=form.value['description'];
    this.startingDate=form.value['startingDate'];
    this.endingDate=form.value['endingDate'];
+
+   if (this.endingDate < this.startingDate){
+     this.error ="Merci de renseigner une date de fin postérieure à celle de début."
+     setTimeout(() => {this.error=null}, 4000)
+   } 
+
   console.log(this.startingDate);
   console.log(this.endingDate);
   console.log(this.name);
   console.log(this.description);
 }
-onDate(form : NgForm){
-  this.startingDate=form.value['startingDate'];
-}
+
   ngOnInit() {
   }}
