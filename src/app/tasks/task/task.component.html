@@ -1,46 +1,69 @@
 
-<ul class="tasks">
-  <div class="listOfTasks">
-  <h2>My list of tasks</h2>
-  <ol>
-  
+<ul class="container">
+ <div class="row">
+    <div class="col-3 col md-3 ">
+  <div class="listOfTasks" >
+    <div class="title">
+  <h2>My list of tasks</h2></div>
+  <div class="enumeration">
+ <ol>
   <li *ngFor="let task of tasks"
   [class.selected]="task===selectedTask"
   (click)="onSelect(task)">
     <button mat-button>{{task.name}}</button>
   </li>
-
 </ol>
+</div>
 <a routerLink = "/formulaire">
+  <div class="bouton">
   <button type="create" class="btn btn-success">Create new task</button>
-
+</div>
 </a>
 </div>
+</div>
+<div class="col-5 ">
+  
   <div *ngIf="selectedTask">
+    <div class="row-5">
       <div class="descriptionOfTask">
-
-          <h2> Task {{selectedTask.id}} details</h2>
+        <div class="title">
+          <h2> Task {{selectedTask.id}} details</h2></div>
         <ul>
          
              <li>Name: {{selectedTask.name}} </li>
              <li>Description: {{selectedTask.description}}</li>
             
-             <li>Starting Date: {{selectedTask.startingDate}}
-             </li>
+             <li>Starting Date: {{selectedTask.startingDate}}</li>
              <li>Ending Date: {{selectedTask.endingDate}}</li>
-           </ul>
+        </ul>
         
-         
-        
-          </div>
-        
-    <div class="chat">
-       <h2>Chat</h2>
+      </div>
     </div>
-
-    <div class="related">
-      <h3>WP reliés</h3>
-      <h3>Sous-tâches de ma tâche</h3>
+  <div class="interligne"></div>
+   <div class="row-5">      
+      <div class="chat">
+         <h2>Chat</h2>
+      </div>
     </div>
   </div>
+  </div>
+
+  <div *ngIf="selectedTask">
+
+    <div class="col-10">
+
+     <div class="relatedWP">
+      <div class="row-10">
+        <h2>WP reliés</h2>
+      </div>
+    </div>
+    <div class="interligne"></div>
+    <div class="row-10">
+      <div class="relatedTasks">
+        <h2>Tâches reliées</h2>
+      </div>    
+    </div>
+  </div>
+  </div>
+</div>
 </ul>

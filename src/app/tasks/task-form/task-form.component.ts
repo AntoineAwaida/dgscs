@@ -12,10 +12,9 @@ export class TaskFormComponent implements OnInit {
 createdTask : Task;
 name : String;
 description : String;
-startingDate : String;
-endingDate : String;
+startingDate : Date;
+endingDate : Date;
 
-  
   onSubmit(form : NgForm) {
    this.name=form.value['title'];
    this.description=form.value['description'];
@@ -26,6 +25,8 @@ endingDate : String;
   console.log(this.name);
   console.log(this.description);
 }
-
+onDate(form : NgForm){
+  this.startingDate=form.value['startingDate'];
+}
   ngOnInit() {
   }}
