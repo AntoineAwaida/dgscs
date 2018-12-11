@@ -14,7 +14,6 @@ import { TokenInterceptor } from './services/token.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AdminRoutingModule } from './admin/admin-routing.module';
 import { AppComponent } from './app.component';
-import { TasksComponent } from './tasks/tasks.component';
 import { MissionsComponent } from './missions/missions.component';
 import { WorkpackagesComponent } from './workpackages/workpackages.component';
 import { GroupsComponent } from './groups/groups.component';
@@ -25,7 +24,7 @@ import { AdminGroupsComponent } from './admin/admin-groups/admin-groups.componen
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { AddGroupsFormComponent } from './admin/admin-groups/add-groups-form/add-groups-form.component';
 
-import { FilterPipe } from './filter.pipe'
+
 import { MatTableModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatDialogModule, MatGridListModule, MatCardModule } from '@angular/material';
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { PendingUsersComponent } from './admin/admin-dashboard/pending-users/pending-users.component';
@@ -34,10 +33,21 @@ import { AddWorkpackagesFormComponent } from './admin/admin-workpackages/add-wor
 import { ActionsDialogComponent } from './admin/admin-workpackages/actions-dialog/actions-dialog.component';
 import { WorkpackageComponent } from './workpackages/workpackage/workpackage.component';
 
+import { FilterPipe } from './filter.pipe';
+import { TaskDetailsComponent} from './tasks/task-details/task-details.component';
+import { TaskFormComponent } from './tasks/task-form/task-form.component'
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import { TasksComponent } from 'src/app/tasks/task/task.component';
+
+import {MatDatepickerModule} from '@angular/material';
+
+import {MatNativeDateModule} from '@angular/material';
+import {MatListModule} from '@angular/material/list';
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    TasksComponent,
     MissionsComponent,
     WorkpackagesComponent,
     GroupsComponent,
@@ -48,12 +58,18 @@ import { WorkpackageComponent } from './workpackages/workpackage/workpackage.com
     AdminDashboardComponent,
     AddGroupsFormComponent,
     FilterPipe,
+
     AdminUsersComponent,
     PendingUsersComponent,
     AdminWorkpackagesComponent,
     AddWorkpackagesFormComponent,
     ActionsDialogComponent,
-    WorkpackageComponent
+    WorkpackageComponent,
+    TaskDetailsComponent,
+    TaskFormComponent,
+    TaskDetailsComponent,
+    TasksComponent,
+  
   ],
   imports: [
     HttpClientModule,
@@ -71,7 +87,14 @@ import { WorkpackageComponent } from './workpackages/workpackage/workpackage.com
     MatPaginatorModule,
     MatDialogModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatListModule,
+    MatFormFieldModule,
+    MatInputModule
+    
   ],
   entryComponents: [ActionsDialogComponent],
   providers: [

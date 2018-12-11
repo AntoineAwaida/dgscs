@@ -1,0 +1,48 @@
+<div class="container">
+    <h1>Create a new task !</h1>
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <div class="form-group">
+        <label for="name">Titre</label>
+        <input type="text" class="form-control" id="name" name="title" ngModel required>
+       
+
+      </div>
+
+      <div class="form-group">
+        <label for="description">Desciption de la tâche</label>
+        <input type="text" class="form-control" id="description" name="description" ngModel required>
+      </div>
+
+      
+     
+      <div class="form-group">
+
+        <label for="startingDate"></label>
+         
+        <mat-form-field>
+        <input matInput [matDatepicker]="startingDate" placeholder="Date de début" name="startingDate" ngModel required>
+        <mat-datepicker-toggle matSuffix [for]="startingDate"></mat-datepicker-toggle>
+        <button class="btn" ng-click="onDate(f)"><i class="icon-calendar"></i></button>
+        <mat-datepicker #startingDate></mat-datepicker>
+      </mat-form-field>
+        </div>
+
+        <div class="form-group">
+
+            <label for="endingDate"></label>
+             
+            <mat-form-field>
+            <input matInput   [matDatepicker]="endingDate" placeholder="Date de fin" name="endingDate" ngModel required >
+            <mat-datepicker-toggle matSuffix [for]="endingDate"></mat-datepicker-toggle>
+            <mat-datepicker #endingDate></mat-datepicker>
+          </mat-form-field>
+            </div>
+          
+        <button type="submit" class="btn btn-success" [disabled]="!f.form.valid">Submit</button>
+
+    </form>
+</div>
+
+<div *ngIf="this.error">
+  <div class="alert alert-danger"> {{this.error}} </div>
+</div>
