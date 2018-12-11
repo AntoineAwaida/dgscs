@@ -1,0 +1,22 @@
+<div *ngIf="workpackage$ | async as workpackage">
+
+  <div fxLayout="row" fxFlex="20">
+    <div class="card">
+      <h3> Mes autres workpackages </h3>
+    </div>
+  </div>
+
+  <div fxFlex="60">
+    <div class="card" style="text-align: center">
+      <h2>{{workpackage.name}}</h2>
+    </div>
+  </div>
+
+  <div fxFlex="20">
+    <div class="card">
+      <h3>Groupes participants</h3>
+    </div>
+  </div>
+  
+
+</div>

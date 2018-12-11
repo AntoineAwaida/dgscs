@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import {Observable} from 'rxjs'
 
+import {api} from '../constants'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -33,6 +35,14 @@ public deactivateUser(userid): Observable<Object> {
 
 public activateUser(userid): Observable<Object> {
   return this.httpClient.get("http://localhost:3000/api/users/activateuser/" + userid)
+}
+
+public getGroups(userid: string) : Observable<Object> {
+  return this.httpClient.get(api + "users/mygroups/" + userid)
+}
+
+public getWorkPackages(userid: string): Observable<Object> {
+  return this.httpClient.get(api + "users/mywp/" + userid)
 }
 
 

@@ -26,12 +26,13 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
 import { AddGroupsFormComponent } from './admin/admin-groups/add-groups-form/add-groups-form.component';
 
 import { FilterPipe } from './filter.pipe'
-import { MatTableModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatDialogModule } from '@angular/material';
+import { MatTableModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatDialogModule, MatGridListModule, MatCardModule } from '@angular/material';
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { PendingUsersComponent } from './admin/admin-dashboard/pending-users/pending-users.component';
 import { AdminWorkpackagesComponent } from './admin/admin-workpackages/admin-workpackages.component';
 import { AddWorkpackagesFormComponent } from './admin/admin-workpackages/add-workpackages-form/add-workpackages-form.component';
 import { ActionsDialogComponent } from './admin/admin-workpackages/actions-dialog/actions-dialog.component';
+import { WorkpackageComponent } from './workpackages/workpackage/workpackage.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { ActionsDialogComponent } from './admin/admin-workpackages/actions-dialo
     PendingUsersComponent,
     AdminWorkpackagesComponent,
     AddWorkpackagesFormComponent,
-    ActionsDialogComponent
+    ActionsDialogComponent,
+    WorkpackageComponent
   ],
   imports: [
     HttpClientModule,
@@ -67,7 +69,9 @@ import { ActionsDialogComponent } from './admin/admin-workpackages/actions-dialo
     MatFormFieldModule,
     MatInputModule,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
+    MatGridListModule,
+    MatCardModule
   ],
   entryComponents: [ActionsDialogComponent],
   providers: [
