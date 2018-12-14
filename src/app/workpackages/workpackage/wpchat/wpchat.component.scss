@@ -1,0 +1,33 @@
+@import '../workpackage.component.scss';
+
+.chat li {
+    padding:10px;
+    border-bottom: 1px #961a3d dotted;
+    text-align:left;
+    font-size: 17px;
+}
+
+.chatcardbody{
+
+    padding:0;
+    border-radius:0px;
+
+}
+
+.chatcard {
+    border-radius: 0px;
+}
+
+.chat {
+    list-style: none;
+    margin: 0;
+    padding:0;
+}
+
+.chatinfo {
+
+    font-family: 'Helvetica 87 Heavy Condensed','Parisine', sans-serif;
+    font-weight: normal;
+    font-size: 12px;
+
+}

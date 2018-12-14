@@ -43,6 +43,7 @@ import {MatDatepickerModule} from '@angular/material';
 
 import {MatNativeDateModule} from '@angular/material';
 import {MatListModule} from '@angular/material/list';
+import { WpchatComponent } from './workpackages/workpackage/wpchat/wpchat.component';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import {MatListModule} from '@angular/material/list';
     TaskFormComponent,
     TaskDetailsComponent,
     TasksComponent,
+    WpchatComponent,
   
   ],
   imports: [

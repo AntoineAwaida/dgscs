@@ -37,6 +37,8 @@
     "passport-local": "^1.0.0",
     "popper.js": "^1.14.6",
     "rxjs": "~6.3.3",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
