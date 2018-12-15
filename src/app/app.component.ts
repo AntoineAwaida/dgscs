@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'dgscs';
   sidenavOpened = false;
 
-  constructor(private auth : AuthService){}
+  constructor(public auth : AuthService){}
   
 
   toogleSidenav() {

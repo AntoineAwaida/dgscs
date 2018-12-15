@@ -1,0 +1,10 @@
+<form class="card-body" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label><strong>Nouveau fichier</strong></label>
+      <br />
+      <input type="file" (change)="onFileChange($event)" id="file" name="file"  #fileInput />
+      
+    </div>
+  
+    <button mat-raised-button [color]="'info'" type="submit" value="submit" >Ajouter un fichier</button>

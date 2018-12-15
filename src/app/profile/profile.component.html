@@ -1,0 +1,20 @@
+<h1> Mon profil </h1>
+
+
+<br />
+
+<h2 style="text-align: center">{{user.first_name + ' ' + user.last_name }}</h2>
+
+<form class="card-body" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <div class="form-group">
+    <label><strong>Votre photo de profil</strong></label>
+    <br />
+    <input type="file" (change)="onPPChange($event)" id="profilepicture" name="profilepicture"  #fileInput />
+    <ng-container *ngIf="preview">
+        <img [src]="preview" class="profilepicture" />
+    </ng-container>
+    
+  </div>
+
+  <button mat-raised-button [color]="'info'" type="submit" value="submit" >Modifiez votre profil</button>

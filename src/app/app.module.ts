@@ -44,6 +44,8 @@ import {MatDatepickerModule} from '@angular/material';
 import {MatNativeDateModule} from '@angular/material';
 import {MatListModule} from '@angular/material/list';
 import { WpchatComponent } from './workpackages/workpackage/wpchat/wpchat.component';
+import { ProfileComponent } from './profile/profile.component';
+import { WpfilesComponent } from './workpackages/workpackage/wpfiles/wpfiles.component';
 
 
 @NgModule({
@@ -71,6 +73,8 @@ import { WpchatComponent } from './workpackages/workpackage/wpchat/wpchat.compon
     TaskDetailsComponent,
     TasksComponent,
     WpchatComponent,
+    ProfileComponent,
+    WpfilesComponent,
   
   ],
   imports: [

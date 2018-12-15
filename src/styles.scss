@@ -7,6 +7,14 @@
 
 $backgroundGrey : rgb(246,248,249);
 
+.profilepicture{
+
+    height:40px;
+    width:40px;
+    border-radius:50%;
+
+}
+
 body{
     background-color: $backgroundGrey;
 }

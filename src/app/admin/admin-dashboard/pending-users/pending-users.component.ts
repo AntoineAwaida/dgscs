@@ -20,6 +20,9 @@ export class PendingUsersComponent implements OnInit {
   }
 
   ready:boolean = false;
+  msg:string;
+  error:string;
+
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -42,7 +45,38 @@ export class PendingUsersComponent implements OnInit {
     }, 
   (error)=> {
     console.log(error)
+    this.error = error;
   })
+  }
+
+  deactivate(id){
+    const result = confirm("Voulez-vous vraiment désactiver cet utilisateur?")
+    if(result) {
+      this.userService.deactivateUser(id).subscribe((res:any) => {
+        this.getPendingUsers()
+        this.msg = res;
+        setTimeout(() => {this.msg=null}, 4000)
+       },
+       (error)=> {
+         this.error = error;
+         setTimeout(() => {this.error=null}, 4000)
+       })
+    }
+  }
+
+  activate(id){
+    const result = confirm("Voulez-vous vraiment activer cet utilisateur?")
+    if(result) {
+      this.userService.activateUser(id).subscribe((res:any) => {
+        this.getPendingUsers()
+        this.msg = res;
+        setTimeout(() => {this.msg=null}, 4000)
+       },
+       (error)=> {
+         this.error = error;
+         setTimeout(() => {this.error=null}, 4000)
+       })
+    }
   }
 
 }
