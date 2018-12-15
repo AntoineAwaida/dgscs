@@ -21,14 +21,19 @@ export class WpchatComponent implements OnInit, OnDestroy {
 
   constructor(private chatService: ChatService, private auth: AuthService, private route:ActivatedRoute, private router: Router) {
 
+
+   
+
     
    }
 
   ngOnInit() {
 
+    console.log(this.workpackage)
   
     this.route.params.subscribe(
       params => {
+        this.chatService.joinRoom(this.workpackage._id);
         this.chatService.getChat(this.workpackage._id).subscribe((res:any) => (this.messages = res) && (this.ready = true) && (console.log(this.messages)), (error) => console.log(error));
         this.chatService.newMessage().subscribe((data:any) => this.messages.push(data), (error) => console.log(error));
       });
@@ -45,7 +50,26 @@ export class WpchatComponent implements OnInit, OnDestroy {
 
   date(date:Date){
 
-    return date;
+
+    let mydate = new Date(date)
+    const options = {month: 'long', day: 'numeric' };
+    const options_time = { hour:"2-digit", minute:"2-digit"}
+    let final_date = ''
+    if (mydate.toLocaleDateString() == new Date().toLocaleDateString()){
+
+      final_date = mydate.toLocaleTimeString('fr-FR',options_time)
+
+    }
+
+    else {
+
+      final_date = mydate.toLocaleDateString('fr-FR', options)
+
+    }
+    
+
+
+    return final_date;
 
   }
 

@@ -74,6 +74,12 @@ export class ChatService {
 
   }
 
+  joinRoom(wpid:string){
+
+    this.socket.emit('JOIN_ROOM', { room: "workpackage" + wpid})
+
+  }
+
   leaveRoom(wpid:string) {
 
 
