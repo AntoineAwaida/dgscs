@@ -53,6 +53,12 @@
     display : none;
 }
 
+.badge{
+    padding: 5px;
+    padding-bottom: 6px;
+    margin-right: 3px;
+}
+
 @media (min-width: 768px) {
     .buttonName{
         display: inline;

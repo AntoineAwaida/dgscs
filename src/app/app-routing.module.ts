@@ -14,9 +14,10 @@ import { GroupsComponent } from './groups/groups.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { WorkpackageComponent } from './workpackages/workpackage/workpackage.component';
 
-import {TaskDetailsComponent} from 'src/app/tasks/task-details/task-details.component';
+import { TaskDetailsComponent } from 'src/app/tasks/task-details/task-details.component';
 import { TaskFormComponent } from 'src/app/tasks/task-form/task-form.component';
 import { TasksComponent } from 'src/app/tasks/task/task.component'
+import { AdminGuardService } from './services/admin-guard.service';
 
 const appRoutes: Routes = [
   { path: 'groups', canActivate:[AuthGuardService], component: GroupsComponent},
@@ -26,13 +27,13 @@ const appRoutes: Routes = [
   { path: 'workpackage/:id', canActivate:[AuthGuardService], component: WorkpackageComponent },
   { path: 'register', canActivate:[AuthGuardService], component: RegisterComponent },
   { path: 'login', canActivate:[AuthGuardService], component: LoginComponent },
-  {path : 'tasks',canActivate:[AuthGuardService], component : TasksComponent},
+  { path : 'tasks',canActivate:[AuthGuardService], component : TasksComponent},
 
 
 
   // tous les paths qui concernent le tableau des tâches
   { path: 'detail/:id',canActivate:[AuthGuardService], component: TaskDetailsComponent },
-  {path : 'formulaire',canActivate:[AuthGuardService], component : TaskFormComponent},
+  { path : 'formulaire',canActivate:[AuthGuardService], component : TaskFormComponent},
 
   
   { path: '', pathMatch : 'full', redirectTo : 'dashboard'},
@@ -42,6 +43,7 @@ const appRoutes: Routes = [
   exports: [RouterModule],
   providers : [
     AuthGuardService,
+    AdminGuardService
   ]
 })
 export class AppRoutingModule { }
