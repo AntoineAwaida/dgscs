@@ -1,12 +1,5 @@
 
 
-.listOfTasks  {
-      background: #f7f7f7;
-    padding : 5%;
-      border-radius: 5px;
-  }
-
-
 .descriptionOfTask{
   background : #f7f7f7;
   padding: 30px;
@@ -30,13 +23,21 @@
   border-radius: 5px;
   text-align: center;
 }
-.title {text-align: center}
-.enumeration {
+.card-title {text-align: center}
+.card-text {
   text-align: justify;
   word-break: break-all;
+  max-width: 80%;
+  padding : 0.001%;
+}
+.li{
+  width : 90%;
+  word-break : break-all;
 }
 .bouton{padding : 8%;
 text-align: center;}
 .interligne{padding : 2%;}
-.enumeration {
-  word-break: break-all;}
+
+  .card {
+    max-width: 100%;
+}
