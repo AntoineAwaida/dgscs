@@ -8,6 +8,7 @@ export interface UserDetails {
   email: string;
   first_name: string;
   last_name: string;
+  admin : boolean;
   exp: number;
   iat: number;
 }
@@ -21,6 +22,7 @@ export interface TokenPayload {
   password: string;
   first_name?: string;
   last_name?: string;
+  admin?: boolean;
 }
 
 @Injectable()
@@ -103,6 +105,7 @@ export class AuthService {
     }
   }
 
+
   public register(user: TokenPayload): Observable<Object> {
     return this.httpClient.post("http://localhost:3000/api/users/register", user)
 
@@ -112,21 +115,5 @@ export class AuthService {
     return this.httpClient.post("http://localhost:3000/api/users/login", user)
   }
 
-  public create10(start){
-    for(var i=start; i<start+10; i++){
-      var user : TokenPayload = {
-        first_name : 'user',
-        last_name : ''+ i,
-        email : "user@"+i,
-        password : 'password',
-      }
-      this.register(user).subscribe((res)=>{
-        console.log(res);
-      }, error => {
-        console.log(error)
-      });
-      console.log(user);
-    }
-  }
 
 }
