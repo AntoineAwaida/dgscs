@@ -1,68 +1,83 @@
 
 <ul class="container">
- <div class="row">
-    <div class="col-3 col md-3 ">
-  <div class="listOfTasks" >
-    <div class="title">
-  <h2>My list of tasks</h2></div>
-  <div class="enumeration">
- <ol>
-  <li *ngFor="let task of tasks"
-  [class.selected]="task===selectedTask"
-  (click)="onSelect(task)">
-    <button mat-button>{{task.name}}</button>
-  </li>
-</ol>
-</div>
-<a routerLink = "/formulaire">
-  <div class="bouton">
-  <button type="create" class="btn btn-success">Create new task</button>
-</div>
-</a>
-</div>
-</div>
-<div class="col-5 ">
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-12 ">
+      <div class="card">
+        <div class="card-header">Ma liste de tâches</div>
+            <div class="card-text">
+              <ol>
+                <li *ngFor="let task of tasks"
+                [class.selected]="task===selectedTask"
+                (click)="onSelect(task)">
+                  <button mat-button>{{task.name}}</button>
+              </li>
+              </ol>
+            </div>
+            <a routerLink = "/formulaire">
+           <div class="bouton">
+            <button type="create" class="btn btn-success col-md-auto col-sm-12">Créer une nouvelle tâche</button>
+            </div>
+            </a>
+            
+            </div>
+          </div>
+<div class="col-lg-5 col-md-5 col-sm-12 ">
   
   <div *ngIf="selectedTask">
-    <div class="row-5">
-      <div class="descriptionOfTask">
-        <div class="title">
-          <h2> Task {{selectedTask.id}} details</h2></div>
+  
+      <div class="card">
+        <div class="card-header">Task {{selectedTask.id}} details</div>
+        <div class="card-text">
         <ul>
          
-             <li>Name: {{selectedTask.name}} </li>
-             <li>Description: {{selectedTask.description}}</li>
+             <li>Titre : {{selectedTask.name}} </li>
+             <li>Description : {{selectedTask.description}}</li>
             
-             <li>Starting Date: {{selectedTask.startingDate}}</li>
-             <li>Ending Date: {{selectedTask.endingDate}}</li>
-        </ul>
+             <li>Date de début : {{selectedTask.startingDate}}</li>
+             <li>Date de fin : {{selectedTask.endingDate}}</li>
+             <li>Statut : {{selectedTask.status}}
+          
         
+    <button mat-button class="col lg-5 col-md-5 col-sm-12" (click)="onClickOpenSelect()">Modifier statut</button>
+ </li></ul>
+    
+    <div *ngIf="openSelect">
+          <mat-form-field>
+              <mat-select [(value)]="selected">
+                
+                <mat-option value="en cours">En cours</mat-option>
+                <mat-option value="terminé">Terminé</mat-option>
+                <mat-option value="pas commencé">Pas commencé</mat-option>
+              </mat-select>
+            </mat-form-field>
+              <button mat-button class="col lg-5 col-md-5 col-sm-12" (click)="onSelectStatus(selected)"> OK </button>
+            </div> 
       </div>
-    </div>
-  <div class="interligne"></div>
-   <div class="row-5">      
-      <div class="chat">
-         <h2>Chat</h2>
       </div>
+      
+
+    <div class="interligne"></div>
+      <div class="card">
+              <div class="card-header"> Chat</div>
+              <div class= card-text></div>
     </div>
   </div>
   </div>
 
-  <div *ngIf="selectedTask">
+  
 
-    <div class="col-10">
-
-     <div class="relatedWP">
-      <div class="row-10">
-        <h2>WP reliés</h2>
-      </div>
+    <div class="col-lg-3 col-md-3 col-sm-12">
+<div *ngIf="selectedTask">
+     <div class="card">
+            <div class="card-header"> WP reliés </div>
+            <div class= card-text></div>
     </div>
     <div class="interligne"></div>
-    <div class="row-10">
-      <div class="relatedTasks">
-        <h2>Tâches reliées</h2>
-      </div>    
-    </div>
+      <div class="card">
+              <div class="card-header">Tâches reliées</div>
+     <div class= card-text></div>
+  </div>
+  
   </div>
   </div>
 </div>

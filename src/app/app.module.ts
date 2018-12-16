@@ -47,6 +47,7 @@ import { WpchatComponent } from './workpackages/workpackage/wpchat/wpchat.compon
 import { ProfileComponent } from './profile/profile.component';
 import { WpfilesComponent } from './workpackages/workpackage/wpfiles/wpfiles.component';
 
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,6 @@ import { WpfilesComponent } from './workpackages/workpackage/wpfiles/wpfiles.com
     WpchatComponent,
     ProfileComponent,
     WpfilesComponent,
-  
   ],
   imports: [
     HttpClientModule,
@@ -99,8 +99,8 @@ import { WpfilesComponent } from './workpackages/workpackage/wpfiles/wpfiles.com
     MatNativeDateModule,
     MatListModule,
     MatFormFieldModule,
-    MatInputModule
-    
+    MatInputModule,
+    MatSelectModule,
   ],
   entryComponents: [ActionsDialogComponent],
   providers: [
