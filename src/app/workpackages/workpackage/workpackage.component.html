@@ -1,22 +1,95 @@
-<div *ngIf="workpackage$ | async as workpackage">
+<div *ngIf="mywp && workpackage$ as workpackage">
 
-  <div fxLayout="row" fxFlex="20">
-    <div class="card">
-      <h3> Mes autres workpackages </h3>
-    </div>
-  </div>
 
-  <div fxFlex="60">
-    <div class="card" style="text-align: center">
-      <h2>{{workpackage.name}}</h2>
-    </div>
-  </div>
 
-  <div fxFlex="20">
-    <div class="card">
-      <h3>Groupes participants</h3>
-    </div>
+  <div fxLayout="row">
+
+      <img src="../../../assets/img/csbordure.png">
+
+      <div fxFlexAlign="center" class="title">
+          <h1>Workpackage {{workpackage.name}}</h1>
+      </div>
+      
+
   </div>
   
+  <div *ngIf="workpackage.status != 'inactive'">
 
+      <div fxLayout="row" fxLayout.lt-lg="column">
+
+          <div fxFlex="20" fxHide.lt-lg>
+              <div class="card wpcard" style="text-align: center">
+                <h3> Mes autres workpackages </h3>
+                <div class="card-body wpcardbody">
+                    <ng-container *ngFor="let wp of mywp">
+                      <li *ngIf="wp._id != workpackage._id" style="list-style-type: none">
+                          <a [routerLink]="['/workpackage', wp._id]">{{ wp.name }}</a>
+                      </li>
+                    </ng-container>
+                </div>
+              </div>
+            </div>
+          
+            <div fxFlex="60">
+              <div fxLayout="column">
+    
+                  <div class="card wpcard" style="text-align: center">
+                      <h2>Description</h2>
+                      <div class="card-body wpcardbody">
+                        {{workpackage.description}}
+                      </div>
+                  </div>
+    
+                  <app-wpchat [workpackage]="workpackage"></app-wpchat>
+    
+              </div>
+            </div>
+    
+            <div fxFlex="20">
+                <div class="card wpcard" style="text-align: center">
+                  <h3>Groupes participants</h3>
+                  <div class="card-body wpcardbody">
+                    <li *ngFor="let group of workpackage.groups" style="list-style-type: none">
+                      {{group.name}}
+                    </li>
+                  </div>
+                </div>
+            </div>
+              
+    
+    
+      </div>
+
+      <br />
+
+      <app-wpfiles [workpackage]="workpackage"></app-wpfiles>
+
+
+
+  </div>
+
+  <div *ngIf="workpackage.status == 'inactive'">
+
+    <div fxLayout fxFill fxFlex>
+      <div class="card wpcard" style="width:100%">
+        <div class="card-body wpcardbody">
+          Désolé, ce workpackage a été désactivé.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  
+ 
+  
+
+</div>
+
+<div *ngIf="!workpackage$">
+    <div fxLayoutAlign="space-around center" style="overflow:hidden">
+      <div class="loader">
+        
+      </div>
+    </div>
 </div>

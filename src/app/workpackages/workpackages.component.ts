@@ -3,6 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 
 import { WorkPackage } from '../services/workpackages.service'
+import { ChatService } from '../services/chat.service';
 
 @Component({
   selector: 'app-workpackages',
@@ -13,7 +14,7 @@ export class WorkpackagesComponent implements OnInit {
 
   mywp:Array<WorkPackage>;
 
-  constructor(public auth: AuthService, private userService: UserService) { }
+  constructor(public auth: AuthService, private userService: UserService, private chatService:ChatService) { }
 
   ngOnInit() {
   

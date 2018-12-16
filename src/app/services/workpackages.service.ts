@@ -53,5 +53,9 @@ export class WorkpackagesService {
   }
 
 
+  public addFile(data, wpid:string): Observable<Object> {
+    return this.httpClient.post(api + "workpackages/savefile",data)
+  }
+
 
 }

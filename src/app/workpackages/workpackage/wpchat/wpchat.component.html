@@ -1,0 +1,53 @@
+<div class="card wpcard">
+  <h2>Chat</h2>
+  <div class="card-body wpcardbody">
+
+    <div class="container">
+
+      <div class="card chatcard">
+        <div class="card-body chatcardbody">
+
+          
+          <div *ngIf = "this.ready">
+            <ul class="chat">
+              <li *ngFor="let msg of this.messages">
+
+                <div fxLayout="row">
+
+                    <div fxFlex="75" class="chatinfo">
+                        {{msg.user[0].first_name}}
+                    </div>
+    
+                    <div fxFlex="25" class="chatinfo">
+                        {{date(msg.date)}}
+                    </div>
+
+                </div>
+
+                <div fxLayout="row">
+                        {{msg.content}}
+                </div>
+               
+
+          
+                
+              </li>
+            </ul>
+          </div>
+
+          <div *ngIf = "!this.ready"  fxLayoutAlign="space-evenly center" style="padding: 25px">
+            <div class="loader" fxLayoutAlign="center"></div>
+          </div>
+          
+        
+        </div>
+      </div>
+      <form class="card-body" (keydown)="submit($event)">
+          <div class="form-group">
+              <input type="text" placeholder="Votre message..." class="form-control" name="message" [(ngModel)]="message" required>
+          </div>
+      </form>
+    </div>
+
+  </div>
+</div>

@@ -6,7 +6,8 @@ import { WorkpackagesService } from '../../../services/workpackages.service';
 import {EventEmitter} from '@angular/core'
 
 export interface DialogData {
-  id:string
+  id:string,
+  status:string,
 }
 
 

@@ -1,3 +1,10 @@
+a{
+
+    text-decoration: none;
+
+}
+
+
 .navbar{
     background-color: white;
     box-shadow: 1px -2px 5px black;
@@ -51,6 +58,12 @@
 
 .buttonName{
     display : none;
+}
+
+.badge{
+    padding: 5px;
+    padding-bottom: 6px;
+    margin-right: 3px;
 }
 
 @media (min-width: 768px) {

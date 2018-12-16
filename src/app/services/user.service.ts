@@ -45,5 +45,10 @@ public getWorkPackages(userid: string): Observable<Object> {
   return this.httpClient.get(api + "users/mywp/" + userid)
 }
 
+public setPicture(data, userid:string): Observable<Object> {
+
+  return this.httpClient.post(api + "users/setpicture/" + userid, data);
+}
+
 
 }
