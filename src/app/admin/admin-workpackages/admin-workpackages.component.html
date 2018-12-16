@@ -4,7 +4,6 @@
         <button mat-raised-button [color]="'success'" (click)="toggleAddForm()">
         <div *ngIf="!this.showAddForm">Ajouter un workpackage</div>
         <div *ngIf="this.showAddForm">Fermer</div>
-
         </button>
 
         <div *ngIf="this.showAddForm"><app-add-workpackages-form [wpedit]="this.wp_to_edit" (onSubmitted)="onSubmitted($event)"></app-add-workpackages-form></div>
