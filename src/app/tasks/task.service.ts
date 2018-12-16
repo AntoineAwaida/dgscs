@@ -4,20 +4,22 @@ import { Task } from './task';
 import { TASKS } from './mock-tasks';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {// service qui met à jour les tâches
 
-  constructor(private httpClient: HttpClient, private router: Router) { }
+  constructor(private auth : AuthService, private httpClient: HttpClient, private router: Router) { }
   
-  getTask(): Observable<Task[]> {
-    // TODO: send the message _after_ fetching the heroes
-    return of(TASKS);
+  getTask(): Observable<any> {
+    return this.httpClient.get("http://localhost:3000/api/tasks/gettasks/"+this.auth.getPayload()._id);
+
   }
   getTasks(id: number): Observable<Task>{
     return of(TASKS.find(task=>task.id===id));
+
   }
 
   createTask(task){

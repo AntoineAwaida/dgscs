@@ -32,8 +32,15 @@ export class TasksComponent implements OnInit {
     }
 
   getTasks(): void {
-    this.taskService.getTask().subscribe(tasks => this.tasks = tasks);
+    this.taskService.getTask()
+    .subscribe(
+      (res) =>{
+        console.log(res);
+        this.tasks = res;
+      }
+    )
   } 
+  
   onSelectStatus(statusChosen: string){
     this.selectedTask.status=statusChosen;
     console.log(statusChosen);
