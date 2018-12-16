@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { GroupsService } from '../services/groups.service';
 import { UserService } from '../services/user.service';
 
+
+
+
+
+
 @Component({
   selector: 'app-groups',
   templateUrl: './groups.component.html',
@@ -11,21 +16,20 @@ export class GroupsComponent implements OnInit {
 
   groups:Array<any> = [];
 
-  constructor(private groupsService: GroupsService, public userService: UserService) { }
+  constructor(private groupsService: GroupsService, private userService: UserService) { }
 
-  ngOnInit() {
-    this.getGroups();
+  async ngOnInit() {
+   await this.getGroups();
+
   }
 
   getGroups(){
-    this.groupsService.getGroups().subscribe((res:any) => {
+    this.groupsService.getGroups().subscribe((res: any) => {
       this.groups = res;
-    },(error) => {
+      console.log(this.groups)
+    },
+    (error) => {
       console.log(error);
-      console.log("impossible de reçevoir les groupes.");
     })
-  
-
   }
-  
 }

@@ -1,0 +1,95 @@
+<br />
+
+<div *ngIf = "this.ready">
+        <button mat-raised-button [color]="'success'" (click)="toggleAddForm()">
+        <div *ngIf="!this.showAddForm">Ajouter un workpackage</div>
+        <div *ngIf="this.showAddForm">Fermer</div>
+
+        </button>
+
+        <div *ngIf="this.showAddForm"><app-add-workpackages-form [wpedit]="this.wp_to_edit" (onSubmitted)="onSubmitted($event)"></app-add-workpackages-form></div>
+
+
+        <div *ngIf="this.showTable">
+
+        <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrez...">
+        </mat-form-field>
+
+        <div class="mat-elevation-z8">
+
+
+                        <table mat-table [dataSource]="dataSource">
+
+
+                                <!-- Name Column -->
+                                <ng-container matColumnDef="name">
+                                        <th mat-header-cell *matHeaderCellDef> Name </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                </ng-container>
+                        
+                        
+                                <ng-container matColumnDef="status">
+                                        <th mat-header-cell *matHeaderCellDef> Statut </th>
+                                        <td mat-cell *matCellDef="let element">
+                                                <strong *ngIf="element.status == 'readonly'" style="color:orange"> {{element.status}} </strong>
+                                        
+                                                <strong *ngIf="element.status == 'active'" style="color:green"> {{element.status}} </strong>
+                                        
+                                                <strong *ngIf="element.status == 'inactive'" style="color:red"> {{element.status}} </strong></td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="groups">
+                                <th mat-header-cell *matHeaderCellDef> Groupes participants </th>
+                                <td mat-cell *matCellDef="let element"> 
+                                
+                                <div *ngFor="let group of element.groups">
+                                <li> {{ group.name }}</li>
+                                </div> </td>
+                                </ng-container>
+
+                
+                        
+                        
+                                <ng-container matColumnDef="actions">
+                                                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                                                <td mat-cell *matCellDef="let element"> 
+
+                                                        <button mat-raised-button [color]="'info'" (click)="openDialog(element)">Actions</button>
+
+                                                        
+
+                                                </td>
+                                </ng-container>
+                                        
+                        
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                        </table>
+                                
+                        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+
+
+        </div>
+        <br/>
+
+        <div *ngIf="msg">
+                <div class="alert alert-success" role="alert">
+                        {{msg}}
+                </div>
+        </div>
+
+        <div *ngIf="error">
+                <div class="alert alert-danger" role="alert">
+                        {{error}}
+                </div>
+        </div>
+
+        </div>
+</div>
+<div *ngIf="!this.ready" fxLayoutAlign="space-around center" style="overflow:hidden">
+    <div class="loader">
+    </div> 
+</div>

@@ -1,11 +1,17 @@
-<div *ngFor="let group of groups">
-    <div class="card" [ngStyle]="{maxWidth:'33%', display:'flex'}">
-        <div class="card-header">
-          {{group.name}}
+<div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+
+    <div *ngFor="let group of groups">
+        <div class="card" style="margin-bottom:10px" >
+            <div class="card-header">
+              {{group.name}}
+            </div>
+            <div class="card-body" style="height:200px ; overflow-y:scroll"> 
+              <ul *ngFor="let user of group.members">
+                <li>{{user.first_name + ' '+ user.last_name}}</li>
+              </ul>
+            </div>
         </div>
-        <div class="card-body">
-          <ul *ngFor="let user of group.members">
-            <li>{{userService.getUser(user)}}</li>
-          </ul>
-        </div>
-      </div>
+    </div>
+
+</div>
+

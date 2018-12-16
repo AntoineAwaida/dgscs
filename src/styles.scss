@@ -26,3 +26,18 @@ body{
     background-attachment: fixed;
     background-position: center;
 }
+
+.loader {
+    border: 7px solid #f3f3f3; /* Light grey */
+    border-top: 7px solid grey; /* Blue */
+    border-radius: 50%;
+    height:60px;
+    width:60px;
+    text-align:center;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

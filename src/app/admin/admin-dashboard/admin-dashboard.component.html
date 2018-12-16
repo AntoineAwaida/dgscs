@@ -1,8 +1,21 @@
 
 
 <nav class="nav nav-tabs">
-  <a class="nav-item nav-link active" routerLink="/admin" data-toggle="tab"> Dashboard </a>
-  <a class="nav-item nav-link" routerLink="/admin/groups" data-toggle="tab"> Groupes </a>
+  <a class="nav-item nav-link" [class.active]="isActive('/admin')"  routerLink="/admin" data-toggle="tab"> Dashboard </a>
+  <a class="nav-item nav-link" [class.active]="isActive('/admin/users')" routerLink="/admin/users" data-toggle="tab"> Utilisateurs </a>
+  <a class="nav-item nav-link" [class.active]="isActive('/admin/groups')" routerLink="/admin/groups" data-toggle="tab"> Groupes </a>
+  <a class="nav-item nav-link" [class.active]="isActive('/admin/workpackages')" routerLink="/admin/workpackages" data-toggle="tab"> WorkPackages </a>
+  
 </nav>
 
 <router-outlet></router-outlet>
+
+<!-- si on est à la page du dashboard -->
+<div *ngIf="isActive('/admin')"> 
+
+<br />
+        <h1>Votre panneau d'administration</h1>
+
+        <app-pending-users></app-pending-users>
+
+</div>

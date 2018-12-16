@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import {FlexLayoutModule} from '@angular/flex-layout';
 import { MaterialModule } from './material'
 
 import { AuthService } from './services/auth.service';
@@ -24,6 +24,15 @@ import { AdminGroupsComponent } from './admin/admin-groups/admin-groups.componen
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { AddGroupsFormComponent } from './admin/admin-groups/add-groups-form/add-groups-form.component';
 
+
+import { MatTableModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatDialogModule, MatGridListModule, MatCardModule } from '@angular/material';
+import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
+import { PendingUsersComponent } from './admin/admin-dashboard/pending-users/pending-users.component';
+import { AdminWorkpackagesComponent } from './admin/admin-workpackages/admin-workpackages.component';
+import { AddWorkpackagesFormComponent } from './admin/admin-workpackages/add-workpackages-form/add-workpackages-form.component';
+import { ActionsDialogComponent } from './admin/admin-workpackages/actions-dialog/actions-dialog.component';
+import { WorkpackageComponent } from './workpackages/workpackage/workpackage.component';
+
 import { FilterPipe } from './filter.pipe';
 import { TaskDetailsComponent} from './tasks/task-details/task-details.component';
 import { TaskFormComponent } from './tasks/task-form/task-form.component'
@@ -34,7 +43,7 @@ import {MatDatepickerModule} from '@angular/material';
 
 import {MatNativeDateModule} from '@angular/material';
 import {MatListModule} from '@angular/material/list';
-import{MatFormFieldModule, MatInputModule} from '@angular/material';
+
 
 @NgModule({
   declarations: [
@@ -49,6 +58,13 @@ import{MatFormFieldModule, MatInputModule} from '@angular/material';
     AdminDashboardComponent,
     AddGroupsFormComponent,
     FilterPipe,
+
+    AdminUsersComponent,
+    PendingUsersComponent,
+    AdminWorkpackagesComponent,
+    AddWorkpackagesFormComponent,
+    ActionsDialogComponent,
+    WorkpackageComponent,
     TaskDetailsComponent,
     TaskFormComponent,
     TaskDetailsComponent,
@@ -64,7 +80,14 @@ import{MatFormFieldModule, MatInputModule} from '@angular/material';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    MatButtonModule, 
+    FlexLayoutModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatDialogModule,
+    MatGridListModule,
+    MatCardModule,
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
@@ -73,6 +96,7 @@ import{MatFormFieldModule, MatInputModule} from '@angular/material';
     MatInputModule
     
   ],
+  entryComponents: [ActionsDialogComponent],
   providers: [
     AuthService,
     {

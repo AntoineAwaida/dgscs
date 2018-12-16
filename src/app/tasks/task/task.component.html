@@ -1,32 +1,33 @@
 
 <ul class="container">
- <div class="row">
-    <div class="col-3 col md-3 ">
-  <div class="listOfTasks" >
-    <div class="title">
-  <h2>My list of tasks</h2></div>
-  <div class="enumeration">
- <ol>
-  <li *ngFor="let task of tasks"
-  [class.selected]="task===selectedTask"
-  (click)="onSelect(task)">
-    <button mat-button>{{task.name}}</button>
-  </li>
-</ol>
-</div>
-<a routerLink = "/formulaire">
-  <div class="bouton">
-  <button type="create" class="btn btn-success">Create new task</button>
-</div>
-</a>
-</div>
-</div>
-<div class="col-5 ">
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-12 ">
+      <div class="card">
+        <div class="card-title">
+          <h2>My list of tasks</h2></div>
+            <div class="card-text">
+              <ol>
+                <li *ngFor="let task of tasks"
+                [class.selected]="task===selectedTask"
+                (click)="onSelect(task)">
+                  <button mat-button>{{task.name}}</button>
+              </li>
+              </ol>
+            </div>
+            <a routerLink = "/formulaire">
+           <div class="bouton">
+            <button type="create" class="btn btn-success col-md-auto col-sm-12">Create new task</button>
+            </div>
+            </a>
+            </div>
+          </div>
+<div class="col-lg-5 col-md-5 col-sm-12 ">
   
   <div *ngIf="selectedTask">
-    <div class="row-5">
-      <div class="descriptionOfTask">
-        <div class="title">
+  
+      <div class="card">
+        <div class="card-body">
+        <div class="card-title">
           <h2> Task {{selectedTask.id}} details</h2></div>
         <ul>
          
@@ -36,33 +37,32 @@
              <li>Starting Date: {{selectedTask.startingDate}}</li>
              <li>Ending Date: {{selectedTask.endingDate}}</li>
         </ul>
-        
-      </div>
+   
+    </div>
     </div>
   <div class="interligne"></div>
-   <div class="row-5">      
-      <div class="chat">
+   
+      <div class="card">
          <h2>Chat</h2>
       </div>
-    </div>
+    
   </div>
   </div>
 
-  <div *ngIf="selectedTask">
+  
 
-    <div class="col-10">
-
-     <div class="relatedWP">
-      <div class="row-10">
+    <div class="col-lg-auto col-md-3 col-sm-12">
+<div *ngIf="selectedTask">
+     <div class="card">
+      
         <h2>WP reliés</h2>
       </div>
-    </div>
+    
     <div class="interligne"></div>
-    <div class="row-10">
-      <div class="relatedTasks">
+      <div class="card">
         <h2>Tâches reliées</h2>
       </div>    
-    </div>
+  
   </div>
   </div>
 </div>

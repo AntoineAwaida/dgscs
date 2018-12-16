@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+
+
+import { MatTableDataSource, MatPaginator } from '@angular/material'
+
+import {Router} from '@angular/router'
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -7,9 +13,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminDashboardComponent implements OnInit {
 
-  constructor() { }
+  
 
-  ngOnInit() {
+  constructor(private router:Router) { }
+
+  ngOnInit(){
+    
+  }
+
+  isActive(route){
+    return this.router.url == route;
   }
 
 }

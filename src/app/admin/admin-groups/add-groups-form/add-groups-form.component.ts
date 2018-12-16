@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, Output } from '@angular/core';
 
 import { UserService } from '../../../services/user.service'
 
 import { GroupsService } from '../../../services/groups.service'
-
+import { EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-add-groups-form',
   templateUrl: './add-groups-form.component.html',
@@ -11,10 +11,23 @@ import { GroupsService } from '../../../services/groups.service'
 })
 export class AddGroupsFormComponent implements OnInit {
 
-  @Input() displayed:boolean;
-  sent:boolean = false;
+
+
+  @Output() onSubmitted: EventEmitter<any> = new EventEmitter<any>();
+
+  @Input() 
+  set groupid(groupid:string){
+    if (groupid){
+      this.editform = groupid;
+      this.getGroup(groupid);
+    }
+  }; //si c'est une édition de groupe, on y renseigne simplement l'id du groupe au départ et le formulaire reste le même.
+
+  editform:string; //a une valeur si c'est un formulaire d'édition (bouton jaune, requête put...)
+
   error:String = null;
   members:Array<any> = [];
+  name:string;
   users:Array<any> = [];
   users_searched: Array<String> = [];
   recherche='';
@@ -24,9 +37,10 @@ export class AddGroupsFormComponent implements OnInit {
 
   constructor(private userService: UserService, private groupsService : GroupsService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.getUsers();
   }
+
 
   async onSubmit(f) {
 
@@ -80,17 +94,37 @@ export class AddGroupsFormComponent implements OnInit {
 
     if (this.exists === false){
 
-      this.groupsService.createGroup(group)
+      if(!this.editform){
+
+        //si c'est le formulaire de création, alors on crée le groupe
+        this.groupsService.createGroup(group)
       .subscribe((res:any) => {
-        console.log(res)
-        this.sent = true;
-        setTimeout(() => {this.sent = false}, 4000);
+        this.onSubmitted.emit(res);
       }, (error) => {
+        console.log(error);
         this.error = error;
       })
 
+      }
+
+      else {
+        //sinon on l'édite
+        this.groupsService.editGroup(group,this.editform)
+        .subscribe((res:any) => {
+          this.onSubmitted.emit(res);
+        }, (error) => {
+          console.log(error);
+          this.error = error;
+        })
+       
+      }
+
+      
+
 
     }
+
+    
     
 
     }
@@ -118,9 +152,12 @@ export class AddGroupsFormComponent implements OnInit {
   }
   
   addUser(user){
-    this.members.push(user)
-    this.recherche = ''
-    this.users_searched = []
+    //vérifie d'abord s'il n'y a pas déjà cet utilisateur ajouté à la liste des membres...
+    if (!this.members.some(e => e._id == user._id)){
+      this.members.push(user)
+    }
+      this.recherche = ''
+      this.users_searched = []
   }
 
   deleteUser(member){
@@ -128,12 +165,37 @@ export class AddGroupsFormComponent implements OnInit {
   }
   
   getUsers() {
-    this.userService.getUsers()
+    this.userService.getActiveUsers()
     .subscribe((res:any) => {
       this.users = res;
     },(error) => {
       console.log(error);
-      console.log("impossible de reçevoir user");
+      console.log("impossible de recevoir user");
+    })
+  }
+
+  async getUser(userid) {
+
+    await this.userService.getUser(userid)
+    .subscribe((res:any)=> {
+      this.members.push(res)
+    }, (error) => {
+      console.log(error);
+    })
+
+
+  }
+
+  async getGroup(groupid){
+    this.groupsService.getGroup(groupid).subscribe(async (res:any) => {
+
+      this.name = res.name
+
+      await Promise.all(res.members.map(async (member) => this.getUser(member)))
+
+    },
+    (error)=> {
+      console.log(error)
     })
   }
   

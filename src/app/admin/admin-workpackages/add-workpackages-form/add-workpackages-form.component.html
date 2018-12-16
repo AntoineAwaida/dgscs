@@ -1,0 +1,63 @@
+
+  <h3> Ajouter un workpackage </h3>
+  <form class="card-body" (ngSubmit)="onSubmit(f)" #f="ngForm">
+
+    <div class="form-group">
+      <input type="text" maxlength="24" placeholder="Nom du workpackage" class="form-control" name="name" [(ngModel)]="name" required>
+    </div>
+
+    <div class="form-group">
+      <textarea placeholder="Description" class="form-control" name="description" [(ngModel)]="description" required></textarea>
+    </div>
+
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="status" id="active" name="active" value="active" [(ngModel)]="status">
+      <label class="form-check-label" for="active">Actif</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="status" id="inactive" name="inactive" value="inactive" [(ngModel)]="status">
+      <label class="form-check-label" for="inactive">Inactif</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="status" id="readonly" name="readonly" value="readonly" [(ngModel)]="status" >
+      <label class="form-check-label" for="readonly">Lecture seule</label>
+    </div>
+  
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" [ngStyle]="{height:'calc(2.25rem + 2px)'}"><i class="fa fa-search"></i></span>
+      </div>
+
+        <div id="myDropdown" class="dropdown-content">
+          <input type="search" class="form-control" (keyup)="onSearch()" placeholder="Rechercher un groupe..."
+          [(ngModel)]="recherche" [ngModelOptions]="{standalone: true}">
+          <div *ngFor="let group_s of groups_searched">
+            <a class="pointer" (click)="addGroup(group_s)">{{group_s.name}}</a>
+          </div>
+        </div>
+    </div>
+  <br />
+  <h3>Groupes participant au WP</h3>
+  <div *ngFor="let group of groups_selected" class="grouplist">
+    <button type="button" class="btn btn-danger nopointer">{{group.name + " | "}}<div class="pointer"  (click)="deleteGroup(group)"><i class="fa fa-times"></i></div></button>
+  </div>
+  
+
+  <br />
+
+  <div *ngIf="!this.editform">
+      <button mat-raised-button [color]="'info'" type="submit" value="submit" [disabled]="this.waiting_result">Créer le WorkPackage</button>
+  </div>
+
+  <div *ngIf="this.editform">
+    <button mat-raised-button [color]="'edit'" type="submit" value="submit" [disabled]="this.waiting_result">Modifier le WorkPackage</button>
+  </div>
+
+
+</form>
+
+<div *ngIf="error">
+  <div class="alert alert-danger" role="alert">
+    {{error}}
+  </div>
+</div>

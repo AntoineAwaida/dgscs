@@ -20,6 +20,7 @@
     cursor: pointer;
 }
 
+
 // .nav-link:hover{
 //     color: rgb(100, 100, 255);
 // }
@@ -37,4 +38,23 @@
 .sidenavissue{
     position: relative;
     bottom : 300px;
+}
+
+.menuButton{
+    padding : 5px 20px 5px 0px;
+    border-right: rgb(202, 202, 202) solid 1px;
+}
+
+.bold{
+    font-weight: 500;
+}
+
+.buttonName{
+    display : none;
+}
+
+@media (min-width: 768px) {
+    .buttonName{
+        display: inline;
+    }
 }

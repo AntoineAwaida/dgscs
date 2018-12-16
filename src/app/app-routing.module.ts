@@ -9,32 +9,33 @@ import { LoginComponent } from './auth/login/login.component';
 import { AdminGroupsComponent } from './admin/admin-groups/admin-groups.component'
 import { GroupsComponent } from './groups/groups.component';
 
-import {TaskDetailsComponent} from 'src/app/tasks/task-details/task-details.component';
-import { TaskFormComponent } from 'src/app/tasks/task-form/task-form.component';
 
 
 import { AuthGuardService } from './services/auth-guard.service';
-import { TasksComponent } from './tasks/task/task.component';
+import { WorkpackageComponent } from './workpackages/workpackage/workpackage.component';
+
+import {TaskDetailsComponent} from 'src/app/tasks/task-details/task-details.component';
+import { TaskFormComponent } from 'src/app/tasks/task-form/task-form.component';
+import { TasksComponent } from 'src/app/tasks/task/task.component'
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'groups', component: GroupsComponent},
-  { path: 'missions', component: MissionsComponent },
-  { path: 'dashboard',  component: DashboardComponent },
-  { path: 'work-packages',   component: WorkpackagesComponent },
-  
-  //canActivate:[AuthGuardService]
+  { path: 'groups', canActivate:[AuthGuardService], component: GroupsComponent},
+  { path: 'missions', canActivate:[AuthGuardService], component: MissionsComponent },
+  { path: 'dashboard', canActivate:[AuthGuardService], component: DashboardComponent },
+  { path: 'work-packages',  canActivate:[AuthGuardService], component: WorkpackagesComponent },
+  { path: 'workpackage/:id', canActivate:[AuthGuardService], component: WorkpackageComponent },
+  { path: 'register', canActivate:[AuthGuardService], component: RegisterComponent },
+  { path: 'login', canActivate:[AuthGuardService], component: LoginComponent },
+  {path : 'tasks', component : TasksComponent},
+
+
 
   // tous les paths qui concernent le tableau des tâches
   { path: 'detail/:id', component: TaskDetailsComponent },
   {path : 'formulaire', component : TaskFormComponent},
-  {path : 'tasks', component : TasksComponent},
+
   
-  
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
   { path: '', pathMatch : 'full', redirectTo : 'dashboard'},
-  // { path : '**', redirectTo : 'not-found'}
 ]
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],

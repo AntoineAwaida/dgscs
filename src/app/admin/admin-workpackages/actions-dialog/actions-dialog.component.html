@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Actions possibles</h1>
+<div mat-dialog-content fxLayout.sm="column" fxLayout.xs="column">
+    <button style="width:120px" mat-raised-button color="primary" class="dialogbutton" (click)="edit(data.id)"> Editer </button>
+
+    <button  *ngIf="data.status == 'inactive' || data.status == 'readonly'" class="dialogbutton" mat-raised-button [color]="'success'" (click)="activate(data.id)" >Activer</button>
+
+    <button *ngIf="data.status == 'active' || data.status == 'readonly'" class="dialogbutton" mat-raised-button color="warn" (click)="deactivate(data.id)">Désactiver</button>
+
+    <button  *ngIf="data.status == 'inactive' || data.status == 'active'" class="dialogbutton" mat-raised-button [color]="'edit'" (click)="readonly(data.id)">Lecture seule</button>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onNoClick()">Fermer</button>
+</div>

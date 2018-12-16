@@ -1,9 +1,9 @@
-<div *ngIf="displayed">
+
   <h3> Ajouter un groupe </h3>
   <form class="card-body" (ngSubmit)="onSubmit(f)" #f="ngForm">
 
     <div class="form-group">
-      <input type="text" maxlength="24" placeholder="Nom du groupe" class="form-control" name="name"  [(ngModel)]="name" required>
+      <input type="text" maxlength="24" placeholder="Nom du groupe" class="form-control" name="name" [(ngModel)]="name" required>
     </div>
 
   
@@ -23,25 +23,23 @@
   <br />
   <h3>Membres du groupe</h3>
   <div *ngFor="let member of members" class="grouplist">
-    <button class="btn btn-danger nopointer">{{member.first_name + " " + member.last_name + " | "}}<div class="pointer"  (click)="deleteUser(member)"><i class="fa fa-times"></i></div></button>
+    <button type="button" class="btn btn-danger nopointer">{{member.first_name + " " + member.last_name + " | "}}<div class="pointer"  (click)="deleteUser(member)"><i class="fa fa-times"></i></div></button>
   </div>
 
   <br />
 
-<button class="btn btn-info" type="submit" value="submit">Créer le groupe</button>
+<div *ngIf="!editform">
+  <button mat-raised-button [color]="'info'" type="submit" value="submit">Créer le groupe</button>
+</div>
+<div *ngIf="editform">
+  <button mat-raised-button [color]="'edit'" type="submit" value="submit">Modifier le groupe</button>
+</div>
+
 
 </form>
-
-<div *ngIf="sent">
-  <div class="alert alert-success" role="alert">
-    Le groupe a été créé!
-  </div>
-</div>
 
 <div *ngIf="error">
   <div class="alert alert-danger" role="alert">
     {{error}}
   </div>
 </div>
-
-</div> 
