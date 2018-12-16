@@ -35,13 +35,26 @@
             
              <li>Date de début : {{selectedTask.startingDate}}</li>
              <li>Date de fin : {{selectedTask.endingDate}}</li>
-             <li>Statut : {{selectedTask.status}}</li>
-        </ul>
+             <li>Statut : {{selectedTask.status}}
+          
+        
+    <button mat-button class="col lg-5 col-md-5 col-sm-12" (click)="onClickOpenSelect()">Modifier statut</button>
+ </li></ul>
+    
+    <div *ngIf="openSelect">
+          <mat-form-field>
+              <mat-select [(value)]="selected">
+                
+                <mat-option value="en cours">En cours</mat-option>
+                <mat-option value="terminé">Terminé</mat-option>
+                <mat-option value="pas commencé">Pas commencé</mat-option>
+              </mat-select>
+            </mat-form-field>
+              <button mat-button class="col lg-5 col-md-5 col-sm-12" (click)="onSelectStatus(selected)"> OK </button>
+            </div> 
       </div>
-      <div class="bouton">
-    <button type="modify" class="btn btn-success col lg-5 col-md-5 col-sm-12">Modifier </button></div>
-  
-    </div>
+      </div>
+      
 
     <div class="interligne"></div>
       <div class="card">

@@ -44,6 +44,7 @@ import {MatDatepickerModule} from '@angular/material';
 import {MatNativeDateModule} from '@angular/material';
 import {MatListModule} from '@angular/material/list';
 
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,7 @@ import {MatListModule} from '@angular/material/list';
     TaskFormComponent,
     TaskDetailsComponent,
     TasksComponent,
-  
+    
   ],
   imports: [
     HttpClientModule,
@@ -93,8 +94,8 @@ import {MatListModule} from '@angular/material/list';
     MatNativeDateModule,
     MatListModule,
     MatFormFieldModule,
-    MatInputModule
-    
+    MatInputModule,
+    MatSelectModule,
   ],
   entryComponents: [ActionsDialogComponent],
   providers: [
