@@ -47,13 +47,11 @@
 <div *ngIf="selectedTask" class="col-lg-5 col-sm-12">
 
   <div class="card">
-    <div class="card-header"> Groupes reliés </div>
-    <div class=card-text>
-      <ul>
-        <li *ngFor="let group of selectedTask.groups">{{ group.name }}</li>
+      <div class="card-header"> Groupes reliés </div>
+      <ul class="list-group list-group-flush">
+          <li *ngFor="let group of selectedTask.groups" class="list-group-item list-group-item-action">{{ group.name }}</li>
       </ul>
     </div>
-  </div>
 
   <div class="card">
     <div class="card-header"> WP reliés </div>
