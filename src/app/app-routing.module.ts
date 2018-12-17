@@ -19,6 +19,7 @@ import { TaskFormComponent } from 'src/app/tasks/task-form/task-form.component';
 import { TasksComponent } from 'src/app/tasks/task/task.component'
 import { AdminGuardService } from './services/admin-guard.service';
 import { ProfileComponent } from './profile/profile.component';
+import { GroupComponent } from './groups/group/group.component';
 
 const appRoutes: Routes = [
   { path: 'groups', canActivate:[AuthGuardService], component: GroupsComponent},
@@ -29,6 +30,7 @@ const appRoutes: Routes = [
   { path: 'register', canActivate:[AuthGuardService], component: RegisterComponent },
   { path: 'login', canActivate:[AuthGuardService], component: LoginComponent },
   { path: 'profile', canActivate:[AuthGuardService], component: ProfileComponent},
+  { path: 'group/:id', canActivate:[AuthGuardService], component: GroupComponent},
 
 
 

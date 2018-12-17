@@ -10,6 +10,8 @@ import { WorkpackagesService } from 'src/app/services/workpackages.service';
 export class WpfilesComponent implements OnInit {
 
   @Input() workpackage;
+
+  files:Array<File>;
   
   form: FormGroup;
 
@@ -23,12 +25,13 @@ export class WpfilesComponent implements OnInit {
   }
 
   ngOnInit(){
-
   }
 
   createForm() {
     this.form = this.fb.group({file:null})
   }
+
+
 
 
   onSubmit() {
