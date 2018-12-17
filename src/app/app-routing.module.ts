@@ -34,8 +34,7 @@ const appRoutes: Routes = [
 
 
   // tous les paths qui concernent le tableau des tâches
-  { path: 'detail/:id',canActivate:[AuthGuardService], component: TaskDetailsComponent },
-  { path : 'formulaire',canActivate:[AuthGuardService], component : TaskFormComponent},
+  { path : 'tasks/create-task',canActivate:[AuthGuardService], component : TaskFormComponent},
 
   
   { path: '', pathMatch : 'full', redirectTo : 'dashboard'},

@@ -28,7 +28,7 @@ export class TasksComponent implements OnInit {
     this.selectedTask = task;
   }
   onClickOpenSelect(){
-    this.openSelect=true;  
+    this.openSelect=!this.openSelect;  
     }
 
   getTasks(): void {
@@ -37,13 +37,15 @@ export class TasksComponent implements OnInit {
       (res) =>{
         console.log(res);
         this.tasks = res;
+        this.selectedTask = this.tasks[0];
       }
     )
   } 
-  
+
   onSelectStatus(statusChosen: string){
-    this.selectedTask.status=statusChosen;
+    this.selectedTask.status = statusChosen;
     console.log(statusChosen);
+    this.openSelect = false;
   }
  
 }
