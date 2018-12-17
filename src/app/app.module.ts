@@ -49,6 +49,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { WpfilesComponent } from './workpackages/workpackage/wpfiles/wpfiles.component';
 
 import {MatSelectModule} from '@angular/material/select';
+import { GroupComponent } from './groups/group/group.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import {MatSelectModule} from '@angular/material/select';
     WpchatComponent,
     ProfileComponent,
     WpfilesComponent,
+    GroupComponent,
   ],
   imports: [
     HttpClientModule,

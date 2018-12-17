@@ -15,9 +15,9 @@
   
   <div *ngIf="workpackage.status != 'inactive'">
 
-      <div fxLayout="row" fxLayout.lt-lg="column">
+      <div fxLayout="row" fxLayout.md="column" fxLayout.sm="column" fxLayout.xs="column"> 
 
-          <div fxFlex="20" fxHide.lt-lg>
+          <div fxFlex="20" fxHide.xs fxHide.sm fxHide.md>
               <div class="card wpcard" style="text-align: center">
                 <h3> Mes autres workpackages </h3>
                 <div class="card-body wpcardbody">
@@ -50,7 +50,7 @@
                   <h3>Groupes participants</h3>
                   <div class="card-body wpcardbody">
                     <li *ngFor="let group of workpackage.groups" style="list-style-type: none">
-                      {{group.name}}
+                      <a [routerLink]="['/group',group._id]">{{group.name}}</a>
                     </li>
                   </div>
                 </div>
@@ -62,7 +62,17 @@
 
       <br />
 
-      <app-wpfiles [workpackage]="workpackage"></app-wpfiles>
+      <div fxLayout>
+
+        <div class="card wpcard" style="width:100%; text-align: left">
+          <h3>Fichiers</h3>
+          <div class="card-body wpcardbody">
+            <app-wpfiles [workpackage]="workpackage"></app-wpfiles>
+          </div>
+        </div>
+
+      </div>
+      
 
 
 

@@ -1,0 +1,33 @@
+<div *ngIf="group">
+
+  <h1> Groupe {{group.name}} </h1>
+
+  <h2> Les membres </h2>
+
+  <ul>
+    <li *ngFor="let member of group.members">
+      {{member.first_name + ' ' + member.last_name}}
+    </li>
+  </ul>
+
+  <h2>Les missions</h2>
+
+  <h2>Les workpackages </h2>
+
+  <ul>
+    <li *ngFor="let wp of group.workpackages">
+      <a [routerLink]="['/workpackage', wp._id]">{{wp.name}}</a>
+    </li>
+  </ul>
+
+  <h2>Les tâches</h2>
+
+  <ul>
+    <li *ngFor="let task of group.tasks">
+      <a [routerLink]="['/task', task._id]">{{task.name}}</a>
+  </ul>
+
+
+
+</div>
+

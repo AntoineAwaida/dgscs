@@ -8,3 +8,9 @@
     </div>
   
     <button mat-raised-button [color]="'info'" type="submit" value="submit" >Ajouter un fichier</button>
+
+    <ul>
+      <li *ngFor="let file of workpackage.files">
+        {{file}}
+      </li>
+    </ul>
