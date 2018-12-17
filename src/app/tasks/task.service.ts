@@ -31,4 +31,8 @@ export class TaskService {// service qui met à jour les tâches
     )
   }
 
+  editTask(id: string, status: string) : Observable<any>  {
+    return this.httpClient.put("http://localhost:3000/api/tasks/edittask/"+this.auth.getPayload()._id, { taskID : id, status : status });
+  }
+
 }

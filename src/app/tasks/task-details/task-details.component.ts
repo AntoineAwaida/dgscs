@@ -12,6 +12,7 @@ export class TaskDetailsComponent implements OnInit {
   selectedTask: any;
   openSelect = false;
   loader = true;
+  initialStatus;
 
   constructor(
     private route: ActivatedRoute,
@@ -54,6 +55,7 @@ export class TaskDetailsComponent implements OnInit {
           console.log(task);
           this.selectedTask = task;
           this.loader = false;
+          this.initialStatus = task.status;
         }
         else {
           console.log("erreur : impossible de récupérer la tâche");
@@ -67,18 +69,47 @@ export class TaskDetailsComponent implements OnInit {
   }
 
 
-  onSelect(task: Task): void {
-    this.selectedTask = task;
-  }
   
   onClickOpenSelect(){
     this.openSelect=!this.openSelect;  
     }
 
-    onSelectStatus(statusChosen: string){
-      this.selectedTask.status = statusChosen;
-      console.log(statusChosen);
-      this.openSelect = false;
+   onSelectStatus(){
+      this.loader = true;
+      
+      //Enregistrer dans la base de donnée
+      this.taskService.editTask(this.selectedTask._id, this.selectedTask.status).subscribe( (res) => {
+        this.loader = false;
+        this.openSelect = false;
+        console.log("statut modifié !");
+      }, (err) => {
+        console.log(err);
+        this.loader = false;
+        alert("Impossible de modifier le statut !");
+      })
+  }
+
+  onCancelStatus(){
+    this.openSelect = false;
+    this.selectedTask.status = this.initialStatus;
+}
+
+  getStatus() {
+    let printStatus = "";
+    switch(this.selectedTask.status){
+      case "pending":
+        printStatus = "En attente";
+        break;
+      case "ongoing":
+        printStatus = "En cours";
+        break; 
+      case "done":
+        printStatus = "Terminée";
+        break;
+      default :
+        printStatus = "En attente";
     }
+    return printStatus;
+  }
     
 }

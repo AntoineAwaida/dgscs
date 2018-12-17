@@ -12,10 +12,13 @@
 .li{
   width : 90%;
 
+
 }
 .bouton{
   padding : 2%;
   text-align: center;
+  width: 50%;
+  margin : auto;
 }
 
 .card-body {
@@ -59,4 +62,9 @@
   font-weight: bold;
   color : red;
   font-size: 90%;
+}
+
+.buttonTask{
+  width : 100%;
+  text-align: justify;
 }

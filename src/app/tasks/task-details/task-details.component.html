@@ -1,5 +1,5 @@
 <div *ngIf="!loader">
-  <button class="mb-2" mat-raised-button color="success" routerLink="/tasks">Retour aux tâches</button>
+  <button class="mb-2" mat-raised-button color="success" routerLink="/tasks"><i class="fas fa-chevron-left"></i>  Retour aux tâches</button>
 
   <div class="row">
 
@@ -16,23 +16,33 @@
 
         <li>Début : <span class="date">{{ selectedTask.startingDate | date:'dd/MM/yyyy' }}</span></li>
         <li>Fin : <span class="date">{{ selectedTask.endingDate | date:'dd/MM/yyyy' }}</span></li>
-        <li>Statut : {{selectedTask.status}}
+        <li>Statut : <span [ngStyle] = "{ 'color' : getStatus() === 'En attente' ? 'red' : 'green', 'fontWeight' : 'bold' }" >{{ getStatus() }}</span>
 
-
-        <button mat-raised-button color="primary" (click)="onClickOpenSelect()">Modifier
-          statut</button> </li>
       </ul>
-
-      <div *ngIf="openSelect">
+      <div>
+        
+      <button *ngIf="!openSelect" mat-raised-button color="primary" (click)="onClickOpenSelect()">Modifier
+          statut</button>
+      <div *ngIf="openSelect" class="ml-4 mr-4">
         <mat-form-field>
-          <mat-select [(value)]="selected">
-            <mat-option value="en cours">En cours</mat-option>
-            <mat-option value="terminé">Terminé</mat-option>
-            <mat-option value="pas commencé">Pas commencé</mat-option>
+          <mat-select [(value)]="selectedTask.status" >
+            <mat-option color="red" value="pending">En attente</mat-option>
+            <mat-option value="ongoing">En cours</mat-option>
+            <mat-option value="done">Terminée</mat-option>
           </mat-select>
         </mat-form-field>
-        <button mat-button class="col lg-5 col-md-5 col-sm-12" (click)="onSelectStatus(selected)"> OK </button>
+        <div class="row">
+          <div class="col-6">
+              <button  mat-raised-button class="buttonStyle" color="success" (click)="onSelectStatus()"> Enregistrer </button>
+              <div *ngIf="loader" class="loader"></div>
+          </div>
+          <div class="col-6">
+              <button mat-raised-button class="buttonStyle" color="warn" (click)="onCancelStatus()"> Annuler </button>
+          </div>
       </div>
+      </div>
+
+    </div>
     </div>
   </div>
 
@@ -51,7 +61,7 @@
       <ul class="list-group list-group-flush">
           <li *ngFor="let group of selectedTask.groups" class="list-group-item list-group-item-action">{{ group.name }}</li>
       </ul>
-    </div>
+    </div> 
 
   <div class="card">
     <div class="card-header"> WP reliés </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../task.service';
+  import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-task-list',
@@ -11,7 +12,7 @@ export class TaskListComponent implements OnInit {
   public tasks: any;
   loader = true;
 
-  constructor(private taskService : TaskService) { }
+  constructor(private auth : AuthService, private taskService : TaskService) { }
 
   ngOnInit() {
     this.getTasks();
@@ -27,6 +28,28 @@ export class TaskListComponent implements OnInit {
       }
     )
   } 
+
+  getStatus(selectedTask) {
+    let printStatus = "";
+    switch(selectedTask.status){
+      case "pending":
+        printStatus = "En attente";
+        break;
+      case "ongoing":
+        printStatus = "En cours";
+        break; 
+      case "done":
+        printStatus = "Terminée";
+        break;
+      default :
+        printStatus = "En attente";
+    }
+    return printStatus;
+  }
+
+  isAuthor(task){
+    return task.author._id == this.auth.getPayload()._id;
+  }
 
 
 }
