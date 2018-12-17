@@ -28,13 +28,9 @@ const appRoutes: Routes = [
   { path: 'workpackage/:id', canActivate:[AuthGuardService], component: WorkpackageComponent },
   { path: 'register', canActivate:[AuthGuardService], component: RegisterComponent },
   { path: 'login', canActivate:[AuthGuardService], component: LoginComponent },
-  { path : 'tasks',canActivate:[AuthGuardService], component : TasksComponent},
   { path: 'profile', canActivate:[AuthGuardService], component: ProfileComponent},
 
 
-
-  // tous les paths qui concernent le tableau des tâches
-  { path : 'tasks/create-task',canActivate:[AuthGuardService], component : TaskFormComponent},
 
   
   { path: '', pathMatch : 'full', redirectTo : 'dashboard'},

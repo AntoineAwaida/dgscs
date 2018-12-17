@@ -13,13 +13,13 @@ export class TaskService {// service qui met à jour les tâches
 
   constructor(private auth : AuthService, private httpClient: HttpClient, private router: Router) { }
   
-  getTask(): Observable<any> {
+  getTasks(): Observable<any> {
     return this.httpClient.get("http://localhost:3000/api/tasks/gettasks/"+this.auth.getPayload()._id);
 
   }
-  getTasks(id: number): Observable<Task>{
-    return of(TASKS.find(task=>task.id===id));
 
+  getTask(id : string) : Observable<any>  {
+    return this.httpClient.post("http://localhost:3000/api/tasks/gettask/"+this.auth.getPayload()._id, { taskID : id });
   }
 
   createTask(task){

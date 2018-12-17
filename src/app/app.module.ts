@@ -14,6 +14,7 @@ import { TokenInterceptor } from './services/token.interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AdminRoutingModule } from './admin/admin-routing.module';
+import { TaskRoutingModule } from './tasks/task-routing.module';
 import { AppComponent } from './app.component';
 import { MissionsComponent } from './missions/missions.component';
 import { WorkpackagesComponent } from './workpackages/workpackages.component';
@@ -37,8 +38,10 @@ import { WorkpackageComponent } from './workpackages/workpackage/workpackage.com
 import { FilterPipe } from './filter.pipe';
 import { TaskDetailsComponent} from './tasks/task-details/task-details.component';
 import { TaskFormComponent } from './tasks/task-form/task-form.component'
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import { MatButtonModule, MatCheckboxModule} from '@angular/material';
+
 import { TasksComponent } from 'src/app/tasks/task/task.component';
+import { TaskListComponent } from './tasks/task-list/task-list.component';
 
 import {MatDatepickerModule} from '@angular/material';
 
@@ -72,17 +75,21 @@ import {MatSelectModule} from '@angular/material/select';
     WorkpackageComponent,
     TaskDetailsComponent,
     TaskFormComponent,
+    TaskListComponent,
     TaskDetailsComponent,
     TasksComponent,
     WpchatComponent,
     ProfileComponent,
-    WpfilesComponent,
+    WpfilesComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
+
     AppRoutingModule,
     AdminRoutingModule,
+    TaskRoutingModule,
+    
     BrowserAnimationsModule, 
     FormsModule,
     ReactiveFormsModule,

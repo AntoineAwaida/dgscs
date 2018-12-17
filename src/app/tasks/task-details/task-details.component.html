@@ -1,19 +1,67 @@
-<div *ngIf="task">
-  <div class="descriptionOfTask">
+<div *ngIf="!loader">
+  <button class="mb-2" mat-raised-button color="success" routerLink="/tasks">Retour aux tâches</button>
 
-  <h2> Task {{task.id}} details</h2>
-<ul>
- 
-     <li>Name: {{task.name}} </li>
-     <li>Description: {{task.description}}</li>
-    
-     <li>Starting Date: {{task.startingDate}}
-     </li>
-     <li>Ending Date: {{task.endingDate}}</li>
-   </ul>
+  <div class="row">
 
- 
+  <div *ngIf="selectedTask" class="col-lg-7 col-sm-12">
 
+  <div class="card">
+    <div class="card-header taskName">{{ selectedTask.name }}</div>
+    <div class="card-text">
+        <div class="description">
+          {{selectedTask.description}}
+          <div class="author">Tâche créée par {{ selectedTask.author.first_name + ' ' + selectedTask.author.last_name }} </div>
+        </div>
+      <ul>
+
+        <li>Début : <span class="date">{{ selectedTask.startingDate | date:'dd/MM/yyyy' }}</span></li>
+        <li>Fin : <span class="date">{{ selectedTask.endingDate | date:'dd/MM/yyyy' }}</span></li>
+        <li>Statut : {{selectedTask.status}}
+
+
+        <button mat-raised-button color="primary" (click)="onClickOpenSelect()">Modifier
+          statut</button> </li>
+      </ul>
+
+      <div *ngIf="openSelect">
+        <mat-form-field>
+          <mat-select [(value)]="selected">
+            <mat-option value="en cours">En cours</mat-option>
+            <mat-option value="terminé">Terminé</mat-option>
+            <mat-option value="pas commencé">Pas commencé</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-button class="col lg-5 col-md-5 col-sm-12" (click)="onSelectStatus(selected)"> OK </button>
+      </div>
+    </div>
   </div>
-  
+
+
+  <div class="card">
+    <div class="card-header"> Chat</div>
+    <div class=card-text></div>
+  </div>
+
+</div>
+
+<div *ngIf="selectedTask" class="col-lg-5 col-sm-12">
+
+  <div class="card">
+    <div class="card-header"> WP reliés </div>
+    <div class=card-text></div>
+  </div>
+  <div class="card">
+    <div class="card-header">Tâches reliées</div>
+    <div class=card-text></div>
+  </div>
+
+
+</div>
+
+  </div> 
+</div>
+
+<div *ngIf="loader" fxLayoutAlign="space-around center" style="overflow:hidden">
+  <div class="loader">
+  </div> 
 </div>
