@@ -37,7 +37,8 @@ export class TasksComponent implements OnInit {
       (res) =>{
         console.log(res);
         this.tasks = res;
-        this.selectedTask = this.tasks[0];
+        if(this.tasks.length>0)
+          this.selectedTask = this.tasks[0];
       }
     )
   } 

@@ -25,11 +25,14 @@
     <div class="card">
       <div class="card-header taskName">{{ selectedTask.name }}</div>
       <div class="card-text">
-          <div class="description">{{selectedTask.description}}</div>
+          <div class="description">
+            {{selectedTask.description}}
+            <div class="author">Tâche créée par {{ selectedTask.author.first_name + ' ' + selectedTask.author.last_name }} </div>
+          </div>
         <ul>
 
-          <li>Date de début : {{selectedTask.startingDate}}</li>
-          <li>Date de fin : {{selectedTask.endingDate}}</li>
+          <li>Début : <span class="date">{{ selectedTask.startingDate | date:'dd/MM/yyyy' }}</span></li>
+          <li>Fin : <span class="date">{{ selectedTask.endingDate | date:'dd/MM/yyyy' }}</span></li>
           <li>Statut : {{selectedTask.status}}
 
 
@@ -40,7 +43,6 @@
         <div *ngIf="openSelect">
           <mat-form-field>
             <mat-select [(value)]="selected">
-
               <mat-option value="en cours">En cours</mat-option>
               <mat-option value="terminé">Terminé</mat-option>
               <mat-option value="pas commencé">Pas commencé</mat-option>
@@ -52,11 +54,11 @@
     </div>
 
 
-
     <div class="card">
       <div class="card-header"> Chat</div>
       <div class=card-text></div>
     </div>
+
   </div>
 
   <div *ngIf="selectedTask" class="col-lg-3 col-sm-12">
