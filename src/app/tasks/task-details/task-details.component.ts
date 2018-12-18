@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Task } from 'src/app/tasks/task';
 import { TaskService } from 'src/app/tasks/task.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
  
 @Component({
   selector: 'app-task-details',
@@ -17,7 +18,8 @@ export class TaskDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private taskService: TaskService,
-    private router: Router
+    private router: Router,
+    private auth : AuthService
   ) {}
  
   ngOnInit(): void {
@@ -75,8 +77,9 @@ export class TaskDetailsComponent implements OnInit {
     }
 
    onSelectStatus(){
+     if(this.selectedTask.status!=this.initialStatus){
+
       this.loader = true;
-      
       //Enregistrer dans la base de donnée
       this.taskService.editTask(this.selectedTask._id, this.selectedTask.status).subscribe( (res) => {
         this.loader = false;
@@ -87,6 +90,9 @@ export class TaskDetailsComponent implements OnInit {
         this.loader = false;
         alert("Impossible de modifier le statut !");
       })
+    } else {
+      this.openSelect = false;
+    }
   }
 
   onCancelStatus(){
@@ -112,4 +118,8 @@ export class TaskDetailsComponent implements OnInit {
     return printStatus;
   }
     
+
+  isAuthor(){
+    return this.selectedTask.author._id == this.auth.getPayload()._id;
+  }
 }
