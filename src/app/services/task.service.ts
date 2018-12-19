@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Task } from './task';
-import { TASKS } from './mock-tasks';
+import { Task } from '../tasks/task';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -31,8 +30,8 @@ export class TaskService {// service qui met à jour les tâches
     )
   }
 
-  editTask(id: string, status: string) : Observable<any>  {
-    return this.httpClient.put("http://localhost:3000/api/tasks/edittask/"+this.auth.getPayload()._id, { taskID : id, status : status });
+  editTaskStatus(id: string, status: string) : Observable<any>  {
+    return this.httpClient.put("http://localhost:3000/api/tasks/edittaskstatus/"+this.auth.getPayload()._id, { taskID : id, status : status });
   }
 
 }

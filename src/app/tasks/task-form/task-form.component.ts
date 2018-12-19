@@ -3,7 +3,7 @@ import { Task } from '../task';
 import { NgForm, FormGroup } from '@angular/forms';
 
 import { AuthService } from 'src/app/services/auth.service';
-import { TaskService } from '../task.service';
+import { TaskService } from '../../services/task.service';
 import { GroupsService } from '../../services/groups.service'
 
 @Component({

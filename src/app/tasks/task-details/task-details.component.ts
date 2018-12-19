@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from 'src/app/tasks/task';
-import { TaskService } from 'src/app/tasks/task.service';
+import { TaskService } from 'src/app/services/task.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
  
@@ -81,7 +81,7 @@ export class TaskDetailsComponent implements OnInit {
 
       this.loader = true;
       //Enregistrer dans la base de donnée
-      this.taskService.editTask(this.selectedTask._id, this.selectedTask.status).subscribe( (res) => {
+      this.taskService.editTaskStatus(this.selectedTask._id, this.selectedTask.status).subscribe( (res) => {
         this.loader = false;
         this.openSelect = false;
         console.log("statut modifié !");
