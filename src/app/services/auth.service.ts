@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { api, server } from '../constants';
 
 export interface UserDetails {
   _id: string;
@@ -107,12 +108,12 @@ export class AuthService {
 
 
   public register(user: TokenPayload): Observable<Object> {
-    return this.httpClient.post("http://localhost:3000/api/users/register", user)
+    return this.httpClient.post(api + "users/register", user)
 
   }
 
   public login(user: TokenPayload): Observable<Object> {
-    return this.httpClient.post("http://localhost:3000/api/users/login", user)
+    return this.httpClient.post(api + "users/login", user)
   }
 
 

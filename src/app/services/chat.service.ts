@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {server} from '../constants'
 
 import {Observable} from 'rxjs'
 
@@ -8,7 +7,7 @@ import { AuthService } from './auth.service';
 
 import { HttpClient } from '@angular/common/http'
 
-import {api} from '../constants'
+import { api, server } from '../constants';
 
 
 export interface WPChatMessage {

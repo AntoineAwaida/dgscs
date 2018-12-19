@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import {Observable} from 'rxjs'
 
-import {api} from '../constants'
+import { api, server } from '../constants';
 
 @Injectable({
   providedIn: 'root'
@@ -14,27 +14,27 @@ export class UserService {
 
 
 public getUsers(): Observable<Object> {
-  return this.httpClient.get("http://localhost:3000/api/users/getusers")
+  return this.httpClient.get(api+"users/getusers")
 }
 
 public getActiveUsers(): Observable<Object> {
-  return this.httpClient.get("http://localhost:3000/api/users/getactiveusers")
+  return this.httpClient.get(api+"users/getactiveusers")
 }
 
 public getUser(userid): Observable<Object> {
-  return this.httpClient.get("http://localhost:3000/api/users/getuser/" + userid)
+  return this.httpClient.get(api+"users/getuser/" + userid)
 }
 
 public getPendingUsers(): Observable<Object> {
-  return this.httpClient.get("http://localhost:3000/api/users/getpendingusers")
+  return this.httpClient.get(api+"users/getpendingusers")
 }
 
 public deactivateUser(userid): Observable<Object> {
-  return this.httpClient.get("http://localhost:3000/api/users/deactivateuser/" + userid)
+  return this.httpClient.get(api+"users/deactivateuser/" + userid)
 }
 
 public activateUser(userid): Observable<Object> {
-  return this.httpClient.get("http://localhost:3000/api/users/activateuser/" + userid)
+  return this.httpClient.get(api+"users/activateuser/" + userid)
 }
 
 public getGroups(userid: string) : Observable<Object> {
