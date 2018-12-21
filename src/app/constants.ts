@@ -4,4 +4,4 @@
 
 export const api = 'http://cs3.cs-campus.fr:3000/api/'
 export const server = 'http://cs3.cs-campus.fr:3000/'
-export const url = 'http://cs3.cs-campus.fr:4200';
+export const url = 'http://cs3.cs-campus.fr';
