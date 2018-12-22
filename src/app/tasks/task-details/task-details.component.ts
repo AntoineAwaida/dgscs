@@ -84,6 +84,7 @@ export class TaskDetailsComponent implements OnInit {
       this.taskService.editTaskStatus(this.selectedTask._id, this.selectedTask.status).subscribe( (res) => {
         this.loader = false;
         this.openSelect = false;
+        this.initialStatus = this.selectedTask.status;
         console.log("statut modifié !");
       }, (err) => {
         console.log(err);

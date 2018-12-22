@@ -25,7 +25,11 @@
                     <br>
                   </div>
     
-                  <div class="col-6"><i class="fas fa-thumbtack"></i> Statut : <span [ngStyle]="{ 'color' : getStatus() === 'En attente' ? 'red' : 'green', 'color' : getStatus() === 'En cours' ? 'orange' : 'green', 'fontWeight' : 'bold' }">{{
+                  <div class="col-6"><i class="fas fa-thumbtack"></i> Statut : 
+                    <span [ngClass]="{'redStatus' : getStatus()==='En attente',
+                                      'orangeStatus' : getStatus()==='En cours',
+                                      'greenStatus' : getStatus()==='Terminée'
+                                    }" [ngStyle]="{ 'fontWeight' : 'bold' }">{{
                       getStatus() }}</span>
     
                   </div>
