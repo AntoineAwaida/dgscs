@@ -15,14 +15,13 @@
               }} </div>
           </div>
           <div>
-              <div class="row">
+              <div class="row mb-2">
                   <div class="col-12 col-sm-6">
                     <div><i class="fas fa-clock ml-4"></i> Début : <span class="date">{{ selectedTask.startingDate |
                         date:'dd/MM/yyyy' }}</span></div>
                     <div><i class="fas fa-clock ml-4"></i> Fin : <span class="date">{{ selectedTask.endingDate |
                         date:'dd/MM/yyyy'
                         }}</span></div>
-                    <br>
                   </div>
     
                   <div class="col-12 col-sm-6"><i class="fas fa-thumbtack  ml-4"></i> Statut : 
@@ -68,7 +67,7 @@
                   statut</button>
                   <div class="m-1"></div>
               </div>
-              <div class="col-sm-6 col-12">
+              <div class="col-md-6 col-12">
                 <button class="buttonStyle" [routerLink]="'/tasks/edit-task/'+selectedTask._id" *ngIf="isAuthor()&&!openSelect" mat-raised-button color="success"><i class="fas fa-edit"></i> Modifier
                   la tâche</button>
               </div>
