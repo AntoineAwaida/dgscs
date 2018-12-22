@@ -23,10 +23,12 @@ export class TaskService {// service qui met à jour les tâches
   }
 
   createTask(task){
-    this.httpClient.post(api+"createtask/", task).subscribe(
+    this.httpClient.post(api+"createtaska/", task).subscribe(
       (res) => {
         console.log(res);
         this.router.navigate(['tasks']);
+      }, (err)=> {
+        console.log(err);
       }
     )
   }
