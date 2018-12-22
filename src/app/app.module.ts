@@ -53,6 +53,7 @@ import { WpfilesComponent } from './workpackages/workpackage/wpfiles/wpfiles.com
 
 import {MatSelectModule} from '@angular/material/select';
 import { GroupComponent } from './groups/group/group.component';
+import { TaskEditComponent } from './tasks/task-edit/task-edit.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { GroupComponent } from './groups/group/group.component';
     ProfileComponent,
     WpfilesComponent,
     GroupComponent,
+    TaskEditComponent,
   ],
   imports: [
     HttpClientModule,
