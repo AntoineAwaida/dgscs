@@ -25,7 +25,7 @@
                     <br>
                   </div>
     
-                  <div class="col-6"><i class="fas fa-thumbtack"></i> Statut : <span [ngStyle]="{ 'color' : getStatus() === 'En attente' ? 'red' : 'green', 'fontWeight' : 'bold' }">{{
+                  <div class="col-6"><i class="fas fa-thumbtack"></i> Statut : <span [ngStyle]="{ 'color' : getStatus() === 'En attente' ? 'red' : 'green', 'color' : getStatus() === 'En cours' ? 'orange' : 'green', 'fontWeight' : 'bold' }">{{
                       getStatus() }}</span>
     
                   </div>
@@ -39,8 +39,8 @@
               <mat-form-field>
                 <mat-select [(value)]="selectedTask.status">
                   <mat-option color="red" value="pending">En attente</mat-option>
-                  <mat-option value="ongoing">En cours</mat-option>
-                  <mat-option value="done">Terminée</mat-option>
+                  <mat-option color="orange" value="ongoing">En cours</mat-option>
+                  <mat-option color="green" value="done">Terminée</mat-option>
                 </mat-select>
               </mat-form-field>
               <div class="row">
@@ -63,7 +63,7 @@
                   statut</button>
               </div>
               <div class="col-6">
-                <button class="buttonStyle" *ngIf="isAuthor()&&!openSelect" mat-raised-button color="success"><i class="fas fa-edit"></i> Modifier
+                <button class="buttonStyle" [routerLink]="'/tasks/edit-task/'+selectedTask._id" *ngIf="isAuthor()&&!openSelect" mat-raised-button color="success"><i class="fas fa-edit"></i> Modifier
                   la tâche</button>
               </div>
             </div>
