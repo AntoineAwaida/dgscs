@@ -19,7 +19,7 @@
               <i *ngIf="isAuthor(task)" class="ml-1 fas fa-pencil-alt"></i>
 
               <span class="small" [ngStyle] = "{
-              'color' : task.status == 'pending' ? 'red' : task.status == 'ongoing' ? 'orange' : 'green',
+              'color' : task.status == 'pending' ? 'red' : task.status == 'ongoing' ? 'orangered' : 'green',
               'fontWeight' : 'bold',
               'marginLeft' : '5px',
               'fontStyle' : 'italic'
