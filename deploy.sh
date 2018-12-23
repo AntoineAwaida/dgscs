@@ -1,7 +1,9 @@
 #!/bin/bash
 
 git pull
-ng build --prod
+
+#ng build --prod
+ng build
 
 
 #On supprime le contenu final
