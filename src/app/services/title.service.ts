@@ -9,7 +9,7 @@ export class TitleService {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private titleService: Title,
+    private title: Title,
   ) {}
 
   APP_TITLE = 'CS3';
@@ -19,10 +19,11 @@ export class TitleService {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd),
       map(() => this.activatedRoute),
-      map(route => {
-          while (route.firstChild) route = route.firstChild;
-          return route;
-        }),
+      map(route => route.firstChild),
+    //   map(route => {
+    //       while (route.firstChild) route = route.firstChild;
+    //       return route;
+    //     }),
       switchMap(route => route.data),
       map((data) => {
         if (data.title) {
@@ -43,7 +44,7 @@ export class TitleService {
         }
       })
     )
-    .subscribe((pathString) => this.titleService.setTitle(`${this.APP_TITLE} ${pathString}`));
+    .subscribe((pathString) => this.title.setTitle(`${this.APP_TITLE} ${pathString}`));
 }
 
 // static ucFirst(string) {
