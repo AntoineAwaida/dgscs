@@ -40,6 +40,9 @@ export class WorkpackageComponent implements OnInit, OnDestroy {
      }
 
   ngOnInit() {
+
+    this.reuseRoute(false);
+
     this.route.paramMap.pipe(switchMap((params:ParamMap) => this.workpackageService.getWorkPackage(params.get('id'))))
       .subscribe((res:any) => {
         this.workpackage$ = res
@@ -50,7 +53,7 @@ export class WorkpackageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    //this.reuseRoute(true);
+    this.reuseRoute(true);
   }
 
   getWorkPackages(){
