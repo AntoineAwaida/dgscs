@@ -20,18 +20,12 @@ const adminRoutes: Routes = [
        { path: 'workpackages', component: AdminWorkpackagesComponent, data : { title : 'Admin > Work-Packages'}}
     ]
   }
-  // { path : '**', redirectTo : 'not-found'}
 ]
 @NgModule({
   imports: [RouterModule.forRoot(adminRoutes)],
   exports: [RouterModule],
   providers : [
-    AdminGuardService,
-    TitleService,
+    AdminGuardService
   ],
 })
-export class AdminRoutingModule {
-  // constructor(private titleService: TitleService) {
-  //   this.titleService.init();
-  // }
- }
+export class AdminRoutingModule {}

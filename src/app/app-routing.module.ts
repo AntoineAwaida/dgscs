@@ -51,12 +51,8 @@ const appRoutes: Routes = [
   providers : [
     AuthGuardService,
     PendingGuardService,
-    AdminGuardService,
-    TitleService
+    AdminGuardService
   ]
 })
 export class AppRoutingModule { 
-  // constructor(private titleService: TitleService) {
-  //   this.titleService.init();
-  // }
 }
