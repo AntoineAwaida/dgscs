@@ -10,6 +10,7 @@ export interface UserDetails {
   first_name: string;
   last_name: string;
   admin : boolean;
+  status : string;
   exp: number;
   iat: number;
 }
@@ -24,6 +25,7 @@ export interface TokenPayload {
   first_name?: string;
   last_name?: string;
   admin?: boolean;
+  status? : string;
 }
 
 @Injectable()
