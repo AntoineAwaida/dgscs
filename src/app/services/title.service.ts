@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Title } from '@angular/platform-browser';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute, NavigationStart } from '@angular/router';
 import { filter, map, switchMap } from 'rxjs/operators';
 
 @Injectable()
@@ -17,9 +17,12 @@ export class TitleService {
 
   init() {
     this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd),
+      filter(event => event instanceof NavigationStart),
       map(() => this.activatedRoute),
-      map(route => route.firstChild),
+      map((route) => {
+        while (route.firstChild) route = route.firstChild;
+        return route;
+      }),
     //   map(route => {
     //       while (route.firstChild) route = route.firstChild;
     //       return route;
@@ -44,7 +47,7 @@ export class TitleService {
         }
       })
     )
-    .subscribe((pathString) => this.title.setTitle(`${this.APP_TITLE} ${pathString}`));
+    .subscribe((pathString) => this.title.setTitle(this.APP_TITLE + pathString));
 }
 
 // static ucFirst(string) {

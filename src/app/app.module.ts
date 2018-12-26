@@ -135,7 +135,7 @@ import { TitleService } from './services/title.service';
 })
 
 export class AppModule { 
-  constructor(titleService: TitleService) {
-    titleService.init();
+  constructor(private titleService: TitleService) {
+    this.titleService.init();
   }
 }
