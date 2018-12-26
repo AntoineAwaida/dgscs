@@ -14,6 +14,7 @@ export class AppComponent implements OnInit{
   constructor(public auth : AuthService, private route : ActivatedRoute  ,private titleService : TitleService){}
   
   ngOnInit(){
+    this.titleService.init();
   }
 
   toogleSidenav() {
