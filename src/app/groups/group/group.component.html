@@ -24,7 +24,7 @@
 
   <ul>
     <li *ngFor="let task of group.tasks">
-      <a [routerLink]="['/task', task._id]">{{task.name}}</a>
+      <a [routerLink]="['/tasks/details', task._id]">{{task.name}}</a>
   </ul>
 
 

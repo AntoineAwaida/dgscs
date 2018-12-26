@@ -3,7 +3,7 @@
     <div *ngFor="let group of groups">
         <div class="card" style="margin-bottom:10px" >
             <div class="card-header">
-              {{group.name}}
+                <a [routerLink]="['/group',group._id]">{{group.name}}</a>
             </div>
             <div class="card-body" style="height:200px ; overflow-y:scroll"> 
               <ul *ngFor="let user of group.members">
