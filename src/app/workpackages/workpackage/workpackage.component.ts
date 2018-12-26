@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { WorkpackagesService, WorkPackage } from 'src/app/services/workpackages.service';
 
@@ -19,7 +19,7 @@ import { ChatService } from 'src/app/services/chat.service';
   templateUrl: './workpackage.component.html',
   styleUrls: ['./workpackage.component.scss']
 })
-export class WorkpackageComponent implements OnInit {
+export class WorkpackageComponent implements OnInit, OnDestroy {
 
 
 
@@ -35,9 +35,7 @@ export class WorkpackageComponent implements OnInit {
       
     //ici je demande au component de se recharger complètement lorsque l'on passe d'un workpackage à un autre. pourquoi? car sinon on a de nombreux problèmes de temporalité avec le chat.
     //par ailleurs, c'est plus logique pour l'utilisateur de voir la page entièrement se recharger je trouve... 
-      this.router.routeReuseStrategy.shouldReuseRoute = function(){
-        return false;
-     }
+      this.reuseRoute(false);
 
      }
 
@@ -51,6 +49,9 @@ export class WorkpackageComponent implements OnInit {
     this.getWorkPackages();
   }
 
+  ngOnDestroy() {
+    this.reuseRoute(true);
+  }
 
   getWorkPackages(){
     
@@ -66,7 +67,11 @@ export class WorkpackageComponent implements OnInit {
   
   }
 
-  
+  reuseRoute(bool : boolean) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function(){
+      return bool;
+   }
+  }
 
 
 }
