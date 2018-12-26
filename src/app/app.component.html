@@ -10,7 +10,7 @@
   <ul class="navbar-nav ml-auto small">
     <li class="nav-item">
       <div class="nav-link active bold">
-        <span *ngIf="this.auth.getPayload().admin" class="badge badge-pill badge-dark"><i class="small fas fa-star"></i><span class="buttonName"> admin</span></span>
+        <span *ngIf="this.auth.getPayload().status=='admin'" class="badge badge-pill badge-dark"><i class="small fas fa-star"></i><span class="buttonName"> admin</span></span>
 
         <a routerLink='/profile'>
           {{ this.auth.getPayload().first_name }} 
