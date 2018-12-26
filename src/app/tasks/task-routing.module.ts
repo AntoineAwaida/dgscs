@@ -19,9 +19,9 @@ const taskRoutes: Routes = [
     component: TasksComponent,
     children: [
        { path : '', component : TaskListComponent},
-       { path: 'details/:id', component: TaskDetailsComponent },
-       { path: 'create-task', component: TaskFormComponent },
-       { path: 'edit-task/:id', component: TaskEditComponent }
+       { path: 'details/:id', component: TaskDetailsComponent, data: { title: 'Mes Tâches > Détail' }},
+       { path: 'create-task', component: TaskFormComponent, data: { title: 'Mes Tâches > Créer une tâche' }},
+       { path: 'edit-task/:id', component: TaskEditComponent, data: { title: 'Mes Tâches > Editer une tâche' }}
     ],
     
   }

@@ -6,16 +6,18 @@ import { AdminGroupsComponent } from './admin-groups/admin-groups.component';
 import { AdminUsersComponent } from './admin-users/admin-users.component';
 import { AdminWorkpackagesComponent } from './admin-workpackages/admin-workpackages.component';
 import { AdminGuardService } from '../services/admin-guard.service';
+import { TitleService } from '../services/title.service';
 
 const adminRoutes: Routes = [
   {
     path: 'admin',
+    data : { title : 'Admin'},
     canActivate:[AdminGuardService],
     component: AdminDashboardComponent,
     children: [
-       { path: 'groups', component: AdminGroupsComponent },
-       { path: 'users', component: AdminUsersComponent }, 
-       { path: 'workpackages', component: AdminWorkpackagesComponent}
+       { path: 'groups', component: AdminGroupsComponent, data : { title : 'Admin > Groupes'} },
+       { path: 'users', component: AdminUsersComponent, data : { title : 'Admin > Utilisateurs'} }, 
+       { path: 'workpackages', component: AdminWorkpackagesComponent, data : { title : 'Admin > Work-Packages'}}
     ]
   }
   // { path : '**', redirectTo : 'not-found'}
@@ -27,4 +29,8 @@ const adminRoutes: Routes = [
     AdminGuardService
   ],
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {
+  constructor(titleService: TitleService) {
+    titleService.init();
+  }
+ }
