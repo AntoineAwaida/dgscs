@@ -1,17 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
+import { TitleService } from './services/title.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'dgscs';
   sidenavOpened = false;
 
-  constructor(public auth : AuthService){}
+  constructor(public auth : AuthService, private route : ActivatedRoute  ,private titleService : TitleService){}
   
+  ngOnInit(){
+    this.route.data.subscribe(()=>{this.titleService.init()});
+  }
 
   toogleSidenav() {
     this.sidenavOpened = !this.sidenavOpened
