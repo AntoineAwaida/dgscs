@@ -26,11 +26,12 @@ const adminRoutes: Routes = [
   imports: [RouterModule.forRoot(adminRoutes)],
   exports: [RouterModule],
   providers : [
-    AdminGuardService
+    AdminGuardService,
+    TitleService,
   ],
 })
 export class AdminRoutingModule {
-  constructor(titleService: TitleService) {
-    titleService.init();
+  constructor(private titleService: TitleService) {
+    this.titleService.init();
   }
  }

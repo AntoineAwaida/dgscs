@@ -32,11 +32,12 @@ const taskRoutes: Routes = [
   exports: [RouterModule],
   providers : [
     AuthGuardService,
-    PendingGuardService
+    PendingGuardService,
+    TitleService
   ],
 })
 export class TaskRoutingModule { 
-  constructor(titleService: TitleService) {
-    titleService.init();
+  constructor(private titleService: TitleService) {
+    this.titleService.init();
   }
 }
