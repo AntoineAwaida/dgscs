@@ -9,13 +9,11 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  title = 'dgscs';
   sidenavOpened = false;
 
   constructor(public auth : AuthService, private route : ActivatedRoute  ,private titleService : TitleService){}
   
   ngOnInit(){
-    this.route.data.subscribe(()=>{this.titleService.init()});
   }
 
   toogleSidenav() {

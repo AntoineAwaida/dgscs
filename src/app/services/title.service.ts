@@ -17,7 +17,7 @@ export class TitleService {
 
   init() {
     this.router.events.pipe(
-      filter(event => event instanceof NavigationStart),
+      filter(event => event instanceof NavigationEnd),
       map(() => this.activatedRoute),
       map((route) => {
         while (route.firstChild) route = route.firstChild;
