@@ -13,7 +13,7 @@ export class TitleService {
   ) {}
 
   APP_TITLE = 'CS3 | ';
-  SEPARATOR = ' > ';
+//   SEPARATOR = ' > ';
 
   init() {
     this.router.events.pipe(
@@ -25,23 +25,23 @@ export class TitleService {
         if (data.title) {
           // If a route has a title set (e.g. data: {title: "Foo"}) then we use it
           return data.title;
-        } else {
-          // If not, we do a little magic on the url to create an approximation
-          return this.router.url.split('/').reduce((acc, frag) => {
-            if (acc && frag) { acc += this.SEPARATOR; }
-            return this.router.url.split('/').reduce((acc, frag) => {
-              if ( acc && frag ) { acc += this.SEPARATOR; }
-              return acc + TitleService.ucFirst(frag);
-            });
-          });
+        // } else {
+        //   // If not, we do a little magic on the url to create an approximation
+        //   return this.router.url.split('/').reduce((acc, frag) => {
+        //     if (acc && frag) { acc += this.SEPARATOR; }
+        //     return this.router.url.split('/').reduce((acc, frag) => {
+        //       if ( acc && frag ) { acc += this.SEPARATOR; }
+        //       return acc + TitleService.ucFirst(frag);
+        //     });
+        //   });
         }
       })
     )
     .subscribe((pathString) => this.titleService.setTitle(`${this.APP_TITLE} ${pathString}`));
 }
 
-static ucFirst(string) {
-  if ( !string ) { return string; }
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
+// static ucFirst(string) {
+//   if ( !string ) { return string; }
+//   return string.charAt(0).toUpperCase() + string.slice(1);
+// }
 }
