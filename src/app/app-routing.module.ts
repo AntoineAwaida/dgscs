@@ -26,27 +26,22 @@ import { NotAdminComponent } from './routing-error/not-admin/not-admin.component
 import { NotFoundComponent } from './routing-error/not-found/not-found.component';
 
 const appRoutes: Routes = [
-  { path: 'groups', canActivate:[AuthGuardService, PendingGuardService], component: GroupsComponent},
-  { path: 'missions', canActivate:[AuthGuardService, PendingGuardService], component: MissionsComponent },
-  { 
-    path: 'dashboard', 
-    canActivate:[AuthGuardService], 
-    component: DashboardComponent,
-    data: { title: 'Mon Dashboard' } 
-  },
-  { path: 'work-packages',  canActivate:[AuthGuardService, PendingGuardService], component: WorkpackagesComponent },
+  { path: 'groups', canActivate:[AuthGuardService, PendingGuardService], component: GroupsComponent, data: { title: 'Mes Groupes' }},
+  { path: 'missions', canActivate:[AuthGuardService, PendingGuardService], component: MissionsComponent, data: { title: 'Mes Work Packages' } },
+  { path: 'dashboard', canActivate:[AuthGuardService], component: DashboardComponent,data: { title: 'Mon Dashboard' } },
+  { path: 'work-packages',  canActivate:[AuthGuardService, PendingGuardService], component: WorkpackagesComponent, data: { title: 'Mes Work Packages' }},
   { path: 'workpackage/:id', canActivate:[AuthGuardService, PendingGuardService], component: WorkpackageComponent },
-  { path: 'register', canActivate:[AuthGuardService], component: RegisterComponent },
-  { path: 'login', canActivate:[AuthGuardService], component: LoginComponent },
-  { path: 'profile', canActivate:[AuthGuardService, PendingGuardService], component: ProfileComponent},
+
+  { path: 'register', canActivate:[AuthGuardService], component: RegisterComponent, data: { title: 'Inscription' } },
+  { path: 'login', canActivate:[AuthGuardService], component: LoginComponent, data: { title: 'Connexion' } },
+  { path: 'profile', canActivate:[AuthGuardService, PendingGuardService], component: ProfileComponent, data: { title: 'Mon Profil' }},
   { path: 'group/:id', canActivate:[AuthGuardService, PendingGuardService], component: GroupComponent},
 
-  { path: 'not-activated', canActivate:[AuthGuardService], component: NotActivatedComponent},
-  { path: 'not-admin', canActivate:[AuthGuardService], component: NotAdminComponent},
-  { path: 'not-found', canActivate:[AuthGuardService], component : NotFoundComponent},
+  { path: 'not-activated', canActivate:[AuthGuardService], component: NotActivatedComponent, data: { title: 'Utilisateur Non Activé' }},
+  { path: 'not-admin', canActivate:[AuthGuardService], component: NotAdminComponent, data: { title: 'Utilisateur Non Admin' }},
+  { path: 'not-found', canActivate:[AuthGuardService], component : NotFoundComponent, data: { title: 'Page Non Trouvée' }},
 
   { path: '', pathMatch : 'full', redirectTo : 'dashboard'},
-
   { path: '**', redirectTo : 'not-found'}
 ]
 @NgModule({
