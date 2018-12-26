@@ -32,7 +32,7 @@ const appRoutes: Routes = [
     path: 'dashboard', 
     canActivate:[AuthGuardService], 
     component: DashboardComponent,
-    data: { title: 'CS3 | dashboard' } 
+    data: { title: 'Mon Dashboard' } 
   },
   { path: 'work-packages',  canActivate:[AuthGuardService, PendingGuardService], component: WorkpackagesComponent },
   { path: 'workpackage/:id', canActivate:[AuthGuardService, PendingGuardService], component: WorkpackageComponent },

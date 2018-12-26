@@ -12,7 +12,7 @@ export class TitleService {
     private titleService: Title,
   ) {}
 
-  APP_TITLE = 'NoDice!';
+  APP_TITLE = 'CS3 | ';
   SEPARATOR = ' > ';
 
   init() {
