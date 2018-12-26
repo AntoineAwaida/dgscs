@@ -54,6 +54,9 @@ import { WpfilesComponent } from './workpackages/workpackage/wpfiles/wpfiles.com
 import {MatSelectModule} from '@angular/material/select';
 import { GroupComponent } from './groups/group/group.component';
 import { TaskEditComponent } from './tasks/task-edit/task-edit.component';
+import { NotActivatedComponent } from './routing-error/not-activated/not-activated.component';
+import { NotAdminComponent } from './routing-error/not-admin/not-admin.component';
+import { NotFoundComponent } from './routing-error/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -85,14 +88,18 @@ import { TaskEditComponent } from './tasks/task-edit/task-edit.component';
     WpfilesComponent,
     GroupComponent,
     TaskEditComponent,
+    NotActivatedComponent,
+    NotAdminComponent,
+    NotFoundComponent,
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
 
-    AppRoutingModule,
+
     AdminRoutingModule,
     TaskRoutingModule,
+    AppRoutingModule,
     
     BrowserAnimationsModule, 
     FormsModule,

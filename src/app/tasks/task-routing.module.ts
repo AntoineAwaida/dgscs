@@ -8,18 +8,18 @@ import { TaskDetailsComponent } from './task-details/task-details.component';
 import { TaskFormComponent } from './task-form/task-form.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { TaskEditComponent } from './task-edit/task-edit.component';
+import { PendingGuardService } from '../services/pending-guard.service';
 
 const taskRoutes: Routes = [
   {
     path: 'tasks',
-    canActivate:[AuthGuardService],
+    canActivate:[AuthGuardService, PendingGuardService],
     component: TasksComponent,
     children: [
        { path : '', component : TaskListComponent},
        { path: 'details/:id', component: TaskDetailsComponent },
        { path: 'create-task', component: TaskFormComponent },
-       { path: 'edit-task/:id', component: TaskEditComponent },
-       { path : '**', redirectTo: '', pathMatch : 'prefix'}
+       { path: 'edit-task/:id', component: TaskEditComponent }
     ]
   }
 
@@ -29,6 +29,7 @@ const taskRoutes: Routes = [
   exports: [RouterModule],
   providers : [
     AuthGuardService,
+    PendingGuardService
   ],
 })
 export class TaskRoutingModule { }

@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 
-export class AdminGuardService implements CanActivate {
+export class PendingGuardService implements CanActivate {
 
 
   constructor(private auth: AuthService, private user: UserService, private router: Router) { }
@@ -16,10 +16,9 @@ export class AdminGuardService implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
     const payload:any = this.auth.getPayload();
-    
-    if(payload.status!="admin"){
-      this.router.navigate(['not-admin']);
-      return false
+    if(payload.status == "pending"){
+      this.router.navigate(['not-activated'])
+      return false;
     }
     else {
       return true

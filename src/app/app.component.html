@@ -4,7 +4,7 @@
     <li class="nav-item"><a class="nav-link link" (click)="toogleSidenav()"><i class="fas fa-bars menu menuButton"></i></a></li>
     <li class="nav-item"><a class="nav-link link menu" (click)="sidenavOpened=false" routerLink="/dashboard"><i class="fas fa-tachometer-alt"></i><span class="buttonName"> Dashboard</span></a></li>
     <li class="nav-item"><a class="nav-link link menu" (click)="sidenavOpened=false" routerLink="/groups"><i class="fas fa-users"></i><span class="buttonName"> Groupes</span></a></li>
-    <li *ngIf="this.auth.getPayload().admin" class="nav-item"><a class="nav-link link menu" (click)="sidenavOpened=false" routerLink="/admin"><i class="fas fa-wrench"></i><span class="buttonName"> Administrateur</span></a></li>
+    <li *ngIf="this.auth.getPayload().status=='admin'" class="nav-item"><a class="nav-link link menu" (click)="sidenavOpened=false" routerLink="/admin"><i class="fas fa-wrench"></i><span class="buttonName"> Administrateur</span></a></li>
   </ul>
 
   <ul class="navbar-nav ml-auto small">

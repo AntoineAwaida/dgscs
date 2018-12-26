@@ -21,7 +21,7 @@ export class TokenInterceptor implements HttpInterceptor {
           Authorization: `Bearer ${this.auth.getToken()}`
         }
       });
-      console.log("il y a un token")
+      console.log("il y a un token : ")
     } else {
       request = request.clone({
         setHeaders : {}

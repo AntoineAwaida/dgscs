@@ -1,0 +1,8 @@
+<div class="card text-center p-1">
+    <br>
+    <h1><i class="fas fa-exclamation-triangle"></i> Vous n'êtes pas admin</h1>
+    <br>
+    <p>Oups, il semblerait que vous ne soyez pas admin...</p>
+    <p>Pour toute question, contacter un <a [href]="'mailto:arie.selinger@gmail.com
+      ?subject=[CS3] [Admin] Compte de '+payload.first_name+' '+payload.last_name+'&body=Le compte : '+payload.email+' ne peut pas accéder aux pages réservées à l\'administration' ">administrateur</a></p>
+</div>
