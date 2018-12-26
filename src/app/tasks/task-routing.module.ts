@@ -9,6 +9,7 @@ import { TaskFormComponent } from './task-form/task-form.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { TaskEditComponent } from './task-edit/task-edit.component';
 import { PendingGuardService } from '../services/pending-guard.service';
+import { TitleService } from '../services/title.service';
 
 const taskRoutes: Routes = [
   {
@@ -34,4 +35,8 @@ const taskRoutes: Routes = [
     PendingGuardService
   ],
 })
-export class TaskRoutingModule { }
+export class TaskRoutingModule { 
+  constructor(titleService: TitleService) {
+    titleService.init();
+  }
+}

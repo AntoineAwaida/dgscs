@@ -24,6 +24,7 @@ import { PendingGuardService } from './services/pending-guard.service';
 import { NotActivatedComponent } from './routing-error/not-activated/not-activated.component';
 import { NotAdminComponent } from './routing-error/not-admin/not-admin.component';
 import { NotFoundComponent } from './routing-error/not-found/not-found.component';
+import { TitleService } from './services/title.service';
 
 const appRoutes: Routes = [
   { path: 'groups', canActivate:[AuthGuardService, PendingGuardService], component: GroupsComponent, data: { title: 'Mes Groupes' }},
@@ -53,4 +54,8 @@ const appRoutes: Routes = [
     AdminGuardService
   ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule { 
+  constructor(titleService: TitleService) {
+    titleService.init();
+  }
+}
