@@ -35,13 +35,13 @@ export class WorkpackageComponent implements OnInit, OnDestroy {
       
     //ici je demande au component de se recharger complètement lorsque l'on passe d'un workpackage à un autre. pourquoi? car sinon on a de nombreux problèmes de temporalité avec le chat.
     //par ailleurs, c'est plus logique pour l'utilisateur de voir la page entièrement se recharger je trouve... 
-      //this.reuseRoute(false);
+      
+    // this.reuseRoute(false);
 
      }
 
   ngOnInit() {
 
-    this.reuseRoute(false);
 
     this.route.paramMap.pipe(switchMap((params:ParamMap) => this.workpackageService.getWorkPackage(params.get('id'))))
       .subscribe((res:any) => {
