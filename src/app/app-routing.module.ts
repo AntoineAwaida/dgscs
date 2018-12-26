@@ -56,7 +56,7 @@ const appRoutes: Routes = [
   ]
 })
 export class AppRoutingModule { 
-  constructor(private titleService: TitleService) {
-    this.titleService.init();
-  }
+  // constructor(private titleService: TitleService) {
+  //   this.titleService.init();
+  // }
 }

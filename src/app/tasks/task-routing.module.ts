@@ -37,7 +37,7 @@ const taskRoutes: Routes = [
   ],
 })
 export class TaskRoutingModule { 
-  constructor(private titleService: TitleService) {
-    this.titleService.init();
-  }
+  // constructor(private titleService: TitleService) {
+  //   this.titleService.init();
+  // }
 }

@@ -31,7 +31,7 @@ const adminRoutes: Routes = [
   ],
 })
 export class AdminRoutingModule {
-  constructor(private titleService: TitleService) {
-    this.titleService.init();
-  }
+  // constructor(private titleService: TitleService) {
+  //   this.titleService.init();
+  // }
  }
