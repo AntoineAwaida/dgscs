@@ -53,7 +53,7 @@ export class WorkpackageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.reuseRoute(true);
+    // this.reuseRoute(true);
   }
 
   getWorkPackages(){
