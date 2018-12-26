@@ -13,13 +13,14 @@ import { PendingGuardService } from '../services/pending-guard.service';
 const taskRoutes: Routes = [
   {
     path: 'tasks',
+    data: { title: 'Mes Tâches' },
     canActivate:[AuthGuardService, PendingGuardService],
     component: TasksComponent,
     children: [
-       { path : '', component : TaskListComponent, data: { title: 'Mes Tâches' }},
-       { path: 'details/:id', component: TaskDetailsComponent},
-       { path: 'create-task', component: TaskFormComponent, data: { title: 'Créer une tâche' } },
-       { path: 'edit-task/:id', component: TaskEditComponent, data: { title: 'Editer une tâche' } }
+       { path : '', component : TaskListComponent},
+       { path: 'details/:id', component: TaskDetailsComponent },
+       { path: 'create-task', component: TaskFormComponent },
+       { path: 'edit-task/:id', component: TaskEditComponent }
     ],
     
   }

@@ -30,12 +30,12 @@ const appRoutes: Routes = [
   { path: 'missions', canActivate:[AuthGuardService, PendingGuardService], component: MissionsComponent, data: { title: 'Mes Missions' } },
   { path: 'dashboard', canActivate:[AuthGuardService], component: DashboardComponent,data: { title: 'Mon Dashboard' } },
   { path: 'work-packages',  canActivate:[AuthGuardService, PendingGuardService], component: WorkpackagesComponent, data: { title: 'Mes Work Packages' }},
-  { path: 'workpackage/:id', canActivate:[AuthGuardService, PendingGuardService], component: WorkpackageComponent },
+  { path: 'workpackage/:id', canActivate:[AuthGuardService, PendingGuardService], component: WorkpackageComponent, data: { title: 'Mes Work Packages' } },
 
   { path: 'register', canActivate:[AuthGuardService], component: RegisterComponent, data: { title: 'Inscription' } },
   { path: 'login', canActivate:[AuthGuardService], component: LoginComponent, data: { title: 'Connexion' } },
   { path: 'profile', canActivate:[AuthGuardService, PendingGuardService], component: ProfileComponent, data: { title: 'Mon profil' }},
-  { path: 'group/:id', canActivate:[AuthGuardService, PendingGuardService], component: GroupComponent},
+  { path: 'group/:id', canActivate:[AuthGuardService, PendingGuardService], component: GroupComponent, data: { title: 'Mes Groupes' }},
 
   { path: 'not-activated', canActivate:[AuthGuardService], component: NotActivatedComponent, data: { title: 'Utilisateur non activé' }},
   { path: 'not-admin', canActivate:[AuthGuardService], component: NotAdminComponent, data: { title: 'Utilisateur non admin' }},
