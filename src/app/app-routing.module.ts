@@ -28,7 +28,12 @@ import { NotFoundComponent } from './routing-error/not-found/not-found.component
 const appRoutes: Routes = [
   { path: 'groups', canActivate:[AuthGuardService, PendingGuardService], component: GroupsComponent},
   { path: 'missions', canActivate:[AuthGuardService, PendingGuardService], component: MissionsComponent },
-  { path: 'dashboard', canActivate:[AuthGuardService], component: DashboardComponent },
+  { 
+    path: 'dashboard', 
+    canActivate:[AuthGuardService], 
+    component: DashboardComponent,
+    data: { title: 'CS3 | dashboard' } 
+  },
   { path: 'work-packages',  canActivate:[AuthGuardService, PendingGuardService], component: WorkpackagesComponent },
   { path: 'workpackage/:id', canActivate:[AuthGuardService, PendingGuardService], component: WorkpackageComponent },
   { path: 'register', canActivate:[AuthGuardService], component: RegisterComponent },
