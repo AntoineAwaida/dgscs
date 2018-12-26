@@ -19,7 +19,10 @@ export class TitleService {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd),
       map(() => this.activatedRoute),
-      map(route => route.firstChild),
+      map(route => {
+          while (route.firstChild) route = route.firstChild;
+          return route;
+        }),
       switchMap(route => route.data),
       map((data) => {
         if (data.title) {
