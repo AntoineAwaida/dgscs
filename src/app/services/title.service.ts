@@ -12,7 +12,7 @@ export class TitleService {
     private titleService: Title,
   ) {}
 
-  APP_TITLE = 'CS3 | ';
+  APP_TITLE = 'CS3';
 //   SEPARATOR = ' > ';
 
   init() {
@@ -24,7 +24,7 @@ export class TitleService {
       map((data) => {
         if (data.title) {
           // If a route has a title set (e.g. data: {title: "Foo"}) then we use it
-          return data.title;
+          return ' | '+data.title;
         // } else {
         //   // If not, we do a little magic on the url to create an approximation
         //   return this.router.url.split('/').reduce((acc, frag) => {
@@ -34,6 +34,9 @@ export class TitleService {
         //       return acc + TitleService.ucFirst(frag);
         //     });
         //   });
+        }
+        else {
+            return '';
         }
       })
     )
