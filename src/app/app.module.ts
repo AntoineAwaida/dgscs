@@ -57,6 +57,7 @@ import { TaskEditComponent } from './tasks/task-edit/task-edit.component';
 import { NotActivatedComponent } from './routing-error/not-activated/not-activated.component';
 import { NotAdminComponent } from './routing-error/not-admin/not-admin.component';
 import { NotFoundComponent } from './routing-error/not-found/not-found.component';
+import { TitleService } from './services/title.service';
 
 @NgModule({
   declarations: [
@@ -124,6 +125,7 @@ import { NotFoundComponent } from './routing-error/not-found/not-found.component
   entryComponents: [ActionsDialogComponent],
   providers: [
     AuthService,
+    TitleService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
@@ -132,4 +134,9 @@ import { NotFoundComponent } from './routing-error/not-found/not-found.component
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+export class AppModule { 
+  constructor(titleService: TitleService) {
+    titleService.init();
+  }
+}
