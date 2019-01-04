@@ -22,6 +22,8 @@ export class WpfilesComponent implements OnInit {
 
   @ViewChild('fileInput') fileInput: ElementRef;
 
+  @Input() workpackage;
+
   constructor(private fb: FormBuilder, private workpackageService : WorkpackagesService, private route:ActivatedRoute) { 
 
     this.createForm();
