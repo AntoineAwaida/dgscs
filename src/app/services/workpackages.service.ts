@@ -11,7 +11,8 @@ export interface WorkPackage {
   description:string,
   tasks: Array<string>,
   status: string,
-  groups: Array<any>
+  groups: Array<any>,
+  _id?:string
 
 }
 

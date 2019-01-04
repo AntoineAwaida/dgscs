@@ -22,7 +22,6 @@ import { ChatService } from 'src/app/services/chat.service';
 export class WorkpackageComponent implements OnInit, OnDestroy {
 
 
-
   message:string;
   socket;
   workpackage$: WorkPackage
@@ -74,6 +73,12 @@ export class WorkpackageComponent implements OnInit, OnDestroy {
     this.router.routeReuseStrategy.shouldReuseRoute = function(){
       return bool;
    }
+  }
+
+  leaveChat(){
+
+    this.chatService.leaveRoom(this.workpackage$._id);
+
   }
 
 

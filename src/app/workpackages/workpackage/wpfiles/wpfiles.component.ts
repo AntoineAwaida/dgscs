@@ -17,6 +17,9 @@ export class WpfilesComponent implements OnInit {
   form: FormGroup;
   fileSent = false;
 
+  msg:string;
+  error:string;
+
 
   wp:string;
 
@@ -55,11 +58,20 @@ export class WpfilesComponent implements OnInit {
     let data = new FormData();
     data.append('file', this.form.get('file').value)
     data.append('wp', this.wp)
+    this.fileSent = true;
     this.workpackageService.addFile(data,this.wp).subscribe((res:any) => {
-      console.log(res);
-      this.fileSent = true;
-      setTimeout(() => { this.fileSent = false }, 3000);
-    }, (error:any) => console.log(error))
+      
+
+      this.msg = res;
+      this.fileSent = false;
+
+    }, (error:any) => {
+
+      this.fileSent = false;
+      this.error = error;
+
+
+    })
 
 
 

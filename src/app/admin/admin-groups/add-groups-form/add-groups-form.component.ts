@@ -191,7 +191,12 @@ export class AddGroupsFormComponent implements OnInit {
 
       this.name = res.name
 
-      await Promise.all(res.members.map(async (member) => this.getUser(member)))
+
+      await Promise.all(res.members.map(async (member) => 
+      {
+        this.getUser(member._id)
+      }
+      ))
 
     },
     (error)=> {

@@ -4,6 +4,7 @@ import { WorkPackage } from 'src/app/services/workpackages.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 import {Router, ActivatedRoute} from '@angular/router'
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-wpchat',
@@ -13,9 +14,10 @@ import {Router, ActivatedRoute} from '@angular/router'
 export class WpchatComponent implements OnInit, OnDestroy {
 
   messages:Array<WPChatMessage> = [];
-  message:string;
+  message:string = '';
   ready:boolean;
   wp:string;
+
 
 
 
@@ -32,12 +34,19 @@ export class WpchatComponent implements OnInit, OnDestroy {
   
     this.route.params.subscribe(
       params => {
-
-        this.wp = params.id;
-        this.chatService.joinRoom(this.wp);
-        this.chatService.getChat(this.wp).subscribe((res:any) => (this.messages = res) && (this.ready = true) && (console.log(this.messages)), (error) => console.log(error));
-        this.chatService.newMessage().subscribe((data:any) => this.messages.push(data), (error) => console.log(error));
+        
+        this.wp = params.id; // on récupère l'id du nouveau wp
+        this.chatService.joinRoom(this.wp); // on rejoint la chambre du nouveau wp
+        this.chatService.getChat(this.wp).subscribe((res:any) => (this.messages = res) && (this.ready = true), (error) => console.log(error));
+        this.chatService.newMessage().subscribe((data:any) => {
+          
+          this.messages.push(data)
+          
+        }
+          , (error) => console.log(error));
       });
+
+  
     
 
 
@@ -76,17 +85,32 @@ export class WpchatComponent implements OnInit, OnDestroy {
 
 
   submit(event) {
-    if(event.keyCode == 13) {
+
+   
+    if(event.keyCode == 13 && event.target.value.length> 0) {
       //càd si l'utilisateur appuie sur entrée, on soumet le message
       
 
-      this.chatService.saveMessage({content:this.message, date:Date.now(), wp:this.wp, user:this.auth.getPayload()._id}).subscribe((res:any)=> console.log(res));
-      this.chatService.sendMessage(this.message, this.wp);
-     
+      
+      this.chatService.saveMessage({content:event.target.value, date:Date.now(), wp:this.wp, user:this.auth.getPayload()._id}).subscribe();
+      this.chatService.sendMessage(event.target.value, this.wp);
 
-      this.message = ''
+
+      this.clearMessage();
       
     }
+
+  }
+
+  clearMessage(){
+    if (this.message ==''){
+      this.message = null;
+    }
+    else if (this.message==null){
+      this.message = '';
+    }
+
+    //il s'agit d'une douille pour faire un vrai changement que Angular détecte.
   }
 
 }
