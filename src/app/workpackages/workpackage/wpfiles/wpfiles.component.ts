@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { WorkpackagesService } from 'src/app/services/workpackages.service';
 import { ActivatedRoute } from '@angular/router';
+import { TimeInterval, timeInterval } from 'rxjs/internal/operators/timeInterval';
 
 @Component({
   selector: 'app-wpfiles',
@@ -14,6 +15,7 @@ export class WpfilesComponent implements OnInit {
   files:Array<File>;
   
   form: FormGroup;
+  fileSent = false;
 
 
   wp:string;
@@ -51,7 +53,11 @@ export class WpfilesComponent implements OnInit {
     let data = new FormData();
     data.append('file', this.form.get('file').value)
     data.append('wp', this.wp)
-    this.workpackageService.addFile(data,this.wp).subscribe((res:any) => console.log(res), (error:any) => console.log(error))
+    this.workpackageService.addFile(data,this.wp).subscribe((res:any) => {
+      console.log(res);
+      this.fileSent = true;
+      setTimeout(() => { this.fileSent = false }, 3000);
+    }, (error:any) => console.log(error))
 
 
 
