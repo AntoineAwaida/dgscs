@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { WorkpackagesService } from 'src/app/services/workpackages.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-wpfiles',
@@ -9,15 +10,17 @@ import { WorkpackagesService } from 'src/app/services/workpackages.service';
 })
 export class WpfilesComponent implements OnInit {
 
-  @Input() workpackage;
 
   files:Array<File>;
   
   form: FormGroup;
 
+
+  wp:string;
+
   @ViewChild('fileInput') fileInput: ElementRef;
 
-  constructor(private fb: FormBuilder, private workpackageService : WorkpackagesService) { 
+  constructor(private fb: FormBuilder, private workpackageService : WorkpackagesService, private route:ActivatedRoute) { 
 
     this.createForm();
 
@@ -25,6 +28,14 @@ export class WpfilesComponent implements OnInit {
   }
 
   ngOnInit(){
+
+    this.route.params.subscribe(
+      params => {
+
+        this.wp = params.id;
+      
+      })
+
   }
 
   createForm() {
@@ -39,8 +50,8 @@ export class WpfilesComponent implements OnInit {
 
     let data = new FormData();
     data.append('file', this.form.get('file').value)
-    data.append('wp', this.workpackage._id)
-    this.workpackageService.addFile(data,this.workpackage._id).subscribe((res:any) => console.log(res), (error:any) => console.log(error))
+    data.append('wp', this.wp)
+    this.workpackageService.addFile(data,this.wp).subscribe((res:any) => console.log(res), (error:any) => console.log(error))
 
 
 

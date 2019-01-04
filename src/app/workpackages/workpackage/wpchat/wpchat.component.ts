@@ -12,10 +12,10 @@ import {Router, ActivatedRoute} from '@angular/router'
 })
 export class WpchatComponent implements OnInit, OnDestroy {
 
-  @Input() workpackage;
   messages:Array<WPChatMessage> = [];
   message:string;
   ready:boolean;
+  wp:string;
 
 
 
@@ -29,12 +29,13 @@ export class WpchatComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    console.log(this.workpackage)
   
     this.route.params.subscribe(
       params => {
-        this.chatService.joinRoom(this.workpackage._id);
-        this.chatService.getChat(this.workpackage._id).subscribe((res:any) => (this.messages = res) && (this.ready = true) && (console.log(this.messages)), (error) => console.log(error));
+
+        this.wp = params.id;
+        this.chatService.joinRoom(this.wp);
+        this.chatService.getChat(this.wp).subscribe((res:any) => (this.messages = res) && (this.ready = true) && (console.log(this.messages)), (error) => console.log(error));
         this.chatService.newMessage().subscribe((data:any) => this.messages.push(data), (error) => console.log(error));
       });
     
@@ -44,7 +45,7 @@ export class WpchatComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(){
 
-    this.chatService.leaveRoom(this.workpackage._id);
+    this.chatService.leaveRoom(this.wp);
 
   }
 
@@ -79,8 +80,8 @@ export class WpchatComponent implements OnInit, OnDestroy {
       //càd si l'utilisateur appuie sur entrée, on soumet le message
       
 
-      this.chatService.saveMessage({content:this.message, date:Date.now(), wp:this.workpackage._id, user:this.auth.getPayload()._id}).subscribe((res:any)=> console.log(res));
-      this.chatService.sendMessage(this.message, this.workpackage._id);
+      this.chatService.saveMessage({content:this.message, date:Date.now(), wp:this.wp, user:this.auth.getPayload()._id}).subscribe((res:any)=> console.log(res));
+      this.chatService.sendMessage(this.message, this.wp);
      
 
       this.message = ''
