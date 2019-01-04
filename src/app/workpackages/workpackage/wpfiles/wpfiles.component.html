@@ -7,7 +7,10 @@
       
     </div>
   
-    <button mat-raised-button [color]="'info'" type="submit" value="submit" >Ajouter un fichier</button>
+    <button mat-raised-button [disabled]="fileSent" [color]="'info'" type="submit" value="submit" >
+      <span *ngIf="!fileSent">Ajouter un fichier</span>
+      <span *ngIf="fileSent">Fichier envoyé !</span>
+    </button>
 
     <ul>
       <li *ngFor="let file of workpackage.files; let i = index">
