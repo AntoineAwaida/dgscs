@@ -26,6 +26,7 @@ export interface TokenPayload {
   last_name?: string;
   admin?: boolean;
   status? : string;
+  photoURL? : string;
 }
 
 @Injectable()
