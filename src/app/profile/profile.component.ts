@@ -15,6 +15,9 @@ export class ProfileComponent implements OnInit {
   preview:any;
   form: FormGroup;
 
+  modified_profile: boolean = false; //true pour indiquer à l'utilisateur que son profil a été correctement modifié.
+  error: string;
+
   @ViewChild('fileInput') fileInput: ElementRef;
 
   constructor(private auth: AuthService, private fb: FormBuilder, private userService: UserService) { 
@@ -41,8 +44,11 @@ export class ProfileComponent implements OnInit {
     data.append('profilepicture', this.form.get('profilepicture').value)
     data.append('user', this.user._id)
     this.userService.setPicture(data, this.user._id).subscribe((res:any) => {
-      console.log(res)
+      this.modified_profile = true;
+      setTimeout(() => this.modified_profile = false, 4000);
     }, (error) => {
+      this.error = error;
+      setTimeout(() => this.error = null, 4000);
       console.log(error);
     })
 

@@ -1,9 +1,17 @@
+<div *ngIf = "modified_profile">
+  <div class="alert alert-success">Votre profil a été bien modifié!</div>
+</div>
+
+<div *ngIf = "error">
+  <div class="alert alert-danger">Erreur lors de la modification du profil.</div>
+</div>
+
 <h1> Mon profil </h1>
 
 
 <br />
 
-<h2 style="text-align: center">{{user.first_name + ' ' + user.last_name }}</h2>
+<h2 style="text-align: center"><img src="{{user.photoURL}}" class="largepp"/>{{user.first_name + ' ' + user.last_name }}</h2>
 
 <form class="card-body" [formGroup]="form" (ngSubmit)="onSubmit()">
 
