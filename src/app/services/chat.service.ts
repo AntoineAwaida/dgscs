@@ -21,6 +21,17 @@ export interface WPChatMessage {
 
 }
 
+export interface TaskChatMessage {
+
+  
+  content:string,
+  date:number,
+  user:string,
+  task:string
+
+
+}
+
 
 
 @Injectable({
@@ -35,11 +46,28 @@ export class ChatService {
 
   constructor(private auth: AuthService, private httpClient: HttpClient) { }
 
-  public socket = io(server + '/workpackage');
+  public wpsocket = io(server + '/workpackage');
   
+  public tasksocket = io(server + '/task');
+
+  sendTaskMessage(msg:string, taskid:string) {
+    this.wpsocket.
+    emit('SEND_MESSAGE', {
+        room : "task" + taskid,
+
+        data:   {
+          
+        user: this.auth.getPayload()._id,
+        content: msg,
+        date: Date.now(),
+        task: taskid
+
+        }
+    })
+  }
 
   sendMessage(msg:string, wpid:string) {
-    this.socket.
+    this.wpsocket.
     emit('SEND_MESSAGE', {
         room : "workpackage" + wpid,
 
@@ -57,7 +85,13 @@ export class ChatService {
 
   removeListener(){
 
-    this.socket.off('RECEIVE_MESSAGE')
+    this.wpsocket.off('RECEIVE_MESSAGE')
+
+  }
+
+  removeTaskListener(){
+
+    this.tasksocket.off('RECEIVE_MESSAGE')
 
   }
 
@@ -69,12 +103,18 @@ export class ChatService {
 
   }
 
+  saveTaskMessage(msg:TaskChatMessage):Observable<Object>{
+
+    return this.httpClient.post(api + "tasks/savechat",msg);
+
+  }
+
 
   newMessage():Observable<WPChatMessage> {
 
       return new Observable<WPChatMessage> (observer => {
         
-        this.socket.on('RECEIVE_MESSAGE', function(data){
+        this.wpsocket.on('RECEIVE_MESSAGE', function(data){
           
           observer.next(data);
 
@@ -83,22 +123,55 @@ export class ChatService {
 
   }
 
+  newTaskMessage():Observable<WPChatMessage> {
+
+    return new Observable<WPChatMessage> (observer => {
+      
+      this.tasksocket.on('RECEIVE_MESSAGE', function(data){
+        
+        observer.next(data);
+
+      });
+    })
+
+}
+
   joinRoom(wpid:string){
 
-    this.socket.emit('JOIN_ROOM', { room: "workpackage" + wpid})
+    this.wpsocket.emit('JOIN_ROOM', { room: "workpackage" + wpid})
+
+  }
+
+  joinTaskRoom(taskid:string){
+
+    this.wpsocket.emit('JOIN_ROOM', { room: "task" + taskid})
 
   }
 
   leaveRoom(wpid:string) {
 
 
-    this.socket.emit('LEAVE_ROOM', { room: "workpackage" + wpid})
+    this.wpsocket.emit('LEAVE_ROOM', { room: "workpackage" + wpid})
 
   }
+
+  leaveTaskRoom(taskid:string) {
+
+
+    this.wpsocket.emit('LEAVE_ROOM', { room: "workpackage" + taskid})
+
+  }
+
 
   getChat(wpid:string):Observable<Object>{
 
     return this.httpClient.get(api + "workpackages/getchat/" + wpid)
+    
+  }
+
+  getTaskChat(taskid:string):Observable<Object>{
+
+    return this.httpClient.get(api + "tasks/getchat/" + taskid)
     
   }
 

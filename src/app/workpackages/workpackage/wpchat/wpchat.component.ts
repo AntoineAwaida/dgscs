@@ -13,10 +13,13 @@ import { Subject } from 'rxjs';
 })
 export class WpchatComponent implements OnInit, OnDestroy {
 
+
+  @Input() type: string; //peut être "workpackage","task", "general", ou "mission"
+
   messages:Array<WPChatMessage> = [];
   message:string = '';
   ready:boolean;
-  wp:string;
+  elementid:string; // l'id du workpackage, de la tache...
 
 
 
@@ -36,9 +39,24 @@ export class WpchatComponent implements OnInit, OnDestroy {
       params => {
         
         this.chatService.removeListener(); // c'est du bidouillage mais ça marche!
-        this.wp = params.id; // on récupère l'id du nouveau wp
-        this.chatService.joinRoom(this.wp); // on rejoint la chambre du nouveau wp
-        this.chatService.getChat(this.wp).subscribe((res:any) => (this.messages = res) && (this.ready = true), (error) => console.log(error));
+        this.elementid = params.id; // on récupère l'id du nouveau wp
+        if(this.type == 'workpackage'){
+
+          this.chatService.joinRoom(this.elementid); // on rejoint la chambre du nouveau wp  
+          this.chatService.getChat(this.elementid).subscribe((res:any) => (this.messages = res) && (this.ready = true), (error) => console.log(error));
+
+        }
+
+        else if (this.type == 'task'){
+
+          this.chatService.joinTaskRoom(this.elementid);  
+          this.chatService.getTaskChat(this.elementid).subscribe((res:any) => (this.messages = res) && (this.ready = true), (error) => console.log(error));
+
+        }
+
+
+
+      
         this.chatService.newMessage().subscribe((data:any) => {
           
           this.messages.push(data)
@@ -55,7 +73,18 @@ export class WpchatComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(){
 
-    this.chatService.leaveRoom(this.wp);
+    if (this.type == 'workpackage'){
+
+      this.chatService.leaveRoom(this.elementid);
+
+    }
+
+    else if (this.type == 'task') {
+
+      this.chatService.leaveTaskRoom(this.elementid);
+
+    }
+   
 
   }
 
@@ -92,9 +121,20 @@ export class WpchatComponent implements OnInit, OnDestroy {
       //càd si l'utilisateur appuie sur entrée, on soumet le message
       
 
+      if (this.type =='workpackage') {
+
+        this.chatService.saveMessage({content:event.target.value, date:Date.now(), wp:this.elementid, user:this.auth.getPayload()._id}).subscribe();
+        this.chatService.sendMessage(event.target.value, this.elementid);
+
+      }
+
+      else if (this.type == 'task'){
+
+        this.chatService.saveTaskMessage({content:event.target.value, date:Date.now(), task:this.elementid, user:this.auth.getPayload()._id}).subscribe();
+        this.chatService.sendTaskMessage(event.target.value, this.elementid);
+
+      }
       
-      this.chatService.saveMessage({content:event.target.value, date:Date.now(), wp:this.wp, user:this.auth.getPayload()._id}).subscribe();
-      this.chatService.sendMessage(event.target.value, this.wp);
 
 
       this.clearMessage();

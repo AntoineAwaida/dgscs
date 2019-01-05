@@ -60,6 +60,8 @@ import { NotFoundComponent } from './routing-error/not-found/not-found.component
 import { TitleService } from './services/title.service';
 import { AdminAnnouncesComponent } from './admin/admin-announces/admin-announces.component';
 import { AddAnnouncesFormComponent } from './admin/admin-announces/add-announces-form/add-announces-form.component';
+import { AdminReportsComponent } from './admin/admin-reports/admin-reports.component';
+import { AddReportFormComponent } from './admin/admin-reports/add-report-form/add-report-form.component';
 
 @NgModule({
   declarations: [
@@ -96,6 +98,8 @@ import { AddAnnouncesFormComponent } from './admin/admin-announces/add-announces
     NotFoundComponent,
     AdminAnnouncesComponent,
     AddAnnouncesFormComponent,
+    AdminReportsComponent,
+    AddReportFormComponent,
   ],
   imports: [
     HttpClientModule,

@@ -9,12 +9,13 @@ import { AnnouncesService, Announce } from '../services/announces.service';
 export class DashboardComponent implements OnInit {
 
   announce:Announce;
+  ready:boolean = false;
 
   constructor(private announceService: AnnouncesService) { }
 
   ngOnInit() {
 
-    this.announceService.getLastAnnounce().subscribe((res:any)=> this.announce = res, (error)=> console.log(error))
+    this.announceService.getLastAnnounce().subscribe((res:any)=> (this.announce = res) && (this.ready = true) , (error)=> console.log(error))
 
   }
 
