@@ -1,0 +1,71 @@
+<br />
+
+
+<div *ngIf = "this.ready">
+<button mat-raised-button [color]="'success'" (click)="toggleAddForm()">
+        <div *ngIf="!this.showAddForm">Ajouter une annonce</div>
+        <div *ngIf="this.showAddForm">Fermer</div>
+
+</button>
+<div *ngIf="this.showAddForm"><app-add-announces-form (onSubmitted)="onSubmitted($event)" [announceid]="this.announce_to_edit"></app-add-announces-form></div>
+
+        <div *ngIf="this.showTable">
+
+                <mat-form-field>
+                        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrez...">
+                </mat-form-field>
+        
+                <div class="mat-elevation-z8">
+
+
+                                <table mat-table [dataSource]="dataSource">
+
+                                        <ng-container matColumnDef="title">
+                                                <th mat-header-cell *matHeaderCellDef> Titre </th>
+                                                <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+                                        </ng-container>
+                                
+                                
+                                        <ng-container matColumnDef="date">
+                                                <th mat-header-cell *matHeaderCellDef> Date </th>
+                                                <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+                                        </ng-container>
+                                
+                                
+                                        <ng-container matColumnDef="actions">
+                                                        <th mat-header-cell *matHeaderCellDef> Actions </th>
+                                                        <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary" class="groupbutton" (click)="toggleEditForm(element._id)"> Editer </button>
+                                                        <button mat-raised-button color="warn" class="groupbutton" (click)="delete(element._id)"> Supprimer </button> </td>
+                                        </ng-container>
+                                                
+                                
+                                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                                </table>
+                                        
+                                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+
+
+                </div>
+                <br/>
+
+                <div *ngIf="msg">
+                        <div class="alert alert-success" role="alert">
+                                {{msg}}
+                        </div>
+                </div>
+
+                <div *ngIf="error">
+                        <div class="alert alert-danger" role="alert">
+                                {{error}}
+                        </div>
+                </div>
+
+        </div>
+</div>
+<div *ngIf="!this.ready" fxLayoutAlign="space-around center" style="overflow:hidden">
+        <div class="loader">
+        </div> 
+</div>

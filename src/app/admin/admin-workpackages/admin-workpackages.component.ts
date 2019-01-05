@@ -62,7 +62,6 @@ export class AdminWorkpackagesComponent implements OnInit {
   getWorkPackages(){
 
     this.workpackageService.getWorkPackages().subscribe((res:any)=> {
-      console.log(res)
       this.dataSource = new MatTableDataSource(res);
       setTimeout(() => this.dataSource.paginator = this.paginator);
       this.ready = true;

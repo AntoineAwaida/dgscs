@@ -58,6 +58,8 @@ import { NotActivatedComponent } from './routing-error/not-activated/not-activat
 import { NotAdminComponent } from './routing-error/not-admin/not-admin.component';
 import { NotFoundComponent } from './routing-error/not-found/not-found.component';
 import { TitleService } from './services/title.service';
+import { AdminAnnouncesComponent } from './admin/admin-announces/admin-announces.component';
+import { AddAnnouncesFormComponent } from './admin/admin-announces/add-announces-form/add-announces-form.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +94,8 @@ import { TitleService } from './services/title.service';
     NotActivatedComponent,
     NotAdminComponent,
     NotFoundComponent,
+    AdminAnnouncesComponent,
+    AddAnnouncesFormComponent,
   ],
   imports: [
     HttpClientModule,

@@ -1,0 +1,35 @@
+
+  <h3 *ngIf="!editform"> Ajouter une annonce </h3>
+  <h3 *ngIf="editform"> Modifier une annonce </h3>
+  <form class="card-body" (ngSubmit)="onSubmit(f)" #f="ngForm">
+
+    <div class="form-group">
+      <input type="text" maxlength="24" placeholder="Titre de l'annonce" class="form-control" name="title" [(ngModel)]="title" required>
+    </div>
+
+    <div class="form-group">
+      <textarea placeholder="Contenu de l'annonce" class="form-control" name="content" [(ngModel)]="content" required></textarea>
+    </div>
+
+  
+
+  
+
+  <br />
+
+  <div *ngIf="!this.editform">
+      <button mat-raised-button [color]="'info'" type="submit" value="submit" [disabled]="this.waiting_result">Créer l'annonce</button>
+  </div>
+
+  <div *ngIf="this.editform">
+    <button mat-raised-button [color]="'edit'" type="submit" value="submit" [disabled]="this.waiting_result">Modifier l'annonce</button>
+  </div>
+
+
+</form>
+
+<div *ngIf="error">
+  <div class="alert alert-danger" role="alert">
+    {{error}}
+  </div>
+</div>

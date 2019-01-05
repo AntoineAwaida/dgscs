@@ -9,3 +9,61 @@
   <button class="moduleBtn col-md-3 col-12" routerLink="/tasks" mat-raised-button color="primary">Tâches</button>
 
 </div>
+
+<div class="card">
+  <div class="card-header">
+    <i class="fas fa-bullhorn"></i> Annonces
+  </div>
+  <div class="card-body">
+
+  <ng-container *ngIf="announce">
+
+      <h1>{{announce.title}}</h1>
+
+      <p>
+        {{announce.content}}
+      </p>
+
+  </ng-container>
+
+  <ng-container *ngIf="!announce">
+
+      Pas d'annonce actuellement!
+
+  </ng-container>
+    
+  </div>
+</div>
+
+
+<br />
+
+<div fxLayout="row" fxLayout.md="column" fxLayout.sm="column" fxLayout.xs="column">
+
+  <div fxFlex="50">
+
+    <div class="card dashboardcard">
+      <div class="card-header">
+          <i class="fas fa-file"></i> Les derniers compte-rendus
+      </div>
+    </div>
+
+  </div>
+
+  <div fxFlex="50">
+
+    <div class="card dashboardcard">
+      <div class="card-header">
+          <i class="fas fa-star"></i> Accès rapide
+      </div>
+
+      <div class="card-body">
+        Pour ajouter des favoris, rendez-vous dans votre profil.
+      </div>
+
+      
+    </div>
+
+  </div>
+
+</div>
