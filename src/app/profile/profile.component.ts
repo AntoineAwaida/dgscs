@@ -15,12 +15,12 @@ export class ProfileComponent implements OnInit {
   preview:any;
   form: FormGroup;
 
-<<<<<<< HEAD
+
   avatar: String;
-=======
+
   modified_profile: boolean = false; //true pour indiquer à l'utilisateur que son profil a été correctement modifié.
   error: string;
->>>>>>> 81fb0c0d027a586eab6f72984f11d21aafa54230
+
 
   @ViewChild('fileInput') fileInput: ElementRef;
 
