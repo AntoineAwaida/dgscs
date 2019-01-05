@@ -15,6 +15,8 @@ export class ProfileComponent implements OnInit {
   preview:any;
   form: FormGroup;
 
+  avatar: String;
+
   @ViewChild('fileInput') fileInput: ElementRef;
 
   constructor(private auth: AuthService, private fb: FormBuilder, private userService: UserService) { 
@@ -31,6 +33,7 @@ export class ProfileComponent implements OnInit {
 
     this.user = this.auth.getPayload()
     console.log(this.user)
+    this.avatar = this.user.photoURL ? this.user.photoURL : null
 
   }
 

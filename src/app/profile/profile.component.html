@@ -5,6 +5,10 @@
 
 <h2 style="text-align: center">{{user.first_name + ' ' + user.last_name }}</h2>
 
+<div *ngIf="avatar">
+  <img [src]="avatar" class="img-fluid img-thumbnail mx-auto d-block">
+</div>
+
 <form class="card-body" [formGroup]="form" (ngSubmit)="onSubmit()">
 
   <div class="form-group">
