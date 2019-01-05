@@ -9,8 +9,10 @@
   
     <button mat-raised-button [disabled]="fileSent" [color]="'info'" type="submit" value="submit" >
       <span *ngIf="!fileSent">Ajouter un fichier</span>
-      <span *ngIf="fileSent">Fichier envoyé !</span>
+      <span *ngIf="fileSent">Fichier en cours d'envoi....</span>
     </button>
+    <ng-container *ngIf="!msg" class="green">{{msg}}</ng-container>
+    <ng-container *ngIf="error" class="red">{{error}}</ng-container>
 
     <ul>
       <li *ngFor="let file of workpackage.files; let i = index">

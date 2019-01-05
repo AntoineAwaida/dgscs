@@ -4,6 +4,7 @@ import { WorkPackage } from 'src/app/services/workpackages.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 import {Router, ActivatedRoute} from '@angular/router'
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-wpchat',
@@ -12,10 +13,14 @@ import {Router, ActivatedRoute} from '@angular/router'
 })
 export class WpchatComponent implements OnInit, OnDestroy {
 
+
+  @Input() type: string; //peut être "workpackage","task", "general", ou "mission"
+
   messages:Array<WPChatMessage> = [];
-  message:string;
+  message:string = '';
   ready:boolean;
-  wp:string;
+  elementid:string; // l'id du workpackage, de la tache...
+
 
 
 
@@ -32,12 +37,35 @@ export class WpchatComponent implements OnInit, OnDestroy {
   
     this.route.params.subscribe(
       params => {
+        
+        this.chatService.removeListener(); // c'est du bidouillage mais ça marche!
+        this.elementid = params.id; // on récupère l'id du nouveau wp
+        if(this.type == 'workpackage'){
 
-        this.wp = params.id;
-        this.chatService.joinRoom(this.wp);
-        this.chatService.getChat(this.wp).subscribe((res:any) => (this.messages = res) && (this.ready = true) && (console.log(this.messages)), (error) => console.log(error));
-        this.chatService.newMessage().subscribe((data:any) => this.messages.push(data), (error) => console.log(error));
+          this.chatService.joinRoom(this.elementid); // on rejoint la chambre du nouveau wp  
+          this.chatService.getChat(this.elementid).subscribe((res:any) => (this.messages = res) && (this.ready = true), (error) => console.log(error));
+
+        }
+
+        else if (this.type == 'task'){
+
+          this.chatService.joinTaskRoom(this.elementid);  
+          this.chatService.getTaskChat(this.elementid).subscribe((res:any) => (this.messages = res) && (this.ready = true), (error) => console.log(error));
+
+        }
+
+
+
+      
+        this.chatService.newMessage().subscribe((data:any) => {
+          
+          this.messages.push(data)
+          
+        }
+          , (error) => console.log(error));
       });
+
+  
     
 
 
@@ -45,7 +73,18 @@ export class WpchatComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(){
 
-    this.chatService.leaveRoom(this.wp);
+    if (this.type == 'workpackage'){
+
+      this.chatService.leaveRoom(this.elementid);
+
+    }
+
+    else if (this.type == 'task') {
+
+      this.chatService.leaveTaskRoom(this.elementid);
+
+    }
+   
 
   }
 
@@ -76,17 +115,43 @@ export class WpchatComponent implements OnInit, OnDestroy {
 
 
   submit(event) {
-    if(event.keyCode == 13) {
+
+   
+    if(event.keyCode == 13 && event.target.value.length> 0) {
       //càd si l'utilisateur appuie sur entrée, on soumet le message
       
 
-      this.chatService.saveMessage({content:this.message, date:Date.now(), wp:this.wp, user:this.auth.getPayload()._id}).subscribe((res:any)=> console.log(res));
-      this.chatService.sendMessage(this.message, this.wp);
-     
+      if (this.type =='workpackage') {
 
-      this.message = ''
+        this.chatService.saveMessage({content:event.target.value, date:Date.now(), wp:this.elementid, user:this.auth.getPayload()._id}).subscribe();
+        this.chatService.sendMessage(event.target.value, this.elementid);
+
+      }
+
+      else if (this.type == 'task'){
+
+        this.chatService.saveTaskMessage({content:event.target.value, date:Date.now(), task:this.elementid, user:this.auth.getPayload()._id}).subscribe();
+        this.chatService.sendTaskMessage(event.target.value, this.elementid);
+
+      }
+      
+
+
+      this.clearMessage();
       
     }
+
+  }
+
+  clearMessage(){
+    if (this.message ==''){
+      this.message = null;
+    }
+    else if (this.message==null){
+      this.message = '';
+    }
+
+    //il s'agit d'une douille pour faire un vrai changement que Angular détecte.
   }
 
 }

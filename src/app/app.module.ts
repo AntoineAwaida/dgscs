@@ -58,8 +58,15 @@ import { NotActivatedComponent } from './routing-error/not-activated/not-activat
 import { NotAdminComponent } from './routing-error/not-admin/not-admin.component';
 import { NotFoundComponent } from './routing-error/not-found/not-found.component';
 import { TitleService } from './services/title.service';
+<<<<<<< HEAD
 import { CreateTaskComponent } from './tasks/create-task/create-task.component';
 import { TaskFileComponent } from './tasks/task-file/task-file.component';
+=======
+import { AdminAnnouncesComponent } from './admin/admin-announces/admin-announces.component';
+import { AddAnnouncesFormComponent } from './admin/admin-announces/add-announces-form/add-announces-form.component';
+import { AdminReportsComponent } from './admin/admin-reports/admin-reports.component';
+import { AddReportFormComponent } from './admin/admin-reports/add-report-form/add-report-form.component';
+>>>>>>> 81fb0c0d027a586eab6f72984f11d21aafa54230
 
 @NgModule({
   declarations: [
@@ -94,8 +101,15 @@ import { TaskFileComponent } from './tasks/task-file/task-file.component';
     NotActivatedComponent,
     NotAdminComponent,
     NotFoundComponent,
+<<<<<<< HEAD
     CreateTaskComponent,
     TaskFileComponent,
+=======
+    AdminAnnouncesComponent,
+    AddAnnouncesFormComponent,
+    AdminReportsComponent,
+    AddReportFormComponent,
+>>>>>>> 81fb0c0d027a586eab6f72984f11d21aafa54230
   ],
   imports: [
     HttpClientModule,

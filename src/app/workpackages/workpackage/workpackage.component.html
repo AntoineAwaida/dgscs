@@ -23,7 +23,7 @@
                 <div class="card-body wpcardbody">
                     <ng-container *ngFor="let wp of mywp">
                       <li *ngIf="wp._id != workpackage._id" style="list-style-type: none">
-                          <a [routerLink]="['/workpackage', wp._id]">{{ wp.name }}</a>
+                          <a [routerLink]="['/workpackage', wp._id]" (click)="this.leaveChat()">{{ wp.name }}</a>
                       </li>
                     </ng-container>
                 </div>
@@ -40,7 +40,7 @@
                       </div>
                   </div>
     
-                  <app-wpchat></app-wpchat>
+                  <app-wpchat [type]="'workpackage'"></app-wpchat>
     
               </div>
             </div>

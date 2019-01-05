@@ -15,7 +15,12 @@
                 <div fxLayout="row">
 
                     <div fxFlex="75" class="chatinfo">
-                        {{msg.user[0].first_name}}
+                      <div *ngIf="msg.user[0]._id != this.auth.getPayload()._id">
+                          {{msg.user[0].first_name}}
+                      </div>
+                      <div *ngIf="msg.user[0]._id == this.auth.getPayload()._id || msg.user == this.auth.getPayload()._id">
+                          Moi
+                      </div>
                     </div>
     
                     <div fxFlex="25" class="chatinfo">
@@ -42,9 +47,9 @@
         
         </div>
       </div>
-      <form class="card-body" (keydown)="submit($event)">
+      <form class="card-body" (keyup.enter)="submit($event)">
           <div class="form-group">
-              <input type="text" placeholder="Votre message..." class="form-control" name="message" [(ngModel)]="message" required>
+              <input type="text" placeholder="Votre message..." [value]="message" class="form-control" name="message" required>
           </div>
       </form>
     </div>

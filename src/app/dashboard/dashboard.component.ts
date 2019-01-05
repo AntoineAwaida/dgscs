@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AnnouncesService, Announce } from '../services/announces.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  announce:Announce;
+  ready:boolean = false;
+
+  constructor(private announceService: AnnouncesService) { }
 
   ngOnInit() {
+
+    this.announceService.getLastAnnounce().subscribe((res:any)=> (this.announce = res) && (this.ready = true) , (error)=> console.log(error))
+
   }
 
 }
