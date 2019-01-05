@@ -55,6 +55,14 @@ export class ChatService {
   }
 
 
+  removeListener(){
+
+    this.socket.off('RECEIVE_MESSAGE')
+
+  }
+
+
+
   saveMessage(msg:WPChatMessage):Observable<Object>{
 
     return this.httpClient.post(api + "workpackages/savechat",msg);
@@ -67,7 +75,9 @@ export class ChatService {
       return new Observable<WPChatMessage> (observer => {
         
         this.socket.on('RECEIVE_MESSAGE', function(data){
+          
           observer.next(data);
+
         });
       })
 

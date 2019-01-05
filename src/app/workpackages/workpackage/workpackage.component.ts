@@ -23,17 +23,11 @@ export class WorkpackageComponent implements OnInit, OnDestroy {
 
 
   message:string;
-  socket;
   workpackage$: WorkPackage
   mywp:Array<WorkPackage>
 
   constructor(private route: ActivatedRoute, private router: Router, private workpackageService: WorkpackagesService, private userService: UserService, private auth: AuthService
     , private chatService:ChatService ) { 
-
-
-      
-    //ici je demande au component de se recharger complètement lorsque l'on passe d'un workpackage à un autre. pourquoi? car sinon on a de nombreux problèmes de temporalité avec le chat.
-    //par ailleurs, c'est plus logique pour l'utilisateur de voir la page entièrement se recharger je trouve... 
       
     // this.reuseRoute(false);
 
@@ -44,6 +38,7 @@ export class WorkpackageComponent implements OnInit, OnDestroy {
 
     this.route.paramMap.pipe(switchMap((params:ParamMap) => this.workpackageService.getWorkPackage(params.get('id'))))
       .subscribe((res:any) => {
+        
         this.workpackage$ = res
 
       } , (error)=> console.log(error));

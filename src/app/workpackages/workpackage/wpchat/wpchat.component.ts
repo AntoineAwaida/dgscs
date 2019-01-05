@@ -35,6 +35,7 @@ export class WpchatComponent implements OnInit, OnDestroy {
     this.route.params.subscribe(
       params => {
         
+        this.chatService.removeListener(); // c'est du bidouillage mais ça marche!
         this.wp = params.id; // on récupère l'id du nouveau wp
         this.chatService.joinRoom(this.wp); // on rejoint la chambre du nouveau wp
         this.chatService.getChat(this.wp).subscribe((res:any) => (this.messages = res) && (this.ready = true), (error) => console.log(error));
