@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-//import { FileSelectDirective, FileUploader} from 'ng2-file-upload';
+import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
 //import { saveAs } from 'file-saver';
 
 
@@ -11,8 +11,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TaskFileComponent implements OnInit {
 
-  //uri = 'http://localhost:3000/file/upload';
-  //uploader:FileUploader = new FileUploader({url:this.uri});
+  uri = 'http://cs3.cs-campus.fr:3000/api/tasks/file/';
+  uploader : FileUploader = new FileUploader({ url: this.uri }); 
+
   attachmentList:any = [];
 
   constructor() { }
