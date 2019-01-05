@@ -58,6 +58,8 @@ import { NotActivatedComponent } from './routing-error/not-activated/not-activat
 import { NotAdminComponent } from './routing-error/not-admin/not-admin.component';
 import { NotFoundComponent } from './routing-error/not-found/not-found.component';
 import { TitleService } from './services/title.service';
+import { CreateTaskComponent } from './tasks/create-task/create-task.component';
+import { TaskFileComponent } from './tasks/task-file/task-file.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +94,8 @@ import { TitleService } from './services/title.service';
     NotActivatedComponent,
     NotAdminComponent,
     NotFoundComponent,
+    CreateTaskComponent,
+    TaskFileComponent,
   ],
   imports: [
     HttpClientModule,

@@ -2,7 +2,8 @@
 
 <div class="container">
   <h2>Créer une nouvelle tâche</h2>
-  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+
+  <!-- <form (ngSubmit)="onSubmit(f)" #f="ngForm">
 
     <div class="form-group">
       <label for="name">Titre</label>
@@ -13,7 +14,7 @@
       <label for="description">Description de la tâche</label>
       <input type="text" class="form-control" id="description" name="description" ngModel required>
     </div>
- 
+
     <div class="form-group">
       <label for="groupes">Groupes associés</label>
       <div class="input-group">
@@ -51,12 +52,32 @@
       </mat-form-field>
     </div>
 
-    <button *ngIf="!isSent" type="submit" class="btn btn-success" [disabled]="(!f.form.valid)||(groups_selected.length==0)">Créer la tâche</button>
+    <button *ngIf="!isSent" type="submit" class="btn btn-success" [disabled]="(!f.form.valid)||(groups_selected.length==0)">Créer
+      la tâche</button>
     <div *ngIf="isSent" fxLayoutAlign="space-around center" style="overflow:hidden">
-        <div class="loader">
-        </div> 
+      <div class="loader">
+      </div>
     </div>
-  </form>
+  </form> -->
+
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput [matDatepicker]="startingDate2" placeholder="Date de début" name="startingDate2" [formControl]="startingDateControl"
+        required>
+      <mat-datepicker-toggle matSuffix [for]="startingDate2"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #startingDate2></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput [matDatepicker]="startingDate3" placeholder="Date de début" name="startingDate3" [(ngModel)]="startingDate"
+        required>
+      <mat-datepicker-toggle matSuffix [for]="startingDate3"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #startingDate3></mat-datepicker>
+    </mat-form-field>
+  </div>
+
 </div>
 
 <div *ngIf="this.error">
