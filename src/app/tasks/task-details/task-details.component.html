@@ -15,26 +15,27 @@
               }} </div>
           </div>
           <div>
-              <div class="row mb-2">
-                  <div class="col-12 col-sm-6">
-                    <div><i class="fas fa-clock ml-4"></i> Début : <span class="date">{{ selectedTask.startingDate |
-                        date:'dd/MM/yyyy' }}</span></div>
-                    <div><i class="fas fa-clock ml-4"></i> Fin : <span class="date">{{ selectedTask.endingDate |
-                        date:'dd/MM/yyyy'
-                        }}</span></div>
-                  </div>
-    
-                  <div class="col-12 col-sm-6"><i class="fas fa-thumbtack  ml-4"></i> Statut : 
-                    <span [ngClass]="{'redStatus' : getStatus()==='En attente',
+            <div class="row mb-2">
+              <div class="col-12 col-sm-6">
+                <div><i class="fas fa-clock ml-4"></i> Début : <span class="date">{{ selectedTask.startingDate |
+                    date:'dd/MM/yyyy' }}</span></div>
+                <div><i class="fas fa-clock ml-4"></i> Fin : <span class="date">{{ selectedTask.endingDate |
+                    date:'dd/MM/yyyy'
+                    }}</span></div>
+              </div>
+
+              <div class="col-12 col-sm-6"><i class="fas fa-thumbtack  ml-4"></i> Statut :
+                <span [ngClass]="{'redStatus' : getStatus()==='En attente',
                                       'orangeStatus' : getStatus()==='En cours',
                                       'greenStatus' : getStatus()==='Terminée'
-                                    }" [ngStyle]="{ 'fontWeight' : 'bold' }">{{
-                      getStatus() }}</span>
-    
-                  </div>
-                  <br>
-                </div>
-    
+                                    }"
+                  [ngStyle]="{ 'fontWeight' : 'bold' }">{{
+                  getStatus() }}</span>
+
+              </div>
+              <br>
+            </div>
+
           </div>
 
           <div>
@@ -62,13 +63,15 @@
 
             <div class="row ml-2 mr-2">
               <div class="col-md-6 col-12">
-                <button class="buttonStyle" *ngIf="!openSelect" mat-raised-button color="primary" (click)="onClickOpenSelect()"><i class="fas fa-ellipsis-v"></i>  Modifier
+                <button class="buttonStyle" *ngIf="!openSelect" mat-raised-button color="primary" (click)="onClickOpenSelect()"><i
+                    class="fas fa-ellipsis-v"></i> Modifier
                   le
                   statut</button>
-                  <div class="m-1"></div>
+                <div class="m-1"></div>
               </div>
               <div class="col-md-6 col-12">
-                <button class="buttonStyle" [routerLink]="'/tasks/edit-task/'+selectedTask._id" *ngIf="isAuthor()&&!openSelect" mat-raised-button color="success"><i class="fas fa-edit"></i> Modifier
+                <button class="buttonStyle" [routerLink]="'/tasks/edit-task/'+selectedTask._id" *ngIf="isAuthor()&&!openSelect"
+                  mat-raised-button color="success"><i class="fas fa-edit"></i> Modifier
                   la tâche</button>
               </div>
             </div>
@@ -105,12 +108,22 @@
         <div class=card-text></div>
       </div>
 
-      
+
       <div class="card">
-          <div class="card-header">Ajout de fichiers</div>
-          <div class=card-text>
-            </div><app-task-file type="tasks" [parentID]="taskID"></app-task-file>
-          </div>
+        <div class="card-header">Ajout de fichiers</div>
+        <div class=card-text>
+          <app-task-file type="tasks" [parentID]="taskID"></app-task-file>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"> Fichiés reliés </div>
+        <ul class="list-group list-group-flush">
+          <li *ngFor="let file of selectedTask.files" class="list-group-item list-group-item-action" ><a [href]="getFile(file)">{{ file.name }}</a></li>
+        </ul>
+      </div>
+
+
     </div>
 
   </div>
