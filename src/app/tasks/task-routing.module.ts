@@ -10,6 +10,8 @@ import { TaskListComponent } from './task-list/task-list.component';
 import { TaskEditComponent } from './task-edit/task-edit.component';
 import { PendingGuardService } from '../services/pending-guard.service';
 import { TitleService } from '../services/title.service';
+import { CreateTaskComponent } from './create-task/create-task.component';
+import { TaskFileComponent } from './task-file/task-file.component';
 
 const taskRoutes: Routes = [
   {
@@ -19,8 +21,10 @@ const taskRoutes: Routes = [
     component: TasksComponent,
     children: [
        { path : '', component : TaskListComponent},
+       { path: 'add-file', component : TaskFileComponent},
        { path: 'details/:id', component: TaskDetailsComponent, data: { title: 'Mes Tâches > Détail' }},
        { path: 'create-task', component: TaskFormComponent, data: { title: 'Mes Tâches > Créer une tâche' }},
+       { path : 'create-task-test', component : CreateTaskComponent, data: { title: 'Mes Tâches > Créer une tâche' }},
        { path: 'edit-task/:id', component: TaskEditComponent, data: { title: 'Mes Tâches > Editer une tâche' }}
     ],
     

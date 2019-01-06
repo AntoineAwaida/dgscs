@@ -36,6 +36,7 @@ export class ProfileComponent implements OnInit {
   modified_profile: boolean = false; //true pour indiquer à l'utilisateur que son profil a été correctement modifié.
   error: string;
 
+
   @ViewChild('fileInput') fileInput: ElementRef;
 
   constructor(private auth: AuthService, private fb: FormBuilder, private taskService: TaskService,

@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Task } from '../task';
-import { NgForm, FormGroup } from '@angular/forms';
+import { NgForm, FormGroup, FormControl } from '@angular/forms';
 
 import { AuthService } from 'src/app/services/auth.service';
 import { TaskService } from '../../services/task.service';
 import { GroupsService } from '../../services/groups.service'
 
 @Component({
-  selector: 'app-task-form',
-  templateUrl: './task-form.component.html',
-  styleUrls: ['./task-form.component.scss']
+  selector: 'app-create-task',
+  templateUrl: './create-task.component.html',
+  styleUrls: ['./create-task.component.scss']
 })
- 
-export class TaskFormComponent implements OnInit {
+export class CreateTaskComponent implements OnInit {
+
 
   createdTask: Task;
   name: String;
@@ -27,11 +28,14 @@ export class TaskFormComponent implements OnInit {
   recherche: string;
 
   isSent = false;
+  startingDateControl;
 
   constructor(private auth: AuthService, private taskService: TaskService, private groupService: GroupsService) { }
 
   ngOnInit() {
     this.getGroups();
+    this.startingDateControl = new FormControl(new Date());
+    this.startingDate = new Date();
   }
 
   onSubmit(form: NgForm) {
@@ -40,10 +44,6 @@ export class TaskFormComponent implements OnInit {
     this.startingDate = form.value['startingDate'];
     this.endingDate = form.value['endingDate'];
 
-    if (this.endingDate < this.startingDate) {
-      this.error = "Merci de renseigner une date de fin postérieure à celle de début."
-      setTimeout(() => { this.error = null }, 4000)
-    }
 
     const groups = this.groups_selected.map((g) => g._id);
 
@@ -56,9 +56,17 @@ export class TaskFormComponent implements OnInit {
       endingDate: this.endingDate,
     }; 
 
+    if (this.endingDate < this.startingDate) {
+      alert("Merci de renseigner une date de fin postérieure à celle de début.");
+      this.error = "Merci de renseigner une date de fin postérieure à celle de début."
+      setTimeout(() => { this.error = null }, 4000)
+    }
+    else {
+      this.taskService.createTask(task);
+      this.isSent = true;
+    }
     //console.log(task);
-    this.taskService.createTask(task);
-    this.isSent = true;
+
   }
 
   getGroups() {
