@@ -50,5 +50,17 @@ public setPicture(data, userid:string): Observable<Object> {
   return this.httpClient.post(api + "users/setpicture/" + userid, data);
 }
 
+public modifyPassword(userid:string, data): Observable<Object> {
+
+  return this.httpClient.put(api + "users/modifypassword/" + userid, data);
+
+}
+
+public modifyWPFav(userid:string, data): Observable<Object> {
+
+  return this.httpClient.put(api + "users/modifywpfav/" + userid, data);
+
+}
+
 
 }
