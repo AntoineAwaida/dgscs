@@ -6,6 +6,19 @@ import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { api, server } from './../constants';
 
+export interface Task {
+
+  _id?:string,
+  name:String,
+  author:string,
+  description:String,
+  groups:[string],
+  startingDate:Date,
+  endingDate:Date,
+  status:String
+
+
+}
 @Injectable({
   providedIn: 'root'
 })

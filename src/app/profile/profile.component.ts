@@ -2,16 +2,27 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
-import { timingSafeEqual } from 'crypto';
 import { GroupsService } from '../services/groups.service';
 import { WorkpackagesService, WorkPackage } from '../services/workpackages.service';
-import { TaskService } from '../services/task.service';
+import { TaskService, Task } from '../services/task.service';
+import { element } from '@angular/core/src/render3';
+
+
+
+
+
+
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+
+
+  
+  
 
   user:any;
   profilepicture:any;
@@ -22,12 +33,15 @@ export class ProfileComponent implements OnInit {
 
   workpackages: Array<WorkPackage> = [];
 
-  wp_selected: Array<WorkPackage> = [];
 
+  element_selected : Array<any> = [];
 
-  tasks: Array<any> = [];
+  mission_fav;
+  wp_fav: Array<WorkPackage> = [];
+  tasks_fav: Array<Task> = [];
 
-  tasks_selected : Array<any> = [];
+  tasks: Array<Task> = [];
+
 
   element_searched: Array<any> = [];
 
@@ -59,6 +73,18 @@ export class ProfileComponent implements OnInit {
     this.user = this.auth.getPayload()
     this.getWorkPackages(this.user._id);
     this.getTasks();
+    this.getFavs(this.user._id);
+
+  }
+
+  getFavs(id){
+
+    this.userService.getFavsUser(id).subscribe((res:any) => {
+      this.element_selected = res.favWorkPackages.concat(res.favTasks);
+      console.log(this.element_selected)
+    },
+    (error) => this.error = error
+    )
 
   }
 
@@ -67,7 +93,6 @@ export class ProfileComponent implements OnInit {
     this.userService.getWorkPackages(id).subscribe((res:any)=> {
 
       this.workpackages = res;
-      console.log(this.workpackages)
 
     },
     (error => {
@@ -82,7 +107,7 @@ export class ProfileComponent implements OnInit {
     this.taskService.getTasks().subscribe((res:any)=> {
 
       this.tasks = res;
-      console.log(this.tasks)
+
 
     },
     (error => {
@@ -129,6 +154,34 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  onFavSubmit(){
+
+    this.element_selected.forEach(e => {
+
+      if (this.instanceOfWorkpackage(e)){
+        this.wp_fav.push(e)
+      }
+
+      else if (this.instanceOfTasks(e)){
+        this.tasks_fav.push(e)
+      }
+
+      else if (this.instanceOfMission(e)){
+        this.mission_fav.push(e)
+      }
+
+    })
+
+    this.userService.modifyFav(this.user._id,{favwp:this.wp_fav, favtasks:this.tasks_fav}).subscribe((res:any)=>{
+
+      this.modified_profile= true
+      setTimeout(() => this.modified_profile = false, 4000);
+
+    } , (error)=> this.error=error);
+
+
+  }
+
   onChange(){
     if (this.f2.controls.password.status=='VALID') {
       this.f2.controls.password2.enable();
@@ -164,6 +217,53 @@ export class ProfileComponent implements OnInit {
   
     }
 
+  }
+
+
+  addElement(element){
+    if (!this.element_selected.some(e => (e._id == element._id) && (this.sameType(e,element)))){
+      this.element_selected.push(element)
+    }
+      this.recherche = ''
+      this.element_searched = []
+  }
+
+  deleteElement(element){
+    this.element_selected = this.element_selected.filter(item => item!=element)
+  }
+
+  
+  instanceOfWorkpackage(object: any): object is WorkPackage {
+    return 'tasks' in object; //marqueur d'un wp : un wp a des taches comme attribut, pas une tache ni une mission!
+  }
+  
+  instanceOfTasks(object: any): object is Task {
+    return 'endingDate' in object; //marqueur d'une tache: une tache a une date de fin comme attribut, pas un wp ni une mission!
+  }
+  
+  instanceOfMission(object:any) {
+  
+    return false; //à compléter
+  
+  }
+
+  sameType(e1:any,e2:any){
+
+    if(this.instanceOfWorkpackage(e1) && this.instanceOfWorkpackage(e2)){
+      return true;
+    }
+  
+    if(this.instanceOfTasks(e1) && this.instanceOfTasks(e2)){
+      return true;
+    }
+  
+    if (this.instanceOfMission(e1) && this.instanceOfMission(e2)){
+      return true;
+    }
+  
+  
+    return false;
+  
   }
 
 }

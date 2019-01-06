@@ -1,5 +1,15 @@
 @import '../layouts/buttons.scss';
 
+.gold {
+
+  color:gold
+
+  &:hover{
+    color:grey;
+  }
+
+}
+
 .largepp {
 
     height:80px;
