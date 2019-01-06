@@ -43,14 +43,22 @@ export class WpchatComponent implements OnInit, OnDestroy {
         if(this.type == 'workpackage'){
 
           this.chatService.joinRoom(this.elementid); // on rejoint la chambre du nouveau wp  
-          this.chatService.getChat(this.elementid).subscribe((res:any) => (this.messages = res) && (this.ready = true), (error) => console.log(error));
-
+          
+          this.chatService.getChat(this.elementid).subscribe((res:any) => {
+            this.messages = res;
+            this.ready = true;
+            setTimeout(()=>this.adjustScrollSize(),200);
+          }, (error) => console.log(error));
         }
 
         else if (this.type == 'task'){
 
           this.chatService.joinTaskRoom(this.elementid);  
-          this.chatService.getTaskChat(this.elementid).subscribe((res:any) => (this.messages = res) && (this.ready = true), (error) => console.log(error));
+          this.chatService.getTaskChat(this.elementid).subscribe((res:any) => {
+            this.messages = res;
+            this.ready = true;
+            setTimeout(()=>this.adjustScrollSize(),200);
+          }, (error) => console.log(error));
 
         }
 
@@ -60,14 +68,23 @@ export class WpchatComponent implements OnInit, OnDestroy {
         this.chatService.newMessage().subscribe((data:any) => {
           
           this.messages.push(data)
+          //this.adjustScrollSize();
+          setTimeout(()=>this.adjustScrollSize(),200);
+          
           
         }
           , (error) => console.log(error));
       });
 
-  
+
     
 
+
+  }
+
+  adjustScrollSize = function(){
+
+    document.getElementById("chat-container").scrollTop = document.getElementById("chat-container").scrollHeight;
 
   }
 

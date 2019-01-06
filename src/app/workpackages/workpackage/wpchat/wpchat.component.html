@@ -5,10 +5,10 @@
     <div class="container">
 
       <div class="card chatcard">
-        <div class="card-body chatcardbody">
+        <div class="card-body chatcardbody" id="chat-container">
 
           
-          <div *ngIf = "this.ready">
+          <div *ngIf = "this.ready" >
             <ul class="chat">
               <li *ngFor="let msg of this.messages">
 
