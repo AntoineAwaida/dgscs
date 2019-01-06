@@ -14,20 +14,19 @@
         <div>
             <div class="row mt-3" *ngFor="let item of uploader.queue">
                 <div class="col-sm-4">{{item.file.name}}</div>
+                <div *ngIf="item.isSuccess"></div>
                 <div class="col-sm-4">
                     <div class="progress" style="height:20px">
                         <div class="progress-bar bg-primary" [ngStyle]="{'width':item.progress+'%'}"></div>
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <button type="button" class="btn btn-success" (click)="item.upload()">Envoyer</button>
-                    <button type="button" class="btn btn-danger" (click)="item.remove()">Annuler</button>
+                    <button *ngIf="!item.isSuccess" type="button" class="btn btn-success" [disabled]="item.isReady || item.isUploading" (click)="item.upload()">Envoyer</button>
+                    <button *ngIf="item.isSuccess" disabled class="btn btn-success">Envoyé</button>
+                    <button *ngIf="!item.isSuccess" type="button" class="btn btn-danger" [disabled]="item.isUploading"  (click)="item.remove()">Annuler</button>
                 </div>
             </div>
 
-            <div>
-                <button type="button" class="btn btn-success">Tout envoyer</button>
-            </div>
         </div>
 
     </div>
