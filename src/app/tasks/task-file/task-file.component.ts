@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
 import { AuthService } from 'src/app/services/auth.service';
 //import { saveAs } from 'file-saver';
@@ -10,25 +10,33 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './task-file.component.html',
   styleUrls: ['./task-file.component.scss']
 })
+
+
 export class TaskFileComponent implements OnInit {
 
-  uri = 'http://cs3.cs-campus.fr:3000/api/tasks/file/';
+  @Input() type: string; //peut être "workpackage","task", "general", ou "mission"
+  @Input() parentID: string; //l'id de task, wp, etc. parent
+
+  uri : string;
   uploader : FileUploader;
 
   attachmentList:any = [];
 
   constructor(private auth : AuthService) {
       this.uploader = new FileUploader({
-        url: this.uri,
         authTokenHeader: "Authorization",
         authToken : `Bearer ${this.auth.getToken()}`
         })
-   }
+   } 
 
   ngOnInit() {
 
+    this.uri = 'http://cs3.cs-campus.fr:3000/api/'+this.type+'/file/'+this.parentID;
+    this.uploader.options.url = this.uri;
+
+    console.log(this.type)
     this.uploader.onBuildItemForm = (item, form) => {
-      form.append("author", "5c22f937a4d8dbbdf6aa4133"); // Pas incroyable, il faudrait que l'auteur soit extrait du token... :(
+      form.append("author", this.auth.getPayload()._id); // Pas incroyable, il faudrait que l'auteur soit extrait du token par le header :(
     };
 
     this.uploader.onCompleteItem = (item, response, status, headers) => {

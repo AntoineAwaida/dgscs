@@ -14,6 +14,7 @@ export class TaskDetailsComponent implements OnInit {
   openSelect = false;
   loader = true;
   initialStatus;
+  taskID;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,6 +25,7 @@ export class TaskDetailsComponent implements OnInit {
  
   ngOnInit(): void {
     this.getTask();
+
   }
  
   // getTask2(): void {
@@ -50,6 +52,7 @@ export class TaskDetailsComponent implements OnInit {
 
   getTask(): void {
     const id = this.route.snapshot.paramMap.get('id');
+    this.taskID = id;
     this.taskService.getTask(id)
     .subscribe(
       (task:any) => {

@@ -78,7 +78,7 @@
       </div>
 
 
-      <div class="card">
+      <div class="card" *ngIf="false">
         <div class="card-header"> Chat</div>
         <div class=card-body></div>
         <app-wpchat [type]="'task'"></app-wpchat>
@@ -105,7 +105,12 @@
         <div class=card-text></div>
       </div>
 
-
+      
+      <div class="card">
+          <div class="card-header">Ajout de fichiers</div>
+          <div class=card-text>
+            </div><app-task-file type="tasks" [parentID]="taskID"></app-task-file>
+          </div>
     </div>
 
   </div>
