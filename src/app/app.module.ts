@@ -44,6 +44,7 @@ import { TasksComponent } from 'src/app/tasks/task/task.component';
 import { TaskListComponent } from './tasks/task-list/task-list.component';
 
 import {MatDatepickerModule} from '@angular/material';
+import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
 
 import {MatNativeDateModule} from '@angular/material';
 import {MatListModule} from '@angular/material/list';
@@ -110,6 +111,7 @@ import { AddReportFormComponent } from './admin/admin-reports/add-report-form/ad
     AdminReportsComponent,
     AddReportFormComponent,
 
+    FileSelectDirective
   ],
   imports: [
     HttpClientModule,

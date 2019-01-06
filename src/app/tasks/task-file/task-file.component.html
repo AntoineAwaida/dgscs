@@ -7,20 +7,21 @@
     <div class="card-body">
 
         <div>
-            <input type="file" name="fileUpload" id="fileUpload">
+            <input type="file" name="fileUplaod" id="fileUpload"
+                        multiple ng2FileSelect [uploader]="uploader">
         </div>
 
         <div>
-            <div class="row mt-3">
-                <div class="col-sm-4">Nom du fichier</div>
+            <div class="row mt-3" *ngFor="let item of uploader.queue">
+                <div class="col-sm-4">{{item.file.name}}</div>
                 <div class="col-sm-4">
                     <div class="progress" style="height:20px">
-                        <div class="progress-bar bg-primary" style="width:20%;height:20px"></div>
+                        <div class="progress-bar bg-primary" [ngStyle]="{'width':item.progress+'%'}"></div>
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <button type="button" class="btn btn-success">Envoyer</button>
-                    <button type="button" class="btn btn-danger">Annuler</button>
+                    <button type="button" class="btn btn-success" (click)="item.upload()">Envoyer</button>
+                    <button type="button" class="btn btn-danger" (click)="item.remove()">Annuler</button>
                 </div>
             </div>
 
