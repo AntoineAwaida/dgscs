@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
-import { timingSafeEqual } from 'crypto';
+//import { timingSafeEqual } from 'crypto';
 import { GroupsService } from '../services/groups.service';
 import { WorkpackagesService, WorkPackage } from '../services/workpackages.service';
 import { TaskService } from '../services/task.service';
