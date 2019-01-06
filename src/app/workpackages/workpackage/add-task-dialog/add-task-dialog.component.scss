@@ -1,25 +1,5 @@
-@import '../layouts/buttons.scss';
+@import '../../../layouts/buttons.scss';
 
-.gold {
-
-  color:gold;
-  cursor: pointer;
-
-}
-
-.gold:hover {
-
-  color: grey
-
-}
-
-.largepp {
-
-    height:80px;
-    width:80px;
-    border-radius: 50%
-
-}
 
 .nopointer{
     cursor:default! important;

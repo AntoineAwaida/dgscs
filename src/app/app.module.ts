@@ -67,6 +67,7 @@ import { AdminAnnouncesComponent } from './admin/admin-announces/admin-announces
 import { AddAnnouncesFormComponent } from './admin/admin-announces/add-announces-form/add-announces-form.component';
 import { AdminReportsComponent } from './admin/admin-reports/admin-reports.component';
 import { AddReportFormComponent } from './admin/admin-reports/add-report-form/add-report-form.component';
+import { AddTaskDialogComponent } from './workpackages/workpackage/add-task-dialog/add-task-dialog.component';
 
 
 @NgModule({
@@ -111,7 +112,9 @@ import { AddReportFormComponent } from './admin/admin-reports/add-report-form/ad
     AdminReportsComponent,
     AddReportFormComponent,
 
-    FileSelectDirective
+    FileSelectDirective,
+
+    AddTaskDialogComponent
   ],
   imports: [
     HttpClientModule,
@@ -141,7 +144,7 @@ import { AddReportFormComponent } from './admin/admin-reports/add-report-form/ad
     MatInputModule,
     MatSelectModule,
   ],
-  entryComponents: [ActionsDialogComponent],
+  entryComponents: [ActionsDialogComponent, AddTaskDialogComponent],
   providers: [
     AuthService,
     TitleService,

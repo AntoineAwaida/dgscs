@@ -60,7 +60,7 @@
 <br />
 <br />
 
-<form (ngSumit)="onFavSubmit()">
+<form #f="ngForm" (ngSubmit)="onFavSubmit()">
 
   <div class="form-group">
     <label><strong>Modifiez votre liste de favoris</strong></label>
@@ -79,6 +79,28 @@
           </div>
         </div>
   </div>
+
+  <h3>Vos favoris</h3>
+  <div style="font-style:italic">Workpackages</div>
+  <ul>
+    <div *ngFor="let element of element_selected">
+      <div *ngIf="instanceOfWorkpackage(element)">
+          <li style="list-style: none"><i class="fas fa-star gold" (click)="deleteElement(element)"></i><a [routerLink]="['/workpackage', element._id]">{{element.name}}</a></li>
+      </div>
+    </div>
+  </ul>
+  <div style="font-style:italic">Tâches</div>
+  <ul>
+    <div *ngFor="let element of element_selected">
+      <div *ngIf="instanceOfTasks(element)">
+          <li style="list-style: none"><i class="fas fa-star gold" (click)="deleteElement(element)"></i><a [routerLink]="['/tasks/details', element._id]">{{element.name}}</a></li>
+      </div>
+    </div> 
+  </ul>
+
+
+  <button mat-raised-button [color]="'edit'" type="submit" value="submit">Modifiez votre liste de favoris</button>
+ 
 
 </form>
 

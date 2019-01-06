@@ -25,6 +25,10 @@ public getUser(userid): Observable<Object> {
   return this.httpClient.get(api+"users/getuser/" + userid)
 }
 
+public getFavsUser(userid:string): Observable<Object> {
+  return this.httpClient.get(api + "users/getfavs/" + userid);
+}
+
 public getPendingUsers(): Observable<Object> {
   return this.httpClient.get(api+"users/getpendingusers")
 }
@@ -56,11 +60,12 @@ public modifyPassword(userid:string, data): Observable<Object> {
 
 }
 
-public modifyWPFav(userid:string, data): Observable<Object> {
+public modifyFav(userid:string, data): Observable<Object> {
 
-  return this.httpClient.put(api + "users/modifywpfav/" + userid, data);
+  return this.httpClient.put(api + "users/modifyfav/" + userid, data);
 
 }
+
 
 
 }

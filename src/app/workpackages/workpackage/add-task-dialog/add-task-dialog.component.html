@@ -1,0 +1,35 @@
+<h1 mat-dialog-title>Ajouter une tâche</h1>
+<div mat-dialog-content fxLayout.sm="column" fxLayout.xs="column">
+
+  <div *ngIf="error" class="alert-danger danger">{{error}}</div>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" [ngStyle]="{height:'calc(2.25rem + 2px)'}"><i class="fa fa-search"></i></span>
+        </div>
+  
+          <div id="myDropdown" class="dropdown-content">
+            <input type="search" class="form-control" (keyup)="onSearch()" placeholder="Rechercher..."
+            [(ngModel)]="recherche" [ngModelOptions]="{standalone: true}">
+            <div *ngFor="let element of element_searched ">
+              <a class="pointer" (click)="addElement(element)">{{element.name}}</a>
+            </div>
+          </div>
+    </div>
+
+    <br />
+    <ng-container *ngIf="element_selected.length > 0">
+      <div style="color:green"><strong>Tâches à ajouter</strong></div>
+      <br>
+      <ul>
+        <div *ngFor="let element of element_selected">
+          <li>{{element.name}}</li>
+        </div>
+      </ul>
+    </ng-container>
+   
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button [disabled]="element_selected.length == 0"  (click)="onSubmit(data.id)">Ajouter</button>
+  <button mat-raised-button (click)="onNoClick()">Fermer</button>
+</div>

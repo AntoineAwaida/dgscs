@@ -8,7 +8,8 @@ import { switchMap } from 'rxjs/operators';
 import { UserService } from 'src/app/services/user.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { ChatService } from 'src/app/services/chat.service';
-
+import { MatDialog } from '@angular/material';
+import { AddTaskDialogComponent } from './add-task-dialog/add-task-dialog.component';
 
 
 
@@ -27,7 +28,7 @@ export class WorkpackageComponent implements OnInit, OnDestroy {
   mywp:Array<WorkPackage>
 
   constructor(private route: ActivatedRoute, private router: Router, private workpackageService: WorkpackagesService, private userService: UserService, private auth: AuthService
-    , private chatService:ChatService ) { 
+    , private chatService:ChatService, public dialog: MatDialog ) { 
       
     // this.reuseRoute(false);
 
@@ -73,6 +74,35 @@ export class WorkpackageComponent implements OnInit, OnDestroy {
   leaveChat(){
 
     this.chatService.leaveRoom(this.workpackage$._id);
+
+  }
+
+  openDialog(e):void {
+
+
+    const dialogRef = this.dialog.open(AddTaskDialogComponent, {
+      data: {id : e}
+    })
+
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+
+  }
+
+  delete(taskid, wpid):void {
+
+    const result = confirm("Voulez-vous vraiment détacher cette tâche du workpackage?")
+
+    if(result){
+
+      this.workpackageService.deleteLinkTask({task:taskid}, wpid).subscribe((res:any) => {
+
+        //récupérer les nouvelles taches ...
+
+      });
+
+    }
 
   }
 
