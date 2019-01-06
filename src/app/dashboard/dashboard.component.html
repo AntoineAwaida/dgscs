@@ -61,7 +61,29 @@
             </div>
       
             <div class="card-body">
-              Pour ajouter des favoris, rendez-vous dans votre profil.
+              <div *ngIf="favs.length == 0">Pour ajouter des favoris, rendez-vous dans votre profil.</div>
+              <ng-container *ngIf="favs.length > 0">
+
+                  <div style="font-style:italic">Workpackages</div>
+                  <ul>
+                    <div *ngFor="let element of favs">
+                      <div *ngIf="instanceOfWorkpackage(element)">
+                          <li style="list-style: none"><a [routerLink]="['/workpackage', element._id]">{{element.name}}</a></li>
+                      </div>
+                    </div>
+                  </ul>
+                  <div style="font-style:italic">Tâches</div>
+                  <ul>
+                    <div *ngFor="let element of favs">
+                      <div *ngIf="instanceOfTasks(element)">
+                          <li style="list-style: none"><a [routerLink]="['/tasks/details', element._id]">{{element.name}}</a></li>
+                      </div>
+                    </div> 
+                  </ul>
+
+                
+              </ng-container>
+              
             </div>
       
             

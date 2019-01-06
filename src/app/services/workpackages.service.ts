@@ -62,5 +62,23 @@ export class WorkpackagesService {
     return this.httpClient.get(api + "workpackages/getfiles/" + wpid);
   }
 
+  public addTasks(data, wpid:string): Observable<Object> {
+
+    return this.httpClient.put(api + "workpackages/addtasks/" + wpid, data);
+
+  }
+
+  public deleteLinkTask(data, wpid:string): Observable<Object> {
+
+    return this.httpClient.put(api + "workpackages/deletelinktask/" + wpid, data);
+
+  }
+
+  public getTasks(wpid:string): Observable<Object> {
+
+    return this.httpClient.get(api + "workpackages/gettasks/" + wpid);
+
+  }
+
 
 }

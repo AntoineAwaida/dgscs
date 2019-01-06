@@ -83,7 +83,7 @@ export class ProfileComponent implements OnInit {
       this.element_selected = res.favWorkPackages.concat(res.favTasks);
       console.log(this.element_selected)
     },
-    (error) => this.error = error
+    (error) => console.log(error)
     )
 
   }
