@@ -79,7 +79,7 @@ export class TaskDetailsComponent implements OnInit {
 
 
   getFile(file){
-    return server+'/api/tasks/file/'+file._id
+    return server+'/api/files/'+file._id
   }
 
   onClickOpenSelect(){
