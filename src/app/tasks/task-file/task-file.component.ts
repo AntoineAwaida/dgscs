@@ -1,5 +1,5 @@
 
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
 import { AuthService } from 'src/app/services/auth.service';
 //import { saveAs } from 'file-saver';
@@ -12,7 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 
 
-export class TaskFileComponent implements OnInit {
+export class TaskFileComponent implements OnInit, OnChanges {
 
   @Input() type: string; //"workpackages","tasks"
   @Input() parentID: string; //l'id de task, wp, etc. parent
@@ -29,12 +29,18 @@ export class TaskFileComponent implements OnInit {
         })
    } 
 
+  ngOnChanges(){
+    this.uri = 'http://cs3.cs-campus.fr:3000/api/'+this.type+'/file/'+this.parentID;
+    this.uploader.options.url = this.uri;
+    console.log("changes : " + this.uri)
+  }
+
   ngOnInit() {
 
     this.uri = 'http://cs3.cs-campus.fr:3000/api/'+this.type+'/file/'+this.parentID;
     this.uploader.options.url = this.uri;
-
-    console.log(this.uri)
+    console.log("init : " + this.uri)
+    
     this.uploader.onBuildItemForm = (item, form) => {
       form.append("author", this.auth.getPayload()._id); // Pas incroyable, il faudrait que l'auteur soit extrait du token par le header :(
     };
