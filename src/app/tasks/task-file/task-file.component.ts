@@ -14,7 +14,7 @@ import { AuthService } from 'src/app/services/auth.service';
 
 export class TaskFileComponent implements OnInit {
 
-  @Input() type: string; //peut être "workpackage","task", "general", ou "mission"
+  @Input() type: string; //"workpackages","tasks"
   @Input() parentID: string; //l'id de task, wp, etc. parent
 
   uri : string;
@@ -34,7 +34,7 @@ export class TaskFileComponent implements OnInit {
     this.uri = 'http://cs3.cs-campus.fr:3000/api/'+this.type+'/file/'+this.parentID;
     this.uploader.options.url = this.uri;
 
-    console.log(this.type)
+    console.log(this.uri)
     this.uploader.onBuildItemForm = (item, form) => {
       form.append("author", this.auth.getPayload()._id); // Pas incroyable, il faudrait que l'auteur soit extrait du token par le header :(
     };

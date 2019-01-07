@@ -26,6 +26,7 @@ export class WorkpackageComponent implements OnInit, OnDestroy {
   message:string;
   workpackage$: WorkPackage
   mywp:Array<WorkPackage>
+  workpackageID:string;
 
   constructor(private route: ActivatedRoute, private router: Router, private workpackageService: WorkpackagesService, private userService: UserService, private auth: AuthService
     , private chatService:ChatService, public dialog: MatDialog ) { 
@@ -41,6 +42,7 @@ export class WorkpackageComponent implements OnInit, OnDestroy {
       .subscribe((res:any) => {
         
         this.workpackage$ = res
+        this.workpackageID = res._id;
 
       } , (error)=> console.log(error));
 
