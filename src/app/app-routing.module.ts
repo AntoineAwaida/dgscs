@@ -25,6 +25,7 @@ import { NotActivatedComponent } from './routing-error/not-activated/not-activat
 import { NotAdminComponent } from './routing-error/not-admin/not-admin.component';
 import { NotFoundComponent } from './routing-error/not-found/not-found.component';
 import { TitleService } from './services/title.service';
+import { UploadsComponent } from './files/uploads/uploads.component';
 
 const appRoutes: Routes = [
   { path: 'groups', canActivate:[AuthGuardService, PendingGuardService], component: GroupsComponent, data: { title: 'Mes Groupes' }},
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
   { path: 'dashboard', canActivate:[AuthGuardService], component: DashboardComponent,data: { title: 'Mon Dashboard' } },
   { path: 'work-packages',  canActivate:[AuthGuardService, PendingGuardService], component: WorkpackagesComponent, data: { title: 'Mes Work Packages' }},
   { path: 'workpackage/:id', canActivate:[AuthGuardService, PendingGuardService], component: WorkpackageComponent, data: { title: 'Mes Work Packages > Détail' } },
+  { path: 'files', canActivate:[AuthGuardService, PendingGuardService], component: UploadsComponent, data: { title: 'Mes Fichiers' } },
 
   { path: 'register', canActivate:[AuthGuardService], component: RegisterComponent, data: { title: 'Inscription' } },
   { path: 'login', canActivate:[AuthGuardService], component: LoginComponent, data: { title: 'Connexion' } },

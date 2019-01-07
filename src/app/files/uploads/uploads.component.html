@@ -1,0 +1,12 @@
+<div *ngIf="loader" fxLayoutAlign="space-around center" style="overflow:hidden">
+  <div class="loader">
+  </div>
+</div>
+
+<div *ngIf="!loader">
+  <h1>Mes fichiers</h1>
+  <div *ngIf="files.length === 0">Vous n'avez uploadé aucun fichier sur cette plateforme.</div>
+  <div *ngIf="files.length != 0" class="card">
+    <app-task-file-list [files]="files"></app-task-file-list>
+  </div>
+</div>
