@@ -4,7 +4,7 @@
         <a [href]="getFile(file)">{{ file.name }}</a> 
         <span *ngIf="file.description" matTooltipClass="tooltip_class"  matTooltipPosition="after" [matTooltip]="file.description"> <i class="fas fa-info-circle ml-1"></i></span>
 
-        <div class="small" *ngIf="file.name!=file.originalName">({{ file.originalName }})</div>
+        <div class="small" *ngIf="(file.name!=file.originalName)&&(file.originalName)">({{ file.originalName }})</div>
     </div>
     <div>
       <em>{{ file.author.first_name }} {{ file.author.last_name }}, le {{ file.date | date : 'dd/MM/yyyy à HH:mm:ss' }}</em>
