@@ -1,0 +1,6 @@
+<ul class="list-group list-group-flush">
+  <li *ngFor="let file of files" class="list-group-item list-group-item-action small" >
+    <a [href]="getFile(file)">{{ file.name }}</a>
+    <div><em>{{ file.author.first_name }} {{ file.author.last_name }}, le {{ file.date | date : 'dd/MM/yyyy à HH:mm:ss' }}</em></div>
+  </li>
+</ul>

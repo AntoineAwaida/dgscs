@@ -37,7 +37,6 @@ export class WorkpackageComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-
     this.route.paramMap.pipe(switchMap((params:ParamMap) => this.workpackageService.getWorkPackage(params.get('id'))))
       .subscribe((res:any) => {
         
