@@ -1,5 +1,5 @@
 
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
 import { AuthService } from 'src/app/services/auth.service';
 //import { saveAs } from 'file-saver';
@@ -16,6 +16,8 @@ export class TaskFileComponent implements OnInit, OnChanges {
 
   @Input() type: string; //"workpackages","tasks"
   @Input() parentID: string; //l'id de task, wp, etc. parent
+
+  @Output() newFile = new EventEmitter<any>();
 
   uri : string;
   uploader : FileUploader;
@@ -48,7 +50,9 @@ export class TaskFileComponent implements OnInit, OnChanges {
     this.uploader.onCompleteItem = (item, response, status, headers) => {
       this.attachmentList.push(JSON.parse(response));
       console.log(JSON.parse(response));
-      console.log(item);
+      this.newFile.emit(JSON.parse(response).file);
+
+      //console.log(item);
       console.log(this.attachmentList);
       
     }

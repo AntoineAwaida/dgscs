@@ -107,5 +107,10 @@ export class WorkpackageComponent implements OnInit, OnDestroy {
 
   }
 
+  addFile(file) {
+    this.workpackage$.files.push(file);
+    console.log(file);
+  }
+
 
 }

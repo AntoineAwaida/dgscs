@@ -95,7 +95,7 @@
         <div class="card wpcard" style="width:100%; text-align: left">
           <h3>Fichiers</h3>
           <div class="card-body wpcardbody">
-            <app-task-file type="workpackages" [parentID]="workpackageID"></app-task-file>
+            <app-task-file type="workpackages" (newFile)="addFile($event)" [parentID]="workpackageID"></app-task-file>
             <app-task-file-list [files]="workpackage$.files"></app-task-file-list>
           </div>
         </div>

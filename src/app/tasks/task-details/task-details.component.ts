@@ -53,6 +53,12 @@ export class TaskDetailsComponent implements OnInit {
   //   )
   // }
 
+
+  addFile(file) {
+    console.log(file);
+    this.selectedTask.files.push(file);
+  }
+
   getTask(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.taskID = id;

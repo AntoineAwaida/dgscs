@@ -112,7 +112,7 @@
       <div class="card">
         <div class="card-header">Ajout de fichiers</div>
         <div class=card-text>
-          <app-task-file type="tasks" [parentID]="taskID"></app-task-file>
+          <app-task-file type="tasks" [parentID]="taskID" (newFile)="addFile($event)"></app-task-file>
         </div>
       </div>
 
