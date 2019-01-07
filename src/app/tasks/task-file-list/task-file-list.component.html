@@ -2,7 +2,7 @@
   <li *ngFor="let file of files" class="list-group-item list-group-item-action small" >
     <div>
         <a [href]="getFile(file)">{{ file.name }}</a> 
-        <span *ngIf="file.description" matTooltipClass="tooltip_class" [matTooltip]="file.description"> <i class="fas fa-info-circle small ml-1"></i></span>
+        <span *ngIf="file.description" matTooltipClass="tooltip_class"  matTooltipPosition="after" [matTooltip]="file.description"> <i class="fas fa-info-circle small ml-1"></i></span>
     </div>
     <div>
       <em>{{ file.author.first_name }} {{ file.author.last_name }}, le {{ file.date | date : 'dd/MM/yyyy à HH:mm:ss' }}</em>
