@@ -70,6 +70,7 @@ import { AddReportFormComponent } from './admin/admin-reports/add-report-form/ad
 import { AddTaskDialogComponent } from './workpackages/workpackage/add-task-dialog/add-task-dialog.component';
 import { TaskFileListComponent } from './tasks/task-file-list/task-file-list.component';
 import { UploadsComponent } from './files/uploads/uploads.component';
+import { TaskFileEditDialogComponent } from './tasks/task-file/task-file-edit-dialog/task-file-edit-dialog.component';
 
 
 @NgModule({
@@ -120,7 +121,9 @@ import { UploadsComponent } from './files/uploads/uploads.component';
 
     TaskFileListComponent,
 
-    UploadsComponent
+    UploadsComponent,
+
+    TaskFileEditDialogComponent
   ],
   imports: [
     HttpClientModule,
@@ -150,7 +153,7 @@ import { UploadsComponent } from './files/uploads/uploads.component';
     MatInputModule,
     MatSelectModule,
   ],
-  entryComponents: [ActionsDialogComponent, AddTaskDialogComponent],
+  entryComponents: [ActionsDialogComponent, AddTaskDialogComponent, TaskFileEditDialogComponent],
   providers: [
     AuthService,
     TitleService,
