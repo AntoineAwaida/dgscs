@@ -17,7 +17,7 @@ export class TaskFileListComponent implements OnInit {
   }
 
   getFile(file){
-    return server+'/api/files/'+file._id
+    return server+'/api/files/'+file.fileURL
   }
 
 }

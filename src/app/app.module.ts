@@ -71,6 +71,7 @@ import { AddTaskDialogComponent } from './workpackages/workpackage/add-task-dial
 import { TaskFileListComponent } from './tasks/task-file-list/task-file-list.component';
 import { UploadsComponent } from './files/uploads/uploads.component';
 import { TaskFileEditDialogComponent } from './tasks/task-file/task-file-edit-dialog/task-file-edit-dialog.component';
+import { MyGroupsComponent } from './groups/my-groups/my-groups.component';
 
 
 @NgModule({
@@ -123,7 +124,9 @@ import { TaskFileEditDialogComponent } from './tasks/task-file/task-file-edit-di
 
     UploadsComponent,
 
-    TaskFileEditDialogComponent
+    TaskFileEditDialogComponent,
+
+    MyGroupsComponent
   ],
   imports: [
     HttpClientModule,

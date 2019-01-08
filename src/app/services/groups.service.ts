@@ -28,7 +28,11 @@ export class GroupsService {
   }
 
   public getGroups(): Observable<Object>{
-    return this.httpClient.get(api+"groups/getgroups")
+    return this.httpClient.get(api+"groups/getgroups") 
+  }
+
+  public getMyGroups(): Observable<Object>{
+    return this.httpClient.get(api+"users/mygroups")
   }
 
   public getGroup(groupid:string): Observable<Object>{
