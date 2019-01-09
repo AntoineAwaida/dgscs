@@ -41,9 +41,9 @@ public activateUser(userid): Observable<Object> {
   return this.httpClient.get(api+"users/activateuser/" + userid)
 }
 
-public getGroups(userid: string) : Observable<Object> {
-  return this.httpClient.get(api + "users/mygroups/" + userid)
-}
+// public getGroups(userid: string) : Observable<Object> {
+//   return this.httpClient.get(api + "users/mygroups/" + userid)
+// }
 
 public getWorkPackages(userid: string): Observable<Object> {
   return this.httpClient.get(api + "users/mywp/" + userid)

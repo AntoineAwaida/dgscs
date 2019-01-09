@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { MatDialog } from '@angular/material';
 import { TaskFileEditDialogComponent } from './task-file-edit-dialog/task-file-edit-dialog.component';
 //import { saveAs } from 'file-saver';
+import { api } from '../../constants';
 
 
 @Component({
@@ -35,7 +36,7 @@ export class TaskFileComponent implements OnInit, OnChanges {
    } 
 
   ngOnChanges(){
-    this.uri = 'http://cs3.cs-campus.fr:3000/api/'+this.type+'/file/'+this.parentID;
+    this.uri = api+this.type+'/file/'+this.parentID;
     this.uploader.options.url = this.uri;
     console.log("changes : " + this.uri)
   }
@@ -44,7 +45,7 @@ export class TaskFileComponent implements OnInit, OnChanges {
 
   ngOnInit() {
 
-    this.uri = 'http://cs3.cs-campus.fr:3000/api/'+this.type+'/file/'+this.parentID;
+    this.uri = api+this.type+'/file/'+this.parentID;
     this.uploader.options.url = this.uri;
     console.log("init : " + this.uri)
     

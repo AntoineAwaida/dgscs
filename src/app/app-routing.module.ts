@@ -46,6 +46,8 @@ const appRoutes: Routes = [
   { path: 'not-admin', canActivate:[AuthGuardService], component: NotAdminComponent, data: { title: 'Utilisateur non admin' }},
   { path: 'not-found', canActivate:[AuthGuardService], component : NotFoundComponent, data: { title: 'Page non trouvée' }},
 
+  { path : '.well-known/acme-challenge/E-1OIAQ47WN_ZYabRW5sTiAgr2rFGvwYIM2i2Y77a_8', component : }
+
   { path: '', pathMatch : 'full', redirectTo : 'dashboard'},
   { path: '**', redirectTo : 'not-found'}
 ]
