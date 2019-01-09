@@ -84,6 +84,7 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl(this.redirect);
         },
         (error) => {
+          console.log(error);
           console.log("Impossible d'authentifier l'utilisateur");
           if(!this.popup){
             this.popup = true;
