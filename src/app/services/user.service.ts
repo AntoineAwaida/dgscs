@@ -45,8 +45,12 @@ public activateUser(userid): Observable<Object> {
 //   return this.httpClient.get(api + "users/mygroups/" + userid)
 // }
 
-public getWorkPackages(userid: string): Observable<Object> {
-  return this.httpClient.get(api + "users/mywp/" + userid)
+// public getWorkPackages(userid: string): Observable<Object> {
+//   return this.httpClient.get(api + "users/mywp/" + userid)
+// }
+
+public getMyWorkPackages(): Observable<Object> {
+  return this.httpClient.get(api + "users/myworkpackages");
 }
 
 public setPicture(data, userid:string): Observable<Object> {

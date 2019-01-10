@@ -45,16 +45,16 @@ export class WorkpackageComponent implements OnInit, OnDestroy {
 
       } , (error)=> console.log(error));
 
-    this.getWorkPackages();
+    this.getMyWorkPackages();
   }
 
   ngOnDestroy() {
     // this.reuseRoute(true);
   }
 
-  getWorkPackages(){
+  getMyWorkPackages(){
     
-    this.userService.getWorkPackages(this.auth.getPayload()._id).subscribe((res:any)=> {
+    this.userService.getMyWorkPackages().subscribe((res:any)=> {
   
         this.mywp = res;
   

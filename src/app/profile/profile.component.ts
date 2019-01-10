@@ -71,7 +71,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
 
     this.user = this.auth.getPayload()
-    this.getWorkPackages(this.user._id);
+    this.getMyWorkPackages();
     this.getTasks();
     this.getFavs(this.user._id);
 
@@ -88,9 +88,9 @@ export class ProfileComponent implements OnInit {
 
   }
 
-  getWorkPackages(id){
+  getMyWorkPackages(){
     
-    this.userService.getWorkPackages(id).subscribe((res:any)=> {
+    this.userService.getMyWorkPackages().subscribe((res:any)=> {
 
       this.workpackages = res;
 

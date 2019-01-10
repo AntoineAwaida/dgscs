@@ -18,13 +18,13 @@ export class WorkpackagesComponent implements OnInit {
 
   ngOnInit() {
   
-    this.getWorkpackages();
+    this.getMyWorkpackages();
 
   }
 
-  getWorkpackages(){
+  getMyWorkpackages(){
     
-    this.userService.getWorkPackages(this.auth.getPayload()._id).subscribe((res:any)=> {
+    this.userService.getMyWorkPackages().subscribe((res:any)=> {
 
       this.mywp = res;
 
