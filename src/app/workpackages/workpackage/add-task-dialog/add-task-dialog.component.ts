@@ -28,7 +28,7 @@ export class AddTaskDialogComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getTasks();
+    this.getMyTasks();
   }
 
   onNoClick(): void {
@@ -36,9 +36,9 @@ export class AddTaskDialogComponent implements OnInit {
 
   }
 
-  getTasks(){
+  getMyTasks(){
     
-    this.taskService.getTasks().subscribe((res:any)=> {
+    this.taskService.getMyTasks().subscribe((res:any)=> {
 
       this.tasks = res;
 

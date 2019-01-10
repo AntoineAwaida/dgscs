@@ -19,7 +19,7 @@ export class TaskListComponent implements OnInit {
   }
 
   getTasks(): void {
-    this.taskService.getTasks()
+    this.taskService.getMyTasks()
     .subscribe(
       (res) =>{
         console.log(res);
@@ -48,7 +48,7 @@ export class TaskListComponent implements OnInit {
   }
 
   isAuthor(task){
-    return task.author._id == this.auth.getPayload()._id;
+    return task.author == this.auth.getPayload()._id;
   }
 
 

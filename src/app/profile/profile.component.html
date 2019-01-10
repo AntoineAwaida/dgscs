@@ -84,7 +84,7 @@
   <div style="font-style:italic">Workpackages</div>
   <ul>
     <div *ngFor="let element of element_selected">
-      <div *ngIf="instanceOfWorkpackage(element)">
+      <div *ngIf="element.type == 'workpackage'">
           <li style="list-style: none"><i class="fas fa-star gold" (click)="deleteElement(element)"></i><a [routerLink]="['/workpackage', element._id]">{{element.name}}</a></li>
       </div>
     </div>
@@ -92,7 +92,7 @@
   <div style="font-style:italic">Tâches</div>
   <ul>
     <div *ngFor="let element of element_selected">
-      <div *ngIf="instanceOfTasks(element)">
+      <div *ngIf="element.type == 'task'">
           <li style="list-style: none"><i class="fas fa-star gold" (click)="deleteElement(element)"></i><a [routerLink]="['/tasks/details', element._id]">{{element.name}}</a></li>
       </div>
     </div> 

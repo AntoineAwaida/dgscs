@@ -31,19 +31,19 @@ export class ProfileComponent implements OnInit {
 
   recherche:string;
 
-  workpackages: Array<WorkPackage> = [];
+  workpackages = [];
 
 
-  element_selected : Array<any> = [];
+  element_selected  = [];
 
   mission_fav;
-  wp_fav: Array<WorkPackage> = [];
-  tasks_fav: Array<Task> = [];
+  wp_fav = [];
+  tasks_fav = [];
 
-  tasks: Array<Task> = [];
+  tasks = [];
 
 
-  element_searched: Array<any> = [];
+  element_searched = [];
 
   f2: FormGroup;
 
@@ -73,13 +73,19 @@ export class ProfileComponent implements OnInit {
     this.user = this.auth.getPayload()
     this.getMyWorkPackages();
     this.getTasks();
-    this.getFavs(this.user._id);
+    this.getFavs();
 
   }
 
-  getFavs(id){
+  getFavs(){
 
-    this.userService.getFavsUser(id).subscribe((res:any) => {
+    this.userService.getMyFavs().subscribe((res:any) => {
+      res.favWorkPackages.map((e)=>{
+        e.type="workpackage";
+      });
+      res.favTasks.map((e)=>{
+        e.type="task";
+      });
       this.element_selected = res.favWorkPackages.concat(res.favTasks);
       console.log(this.element_selected)
     },
@@ -93,6 +99,10 @@ export class ProfileComponent implements OnInit {
     this.userService.getMyWorkPackages().subscribe((res:any)=> {
 
       this.workpackages = res;
+      this.workpackages.map(e => {
+        e.type = "workpackage";
+      })
+      
 
     },
     (error => {
@@ -104,10 +114,12 @@ export class ProfileComponent implements OnInit {
 
   getTasks(){
     
-    this.taskService.getTasks().subscribe((res:any)=> {
+    this.taskService.getMyTasks().subscribe((res:any)=> {
 
       this.tasks = res;
-
+      this.tasks.map(e => {
+        e.type = "task";
+      })
 
     },
     (error => {
@@ -158,17 +170,14 @@ export class ProfileComponent implements OnInit {
 
     this.element_selected.forEach(e => {
 
-      if (this.instanceOfWorkpackage(e)){
+      if (e.type=="workpackage"){
         this.wp_fav.push(e)
       }
 
-      else if (this.instanceOfTasks(e)){
+      else if (e.type=="task"){
         this.tasks_fav.push(e)
       }
 
-      else if (this.instanceOfMission(e)){
-        this.mission_fav.push(e)
-      }
 
     })
 
@@ -200,6 +209,7 @@ export class ProfileComponent implements OnInit {
       for (let wp of this.workpackages) {
 
         if (wp.name.toLowerCase().includes(this.recherche.toLowerCase())){
+          wp.type = "workpackage";
           this.element_searched.push(wp)
         }
 
@@ -208,6 +218,7 @@ export class ProfileComponent implements OnInit {
       for (let task of this.tasks) {
 
         if (task.name.toLowerCase().includes(this.recherche.toLowerCase())){
+          task.type = "task";
           this.element_searched.push(task);
         }
 
@@ -249,20 +260,7 @@ export class ProfileComponent implements OnInit {
 
   sameType(e1:any,e2:any){
 
-    if(this.instanceOfWorkpackage(e1) && this.instanceOfWorkpackage(e2)){
-      return true;
-    }
-  
-    if(this.instanceOfTasks(e1) && this.instanceOfTasks(e2)){
-      return true;
-    }
-  
-    if (this.instanceOfMission(e1) && this.instanceOfMission(e2)){
-      return true;
-    }
-  
-  
-    return false;
+    return e1.type == e2.type
   
   }
 

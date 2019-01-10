@@ -15,7 +15,10 @@ export class DashboardComponent implements OnInit {
   announce:Announce;
   ready:boolean = false;
 
-  favs:Array<any> = [];
+  //favs:Array<any> = [];
+  favWorkPackages = [];
+  favTasks = [];
+
 
   constructor(private announceService: AnnouncesService, private auth: AuthService, private userService: UserService) { }
 
@@ -29,8 +32,11 @@ export class DashboardComponent implements OnInit {
 
   getFavs(){
 
-    this.userService.getFavsUser(this.auth.getPayload()._id).subscribe((res:any) => {
-      this.favs = res.favWorkPackages.concat(res.favTasks);
+    this.userService.getMyFavs().subscribe((res:any) => {
+      this.favWorkPackages = res.favWorkPackages;
+      this.favTasks = res.favTasks;
+      //this.favs = res.favWorkPackages.concat(res.favTasks);
+      console.log(res);
 
     },
     (error) => console.log(error)

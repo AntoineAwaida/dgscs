@@ -25,8 +25,12 @@ public getUser(userid): Observable<Object> {
   return this.httpClient.get(api+"users/getuser/" + userid)
 }
 
-public getFavsUser(userid:string): Observable<Object> {
-  return this.httpClient.get(api + "users/getfavs/" + userid);
+// public getFavsUser(userid:string): Observable<Object> {
+//   return this.httpClient.get(api + "users/getfavs/" + userid);
+// }
+
+public getMyFavs(): Observable<Object> {
+  return this.httpClient.get(api + "users/myfavs");
 }
 
 public getPendingUsers(): Observable<Object> {

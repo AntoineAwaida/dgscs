@@ -26,9 +26,9 @@ export class TaskService {// service qui met à jour les tâches
 
   constructor(private auth : AuthService, private httpClient: HttpClient, private router: Router) { }
   
-  getTasks(): Observable<any> {
-    return this.httpClient.get(api+"tasks/gettasks/"+this.auth.getPayload()._id);
 
+  getMyTasks(): Observable<any> {
+    return this.httpClient.get(api+"users/mytasks/");
   }
 
   getTask(id : string) : Observable<any>  {

@@ -30,28 +30,6 @@ export class TaskDetailsComponent implements OnInit {
     this.getTask();
 
   }
- 
-  // getTask2(): void {
-  //   const id = this.route.snapshot.paramMap.get('id');
-  //   this.taskService.getTasks()
-  //   .subscribe(
-  //     (tasks:any) => {
-  //       const task = tasks.find( (task) => task._id === id);
-  //       if(task){
-  //         console.log(task);
-  //         this.selectedTask = task;
-  //         this.loader = false;
-  //       }
-  //       else {
-  //         console.log("erreur : impossible de récupérer la tâche");
-  //         this.router.navigate(['tasks']);
-  //       }   
-  //     }, (err) => {
-  //       console.log("erreur : impossible de récupérer la tâche");
-  //       this.router.navigate(['tasks']);
-  //     }
-  //   )
-  // }
 
 
   addFile(file) {

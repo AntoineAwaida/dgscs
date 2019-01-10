@@ -174,31 +174,22 @@ export class AddGroupsFormComponent implements OnInit {
     })
   }
 
-  async getUser(userid) {
+  // async getUser(userid) {
 
-    await this.userService.getUser(userid)
-    .subscribe((res:any)=> {
-      this.members.push(res)
-    }, (error) => {
-      console.log(error);
-    })
+  //   await this.userService.getUser(userid)
+  //   .subscribe((res:any)=> {
+  //     this.members.push(res)
+  //   }, (error) => {
+  //     console.log(error);
+  //   })
 
 
-  }
+  // }
 
   async getGroup(groupid){
     this.groupsService.getGroup(groupid).subscribe(async (res:any) => {
 
       this.name = res.name
-
-
-      /*
-      await Promise.all(res.members.map(async (member) => 
-      {
-        this.getUser(member._id)
-      }
-      ))
-      */
 
       this.members = res.members
 

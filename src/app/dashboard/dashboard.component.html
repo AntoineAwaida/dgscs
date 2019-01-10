@@ -41,41 +41,47 @@
       
       <br />
       
-      <div fxLayout="row" fxLayout.md="column" fxLayout.sm="column" fxLayout.xs="column">
+      <div class="row">
       
-        <div fxFlex="50">
+        <div class="col-sm-12 col-md-6">
       
-          <div class="card dashboardcard">
+          <div class="card">
             <div class="card-header">
                 <i class="fas fa-file"></i> Les derniers compte-rendus
             </div>
+            <div class="card-body">
+              Vous n'avez entré aucun compte-rendu.
+            </div>
           </div>
-      
+          <br>
         </div>
       
-        <div fxFlex="50">
+
+        <div class="col-sm-12 col-md-6">
       
-          <div class="card dashboardcard">
+          <div class="card">
             <div class="card-header">
                 <i class="fas fa-star"></i> Accès rapide
             </div>
       
             <div class="card-body">
-              <div *ngIf="favs.length == 0">Pour ajouter des favoris, rendez-vous dans votre profil.</div>
-              <ng-container *ngIf="favs.length > 0">
+              <div *ngIf="favWorkPackages.length + favTasks.length == 0">Pour ajouter des favoris, rendez-vous dans votre profil.</div>
+              <ng-container *ngIf="(favWorkPackages.length + favTasks.length != 0)">
 
-                  <div style="font-style:italic">Workpackages</div>
+                  <div style="font-style:italic"><span class="badge badge-pill badge-dark">Workpackages</span></div>
+
                   <ul>
-                    <div *ngFor="let element of favs">
-                      <div *ngIf="instanceOfWorkpackage(element)">
+                    <div *ngFor="let element of favWorkPackages">
+                      <div>
                           <li style="list-style: none"><a [routerLink]="['/workpackage', element._id]">{{element.name}}</a></li>
                       </div>
                     </div>
                   </ul>
-                  <div style="font-style:italic">Tâches</div>
+                  <div style="font-style:italic"><span class="badge badge-pill badge-dark">Tâches</span></div>
+
                   <ul>
-                    <div *ngFor="let element of favs">
-                      <div *ngIf="instanceOfTasks(element)">
+                    <div *ngFor="let element of favTasks">
+                      <div>
                           <li style="list-style: none"><a [routerLink]="['/tasks/details', element._id]">{{element.name}}</a></li>
                       </div>
                     </div> 
@@ -93,7 +99,7 @@
       
       </div>
 
-
+      <br>
 </div>
 
 <div *ngIf="!ready" fxLayoutAlign="space-around center" style="overflow:hidden">
