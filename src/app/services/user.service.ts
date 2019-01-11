@@ -62,15 +62,15 @@ public setPicture(data, userid:string): Observable<Object> {
   return this.httpClient.post(api + "users/setpicture/" + userid, data);
 }
 
-public editmypassword(userid:string, data): Observable<Object> {
+public editmypassword(data): Observable<Object> {
 
   return this.httpClient.put(api + "users/editmypassword/", data);
 
 }
 
-public modifyFav(userid:string, data): Observable<Object> {
+public editMyFavs(data): Observable<Object> {
 
-  return this.httpClient.put(api + "users/modifyfav/" + userid, data);
+  return this.httpClient.put(api + "users/editmyfavs/", data);
 
 }
 

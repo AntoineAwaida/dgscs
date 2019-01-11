@@ -149,7 +149,7 @@ export class ProfileComponent implements OnInit {
 
   onPasswordSubmit() {
 
-    this.userService.editmypassword(this.user._id,{password:this.f2.value.password}).subscribe((res:any) => this.auth.logout(), (error)=> this.error = error);
+    this.userService.editmypassword({password:this.f2.value.password}).subscribe((res:any) => this.auth.logout(), (error)=> this.error = error);
 
   }
 
@@ -181,7 +181,7 @@ export class ProfileComponent implements OnInit {
 
     })
 
-    this.userService.modifyFav(this.user._id,{favwp:this.wp_fav, favtasks:this.tasks_fav}).subscribe((res:any)=>{
+    this.userService.editMyFavs({favwp:this.wp_fav, favtasks:this.tasks_fav}).subscribe((res:any)=>{
 
       this.modified_profile= true
       setTimeout(() => this.modified_profile = false, 4000);
