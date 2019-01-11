@@ -16,7 +16,7 @@ export class PendingGuardService implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
     const payload:any = this.auth.getPayload();
-    if(payload.status == "pending"){
+    if(payload.status == "pending" || payload.status == "inactive"){
       this.router.navigate(['not-activated'])
       return false;
     }

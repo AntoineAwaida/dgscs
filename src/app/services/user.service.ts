@@ -38,11 +38,11 @@ public getPendingUsers(): Observable<Object> {
 }
 
 public deactivateUser(userid): Observable<Object> {
-  return this.httpClient.get(api+"users/deactivateuser/" + userid)
+  return this.httpClient.put(api+"users/desactivateuser", null);
 }
 
 public activateUser(userid): Observable<Object> {
-  return this.httpClient.get(api+"users/activateuser/" + userid)
+  return this.httpClient.put(api+"users/activateuser/", null);
 }
 
 // public getGroups(userid: string) : Observable<Object> {
