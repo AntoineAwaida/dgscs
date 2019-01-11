@@ -149,7 +149,7 @@ export class ProfileComponent implements OnInit {
 
   onPasswordSubmit() {
 
-    this.userService.modifyPassword(this.user._id,{password:this.f2.value.password}).subscribe((res:any) => this.auth.logout(), (error)=> this.error = error);
+    this.userService.editmypassword(this.user._id,{password:this.f2.value.password}).subscribe((res:any) => this.auth.logout(), (error)=> this.error = error);
 
   }
 
