@@ -14,7 +14,7 @@ export class UploadsComponent implements OnInit {
   constructor(private fileService : FileService) { }
 
   ngOnInit() {
-    this.fileService.getFiles().subscribe((res)=>{
+    this.fileService.getMyFiles().subscribe((res)=>{
       this.files = res;
       this.loader = false;
       console.log(res);
