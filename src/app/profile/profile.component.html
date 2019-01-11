@@ -7,11 +7,16 @@
 </div>
 
 <h2> Mon profil </h2>
-
+ 
 
 <br />
 
-<h2 style="text-align: center"><img src="{{user.photoURL}}" class="largepp"/>{{user.first_name + ' ' + user.last_name }}</h2>
+<h2  style="text-align: center">
+  <img *ngIf="!user.photoURL" src="../../assets/img/avatar.png" class="largepp"/> 
+  <img *ngIf="user.photoURL" [src]="user.photoURL + '?' + this.auth.getPhotoDate()" class="largepp"/> 
+  {{user.first_name + ' ' + user.last_name }}
+</h2>
+
 
 <form [formGroup]="form" (ngSubmit)="onPPSubmit()">
 
@@ -22,10 +27,13 @@
     <ng-container *ngIf="preview">
         <img [src]="preview" class="profilepicture" />
     </ng-container>
-    
   </div>
 
-  <button mat-raised-button [color]="'info'" type="submit" value="submit" >Modifiez votre photo</button>
+  <button *ngIf="!loaderPhoto" mat-raised-button [color]="'info'" type="submit" value="submit" [disabled] = "loaderPhoto">Modifiez votre photo</button>
+  <div *ngIf="loaderPhoto" fxLayoutAlign="space-around center" style="overflow:hidden">
+    <div class="loader">
+    </div><br>
+  </div>
 
 </form>
 

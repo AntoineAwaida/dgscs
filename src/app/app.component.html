@@ -10,7 +10,8 @@
 
   <ul class="navbar-nav ml-auto small" >
     <li class="nav-item">
-      <img src="{{ this.auth.getPayload().photoURL }}" routerLink='/profile' class="profilepicture" />
+      <img *ngIf="this.auth.getPayload().photoURL" [src]="this.auth.getPayload().photoURL + '?' + this.auth.getPhotoDate()" routerLink='/profile' class="profilepicture" />
+      <img *ngIf="!(this.auth.getPayload().photoURL)" src="../assets/img/avatar.png" routerLink='/profile' class="profilepicture" />
     </li>
     <li class="nav-item">
       <div class="nav-link active bold">

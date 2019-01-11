@@ -1,11 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Task, TaskService } from '../services/task.service';
 import { UserService } from '../services/user.service';
-import { GroupsService } from '../services/groups.service';
-import { WorkpackagesService, WorkPackage } from '../services/workpackages.service';
-import { TaskService, Task } from '../services/task.service';
-import { element } from '@angular/core/src/render3';
+import { WorkPackage } from '../services/workpackages.service';
 
 
 
@@ -33,7 +31,6 @@ export class ProfileComponent implements OnInit {
 
   workpackages = [];
 
-
   element_selected  = [];
 
   mission_fav;
@@ -42,6 +39,7 @@ export class ProfileComponent implements OnInit {
 
   tasks = [];
 
+  loaderPhoto = false;
 
   element_searched = [];
 
@@ -129,17 +127,24 @@ export class ProfileComponent implements OnInit {
 
   }
 
+
+
   onPPSubmit() {
 
 
     let data = new FormData();
     data.append('profilepicture', this.form.get('profilepicture').value)
     data.append('user', this.user._id)
-    this.userService.setPicture(data, this.user._id).subscribe((res:any) => {
+    this.loaderPhoto = true;
+    this.userService.setPicture(data).subscribe((res:any) => {
       this.modified_profile = true;
+      this.loaderPhoto = false;
+      this.auth.changePhotoDate();
+      console.log(res);
       setTimeout(() => this.modified_profile = false, 4000);
     }, (error) => {
       this.error = error;
+      this.loaderPhoto = false;
       setTimeout(() => this.error = null, 4000);
       console.log(error);
     })

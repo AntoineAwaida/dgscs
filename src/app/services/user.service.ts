@@ -57,9 +57,9 @@ public getMyWorkPackages(): Observable<Object> {
   return this.httpClient.get(api + "users/myworkpackages");
 }
 
-public setPicture(data, userid:string): Observable<Object> {
+public setPicture(data): Observable<Object> {
 
-  return this.httpClient.post(api + "users/setpicture/" + userid, data);
+  return this.httpClient.post(api + "users/setpicture/", data);
 }
 
 public editmypassword(data): Observable<Object> {

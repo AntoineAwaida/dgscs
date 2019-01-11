@@ -34,6 +34,7 @@ export interface TokenPayload {
 export class AuthService {
 
   private token: string;
+  photoDate = 0;
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 
@@ -79,6 +80,15 @@ export class AuthService {
       this.token = localStorage.getItem('mean-token');
     }
     return this.token;
+  }
+
+
+  public getPhotoDate() {
+    return this.photoDate;
+  }
+
+  public changePhotoDate(){
+    this.photoDate = Date.now();
   }
 
   public logout(): void {
