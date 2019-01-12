@@ -175,5 +175,11 @@ export class ChatService {
     
   }
 
+  getUsersWP(wpid:string):Observable<Object>{
+
+    return this.httpClient.get(api + "workpackages/getuserschat/" + wpid);
+
+  }
+
 
 }

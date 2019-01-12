@@ -5,8 +5,14 @@
 
         <div>
             <label for="fileUpload"></label>
-            <input type="file" name="fileUplaod" id="fileUpload"
+            <div *ngIf="status!= 'readonly'">
+                <input type="file" name="fileUplaod" id="fileUpload"
                         multiple ng2FileSelect [uploader]="uploader">
+            </div>
+            <div *ngIf="status== 'readonly'">
+                Ce workpackage est en lecture seule, ou cette tâche est terminée. Vous ne pouvez y ajouter d'autres fichiers.
+            </div>
+            
         </div>
 
         <div>

@@ -72,7 +72,9 @@ import { TaskFileListComponent } from './tasks/task-file-list/task-file-list.com
 import { UploadsComponent } from './files/uploads/uploads.component';
 import { TaskFileEditDialogComponent } from './tasks/task-file/task-file-edit-dialog/task-file-edit-dialog.component';
 import { MyGroupsComponent } from './groups/my-groups/my-groups.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
+import {VirtualScrollerModule} from 'ngx-virtual-scroller';
 
 @NgModule({
   declarations: [
@@ -155,6 +157,8 @@ import { MyGroupsComponent } from './groups/my-groups/my-groups.component';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    ScrollingModule,
+    VirtualScrollerModule,
   ],
   entryComponents: [ActionsDialogComponent, AddTaskDialogComponent, TaskFileEditDialogComponent],
   providers: [

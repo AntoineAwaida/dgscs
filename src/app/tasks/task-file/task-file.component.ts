@@ -17,6 +17,7 @@ import { api } from '../../constants';
 
 export class TaskFileComponent implements OnInit, OnChanges {
 
+  @Input() status: string; //readonly, active, inactive
   @Input() type: string; //"workpackages","tasks"
   @Input() parentID: string; //l'id de task, wp, etc. parent
 
@@ -44,6 +45,8 @@ export class TaskFileComponent implements OnInit, OnChanges {
 
 
   ngOnInit() {
+
+    console.log(this.status)
 
     this.uri = api+this.type+'/file/'+this.parentID;
     this.uploader.options.url = this.uri;

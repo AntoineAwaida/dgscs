@@ -1,4 +1,151 @@
-<div class="card wpcard">
+
+<div class="container-fluid h-100">
+    <div class="justify-content-center h-100">
+      <div class="chat">
+        <div class="card">
+          <div class="card-header msg_head">
+            <div class="title">Chat</div>
+            <!--<span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
+            <div class="action_menu">
+              <ul>
+                <li><i class="fas fa-user-circle"></i> View profile</li>
+                <li><i class="fas fa-users"></i> Add to close friends</li>
+                <li><i class="fas fa-plus"></i> Add to group</li>
+                <li><i class="fas fa-ban"></i> Block</li>
+              </ul>
+            </div>-->
+          </div>
+
+         
+          <div class="card-body msg_card_body" style="padding:0">
+            <div *ngIf = "this.ready" >
+              <cdk-virtual-scroll-viewport id="chat-container" [itemSize]="50" class="my-viewport">
+              <ng-container  *cdkVirtualFor="let msg of messages; let i = index">
+
+                
+                  <div *ngIf="i!=0 && messages[i-1] && !isSameDay(msg.date,messages[i-1].date)">
+                      <div style="text-align: center; padding: 10px">
+                        <span class="badge badge-pill badge-dark" style="font-size:15px"> {{date(msg.date)}} </span>
+                      </div>
+                  </div>
+                
+
+                
+                <ng-container *ngIf="isSocketMsg(msg)">
+
+                    <div *ngIf ="msg.user == this.auth.getPayload()._id">
+      
+                        <div class="d-flex justify-content-end chat_mb">
+                            <div class="msg_cotainer_send">
+                              {{msg.content}}
+                                  <span class="msg_time_send">{{this.auth.getPayload().first_name}} , {{hour(msg.date)}}</span>
+                            </div>
+                            <div class="img_cont_msg">
+                          <img [src]="this.auth.getPayload().photoURL" class="rounded-circle user_img_msg">
+                            </div>
+                        </div>
+      
+                    </div>
+
+                    <div *ngIf ="msg.user != this.auth.getPayload()._id">
+      
+                        <div class="d-flex justify-content-start chat_mb">
+                            <div class="img_cont_msg">
+                              <img [src]="msg.user[0].photoURL" class="rounded-circle user_img_msg">
+                            </div>
+                            <div class="msg_cotainer">
+                              {{msg.content}}
+                              <!--
+                              <ng-container *ngIf="i==messages.length-1 || msg.user[0]._id != messages[i+1].user[0]._id">
+                                  <span class="msg_time">{{msg.user[0].first_name}} , {{hour(msg.date)}}</span>
+                              </ng-container>
+                            -->
+                            </div>
+                          </div>
+      
+                    </div>
+
+                </ng-container>
+    
+
+                <ng-container *ngIf="!isSocketMsg(msg)">
+
+                    <div *ngIf ="msg && msg.user[0]._id != this.auth.getPayload()._id">
+
+                        <div class="d-flex justify-content-start chat_mb">
+                            <div class="img_cont_msg">
+                              <img [src]="msg.user[0].photoURL" class="rounded-circle user_img_msg">
+                            </div>
+                            <div class="msg_cotainer">
+                              {{msg.content}}
+                              <!--
+                              <ng-container *ngIf="i==messages.length-1 || msg.user[0]._id != messages[i+1].user[0]._id">
+                                  <span class="msg_time">{{msg.user[0].first_name}} , {{hour(msg.date)}}</span>
+                              </ng-container>
+                              -->
+                            </div>
+                          </div>
+      
+      
+                    </div>
+      
+                    
+      
+                    <div *ngIf ="msg && msg.user[0]._id == this.auth.getPayload()._id">
+      
+                        <div class="d-flex justify-content-end chat_mb">
+                            <div class="msg_cotainer_send">
+                              {{msg.content}}
+                              <!--
+                              <ng-container *ngIf="i==messages.length-1 || msg.user[0]._id != messages[i+1].user[0]._id">
+                                  <span class="msg_time_send">{{msg.user[0].first_name}} , {{hour(msg.date)}}</span>
+                              </ng-container>
+                              -->
+                            </div>
+                            <div class="img_cont_msg">
+                          <img [src]="msg.user[0].photoURL" class="rounded-circle user_img_msg">
+                            </div>
+                        </div>
+      
+                    </div>
+                    
+
+
+                </ng-container>
+
+                
+
+                  
+
+
+
+              </ng-container>
+              </cdk-virtual-scroll-viewport>
+            
+            </div>
+            <div *ngIf = "!this.ready"  fxLayoutAlign="space-evenly center" style="padding: 25px">
+              <div class="loader" fxLayoutAlign="center"></div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="input-group">
+              <div class="input-group-append">
+                <!--<span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>-->
+              </div>
+              <form style="width:100%" (keyup.enter)="submit($event)">
+                      <input placeholder="Votre message..." [value]="message" class="form-control type_msg" name="message" required>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!--
+
+  <div class="card wpcard">
   <h2>Chat</h2>
   <div class="card-body wpcardbody">
 
@@ -56,3 +203,6 @@
 
   </div>
 </div>
+
+
+-->

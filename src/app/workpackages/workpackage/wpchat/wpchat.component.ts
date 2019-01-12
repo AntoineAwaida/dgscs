@@ -1,10 +1,12 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ViewChild } from '@angular/core';
 import { ChatService, WPChatMessage } from 'src/app/services/chat.service';
 import { WorkPackage } from 'src/app/services/workpackages.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 import {Router, ActivatedRoute} from '@angular/router'
 import { Subject } from 'rxjs';
+
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling'
 
 @Component({
   selector: 'app-wpchat',
@@ -13,8 +15,9 @@ import { Subject } from 'rxjs';
 })
 export class WpchatComponent implements OnInit, OnDestroy {
 
-
   @Input() type: string; //peut être "workpackage","task", "general", ou "mission"
+  @ViewChild(CdkVirtualScrollViewport)
+  viewport: CdkVirtualScrollViewport;
 
   messages:Array<WPChatMessage> = [];
   message:string = '';
@@ -34,6 +37,7 @@ export class WpchatComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
+
   
     this.route.params.subscribe(
       params => {
@@ -45,7 +49,7 @@ export class WpchatComponent implements OnInit, OnDestroy {
           this.chatService.joinRoom(this.elementid); // on rejoint la chambre du nouveau wp  
           
           this.chatService.getChat(this.elementid).subscribe((res:any) => {
-            this.messages = res;
+            this.messages = res
             this.ready = true;
             setTimeout(()=>this.adjustScrollSize(),200);
           }, (error) => console.log(error));
@@ -57,7 +61,7 @@ export class WpchatComponent implements OnInit, OnDestroy {
           this.chatService.getTaskChat(this.elementid).subscribe((res:any) => {
             this.messages = res;
             this.ready = true;
-            setTimeout(()=>this.adjustScrollSize(),200);
+            this.viewport.scrollToIndex(0)
           }, (error) => console.log(error));
 
         }
@@ -66,6 +70,8 @@ export class WpchatComponent implements OnInit, OnDestroy {
 
       
         this.chatService.newMessage().subscribe((data:any) => {
+
+
           
           this.messages.push(data)
           //this.adjustScrollSize();
@@ -105,28 +111,39 @@ export class WpchatComponent implements OnInit, OnDestroy {
 
   }
 
+  isSameDay(date1:Date,date2:Date):boolean{
+
+    let date11 = new Date(date1);
+    let date22 = new Date(date2);
+
+    if (date11.toLocaleDateString() == date22.toLocaleDateString()){
+
+      return true;
+
+    }
+
+    return false;
+
+
+  }
+
+  hour(date:Date){
+
+    let mydate = new Date(date)
+    const options_time = { hour:"2-digit", minute:"2-digit"}
+
+    return mydate.toLocaleTimeString('fr-FR',options_time)
+
+
+  }
+
   date(date:Date){
 
 
     let mydate = new Date(date)
     const options = {month: 'long', day: 'numeric' };
-    const options_time = { hour:"2-digit", minute:"2-digit"}
-    let final_date = ''
-    if (mydate.toLocaleDateString() == new Date().toLocaleDateString()){
 
-      final_date = mydate.toLocaleTimeString('fr-FR',options_time)
-
-    }
-
-    else {
-
-      final_date = mydate.toLocaleDateString('fr-FR', options)
-
-    }
-    
-
-
-    return final_date;
+    return mydate.toLocaleDateString('fr-FR', options);
 
   }
 
@@ -136,9 +153,13 @@ export class WpchatComponent implements OnInit, OnDestroy {
    
     if(event.keyCode == 13 && event.target.value.length> 0) {
       //càd si l'utilisateur appuie sur entrée, on soumet le message
-      
 
-      if (this.type =='workpackage') {
+
+      console.log(this.type)
+
+      if (this.type == 'workpackage') {
+
+
 
         this.chatService.saveMessage({content:event.target.value, date:Date.now(), wp:this.elementid, user:this.auth.getPayload()._id}).subscribe();
         this.chatService.sendMessage(event.target.value, this.elementid);
@@ -170,5 +191,12 @@ export class WpchatComponent implements OnInit, OnDestroy {
 
     //il s'agit d'une douille pour faire un vrai changement que Angular détecte.
   }
+
+  isSocketMsg(msg): boolean{
+
+    return !msg.hasOwnProperty('_id');
+
+  }
+
 
 }
