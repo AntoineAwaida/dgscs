@@ -13,8 +13,7 @@
             <input type="email" class="form-control" placeholder="Email" formControlName="email" (keyup)="onChangeUserError()">
             <small [ngStyle]="{color:'red', fontSize:'70%'}" *ngIf="(f2.controls.email.status!='VALID')&&(f2.controls.email.value!='')">Merci
                 d'entrer un email valide</small>
-            <small [ngStyle]="{color:'red', fontSize:'70%'}" *ngIf="userError">Il y a déjà un compte associé à cet
-                email</small>
+            <small [ngStyle]="{color:'red', fontSize:'70%'}" *ngIf="userError">{{ userError }}</small>
         </div>
         <div class="form-group">
             <input type="password" class="form-control" placeholder="Mot de passe" formControlName="password" (keyup)="onChange()">
