@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
 
   popup: boolean= false;
   in : boolean = false;
+  error : string;
 
   f: FormGroup;
 
@@ -88,6 +89,16 @@ export class LoginComponent implements OnInit {
           console.log("Impossible d'authentifier l'utilisateur");
           if(!this.popup){
             this.popup = true;
+            this.error = error;
+            if(error.status == 500){
+              this.error = error.error.message;
+            }
+            else if(error.status == 0){
+              this.error = "Impossible d'accéder au serveur : vérifiez votre connexion internet"
+            }
+            else {
+              this.error = error.statusText
+            }
             setTimeout(() => {this.popup = false}, 4000)
           }
         });

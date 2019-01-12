@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
 
   popup: boolean= false;
   in : boolean = false;
-  userError : boolean = false;
+  userError;
 
   f2: FormGroup;
 
@@ -58,7 +58,16 @@ export class RegisterComponent implements OnInit {
     },
     (error) => {
       console.log("Impossible d'enregistrer le user");
-      this.userError = true;
+      console.log(error);
+      if(error.status == 0){
+        this.userError = "Impossible d'accéder au serveur : vérifiez votre connexion internet"
+      }
+      else if(error.status == 500) {
+        this.userError = error.error.message;
+      }
+      else {
+        this.userError = error.statusText;
+      }
     })
 }
 

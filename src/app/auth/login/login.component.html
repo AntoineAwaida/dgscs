@@ -1,7 +1,7 @@
 
 <div class="login-form">
 
-  <div [ngStyle]="{fontSize : '80%'}" class="alert alert-danger text-center" [@fade]="popup? 'in' : 'out'"><strong>Attention : </strong>email ou mot de passe incorrect</div>
+  <div *ngIf="error" [ngStyle]="{fontSize : '80%'}" class="alert alert-danger text-center" [@fade]="popup? 'in' : 'out'"><strong>Attention : </strong>{{ error }}</div>
   
   <form [formGroup]="f" (ngSubmit)="login()">
       
