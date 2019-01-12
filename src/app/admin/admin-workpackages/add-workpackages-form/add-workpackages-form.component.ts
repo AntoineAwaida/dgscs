@@ -4,6 +4,7 @@ import { WorkpackagesService } from 'src/app/services/workpackages.service';
 import { Group, GroupsService } from '../../../services/groups.service'
 
 import { EventEmitter } from '@angular/core';
+import { Task } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-add-workpackages-form',
@@ -31,7 +32,7 @@ export class AddWorkpackagesFormComponent implements OnInit {
   groups:Array<any> = [];
   groups_selected:Array<any> = [];
   error:string;
-  tasks: Array<string> = [];
+  tasks: Array<Task> = [];
   recherche:string;
   status:string = 'active';
   waiting_result:boolean = false;
