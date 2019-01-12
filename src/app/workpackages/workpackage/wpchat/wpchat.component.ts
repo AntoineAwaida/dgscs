@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { ChatService, WPChatMessage } from 'src/app/services/chat.service';
 import { WorkPackage } from 'src/app/services/workpackages.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -7,6 +7,8 @@ import {Router, ActivatedRoute} from '@angular/router'
 import { Subject } from 'rxjs';
 
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling'
+import { flatMap } from 'rxjs/operators';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-wpchat',
@@ -27,7 +29,7 @@ export class WpchatComponent implements OnInit, OnDestroy {
 
 
 
-  constructor(private chatService: ChatService, private auth: AuthService, private route:ActivatedRoute, private router: Router) {
+  constructor(private cdRef: ChangeDetectorRef,private chatService: ChatService, private auth: AuthService, private route:ActivatedRoute, private router: Router, private userService:UserService) {
 
 
    
@@ -68,14 +70,23 @@ export class WpchatComponent implements OnInit, OnDestroy {
 
 
 
-      
+        /*
+        this.chatService.newMessage().pipe(
+          flatMap((data:any) => this.userService.getUser(data.user)),
+        ).subscribe((res:any) => {
+          console.log(res);
+        });*/
+
+        
         this.chatService.newMessage().subscribe((data:any) => {
 
 
           
-          this.messages.push(data)
-          //this.adjustScrollSize();
+          this.messages = [...this.messages, data];
+          this.cdRef.detectChanges();
           setTimeout(()=>this.adjustScrollSize(),200);
+
+          console.log(this.messages)
           
           
         }
@@ -134,6 +145,23 @@ export class WpchatComponent implements OnInit, OnDestroy {
 
     return mydate.toLocaleTimeString('fr-FR',options_time)
 
+
+  }
+
+  more1hour(date1:Date, date2:Date):boolean{
+
+    let date11 = new Date(date1)
+    let date22 = new Date(date2)
+
+    if ((Math.abs(date11.getTime() - date22.getTime()) / 36e5 > 1) && this.isSameDay(date1,date2)) {
+
+      return true;
+
+    }
+
+    else {
+      return false;
+    }
 
   }
 

@@ -36,10 +36,15 @@
                     <div *ngIf ="msg.user == this.auth.getPayload()._id">
       
                         <div class="d-flex justify-content-end chat_mb">
+                          <div fxLayout="column">
                             <div class="msg_cotainer_send">
                               {{msg.content}}
-                                  <span class="msg_time_send">{{this.auth.getPayload().first_name}} , {{hour(msg.date)}}</span>
                             </div>
+                            <ng-container *ngIf="i==messages.length-1 || (messages[i+1] && msg.user[0]._id != messages[i+1].user[0]._id)">
+                                <div class="msg_time_send">{{this.auth.getPayload().first_name}} , {{hour(msg.date)}}</div>
+                            </ng-container>
+                           
+                          </div>
                             <div class="img_cont_msg">
                           <img [src]="this.auth.getPayload().photoURL" class="rounded-circle user_img_msg">
                             </div>
@@ -53,13 +58,17 @@
                             <div class="img_cont_msg">
                               <img [src]="msg.user[0].photoURL" class="rounded-circle user_img_msg">
                             </div>
-                            <div class="msg_cotainer">
-                              {{msg.content}}
-                              <!--
-                              <ng-container *ngIf="i==messages.length-1 || msg.user[0]._id != messages[i+1].user[0]._id">
-                                  <span class="msg_time">{{msg.user[0].first_name}} , {{hour(msg.date)}}</span>
-                              </ng-container>
-                            -->
+                            <div fxLayout="column">
+                                <div class="msg_cotainer">
+                                    {{msg.content}}
+                                    
+                                    
+                                    
+                                </div>
+                                <ng-container *ngIf="i==messages.length-1 || (messages[i+1] && msg.user[0]._id != messages[i+1].user[0]._id)">
+                                    <div class="msg_time">{{msg.user[0].first_name}} , {{hour(msg.date)}}</div>
+                                </ng-container>
+
                             </div>
                           </div>
       
@@ -76,14 +85,20 @@
                             <div class="img_cont_msg">
                               <img [src]="msg.user[0].photoURL" class="rounded-circle user_img_msg">
                             </div>
-                            <div class="msg_cotainer">
-                              {{msg.content}}
-                              <!--
-                              <ng-container *ngIf="i==messages.length-1 || msg.user[0]._id != messages[i+1].user[0]._id">
-                                  <span class="msg_time">{{msg.user[0].first_name}} , {{hour(msg.date)}}</span>
-                              </ng-container>
-                              -->
+
+                            <div fxLayout="column">
+                                <div class="msg_cotainer">
+                                    {{msg.content}}
+                                    
+                                    
+                                    
+                                </div>
+                                <ng-container *ngIf="i==messages.length-1 || (messages[i+1] && msg.user[0]._id != messages[i+1].user[0]._id) || (messages[i+1] && more1hour(msg.date, messages[i+1].date))">
+                                    <div class="msg_time">{{msg.user[0].first_name}} , {{hour(msg.date)}}</div>
+                                </ng-container>
+
                             </div>
+                            
                           </div>
       
       
@@ -94,13 +109,17 @@
                     <div *ngIf ="msg && msg.user[0]._id == this.auth.getPayload()._id">
       
                         <div class="d-flex justify-content-end chat_mb">
-                            <div class="msg_cotainer_send">
-                              {{msg.content}}
-                              <!--
-                              <ng-container *ngIf="i==messages.length-1 || msg.user[0]._id != messages[i+1].user[0]._id">
-                                  <span class="msg_time_send">{{msg.user[0].first_name}} , {{hour(msg.date)}}</span>
-                              </ng-container>
-                              -->
+                            <div fxLayout="column">
+                                <div class="msg_cotainer_send">
+                                    {{msg.content}}
+                                    
+                                    
+                                    
+                                </div>
+                                <ng-container *ngIf="i==messages.length-1 || (messages[i+1] && msg.user[0]._id != messages[i+1].user[0]._id) || (messages[i+1] && more1hour(msg.date, messages[i+1].date))">
+                                    <div class="msg_time_send">{{msg.user[0].first_name}} , {{hour(msg.date)}}</div>
+                                </ng-container>
+
                             </div>
                             <div class="img_cont_msg">
                           <img [src]="msg.user[0].photoURL" class="rounded-circle user_img_msg">

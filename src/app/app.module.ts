@@ -75,6 +75,7 @@ import { MyGroupsComponent } from './groups/my-groups/my-groups.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import {VirtualScrollerModule} from 'ngx-virtual-scroller';
+import { WptaskComponent } from './workpackages/workpackage/wptask/wptask.component';
 
 @NgModule({
   declarations: [
@@ -128,7 +129,9 @@ import {VirtualScrollerModule} from 'ngx-virtual-scroller';
 
     TaskFileEditDialogComponent,
 
-    MyGroupsComponent
+    MyGroupsComponent,
+
+    WptaskComponent
   ],
   imports: [
     HttpClientModule,

@@ -1,0 +1,25 @@
+<div class="card wpcard" style="text-align: center">
+                  
+    <h3>Tâches reliées</h3>
+    <div class="card-body wpcardbody">
+
+      <div style="border-bottom:2px solid grey; padding: 5px">
+        <ng-container *ngIf ="workpackage.status !='readonly'">
+            <ul class="fa-ul" style="margin-left: 0">
+                <li><i class=" fa-li fas fa-plus-square"></i><a routerLink='/tasks/create-task'>Créer une tâche</a></li>
+                <li><i class=" fa-li fas fa-file-medical"></i><a style="cursor: pointer ; color:#007bff" (click)="openDialog(workpackage._id)">Ajouter une tâche...</a></li>
+            </ul>
+            
+        </ng-container>
+        <ng-container *ngIf="workpackage.status == 'readonly'">
+          <div style="color:grey">Workpackage en lecture seule.</div>
+        </ng-container>  
+      </div>
+
+      <li *ngFor="let task of workpackage.tasks" style="list-style-type: none">
+          <i class="fas fa-ban" style="color:red; cursor:pointer" (click)="delete(task._id, workpackage._id)" ></i><a [routerLink]="['/tasks/details', task._id]">{{task.name}}</a>
+      </li>
+        
+    </div>
+
+</div>
