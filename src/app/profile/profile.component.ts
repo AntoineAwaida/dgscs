@@ -33,6 +33,8 @@ export class ProfileComponent implements OnInit {
 
   element_selected  = [];
 
+  ready_favs:boolean = false;
+
   mission_fav;
   wp_fav = [];
   tasks_fav = [];
@@ -85,7 +87,7 @@ export class ProfileComponent implements OnInit {
         e.type="task";
       });
       this.element_selected = res.favWorkPackages.concat(res.favTasks);
-      console.log(this.element_selected)
+      this.ready_favs = true;
     },
     (error) => console.log(error)
     )

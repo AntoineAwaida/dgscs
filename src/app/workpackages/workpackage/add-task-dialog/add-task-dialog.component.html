@@ -1,8 +1,10 @@
 <h1 mat-dialog-title>Ajouter une tâche</h1>
 <div mat-dialog-content fxLayout.sm="column" fxLayout.xs="column">
 
-  <div *ngIf="error" class="alert-danger danger">{{error}}</div>
+  <div fxLayout="column">
+  <div *ngIf="error" style="color:red">{{error}}</div>
 
+  <br />
     <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text" [ngStyle]="{height:'calc(2.25rem + 2px)'}"><i class="fa fa-search"></i></span>
@@ -28,6 +30,7 @@
       </ul>
     </ng-container>
    
+</div>
 </div>
 <div mat-dialog-actions>
   <button mat-raised-button [disabled]="element_selected.length == 0"  (click)="onSubmit(data.id)">Ajouter</button>

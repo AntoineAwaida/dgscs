@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 import { server } from '../../constants';
+import { WorkPackage } from 'src/app/services/workpackages.service';
 
  
 @Component({
@@ -18,6 +19,7 @@ export class TaskDetailsComponent implements OnInit {
   loader = true;
   initialStatus;
   taskID;
+  linked_wp: Array<WorkPackage>;
 
   constructor(
     private route: ActivatedRoute,
@@ -59,6 +61,12 @@ export class TaskDetailsComponent implements OnInit {
         this.router.navigate(['tasks']);
       }
     )
+  }
+
+  getWP() :void {
+
+    //la suite demain!
+
   }
 
 

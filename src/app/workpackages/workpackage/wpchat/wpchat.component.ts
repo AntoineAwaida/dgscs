@@ -4,10 +4,10 @@ import { WorkPackage } from 'src/app/services/workpackages.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 import {Router, ActivatedRoute} from '@angular/router'
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling'
-import { flatMap } from 'rxjs/operators';
+import { flatMap, mergeMap } from 'rxjs/operators';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -23,6 +23,7 @@ export class WpchatComponent implements OnInit, OnDestroy {
 
   messages:Array<WPChatMessage> = [];
   message:string = '';
+  msg_received:WPChatMessage;
   ready:boolean;
   elementid:string; // l'id du workpackage, de la tache...
 
@@ -53,7 +54,7 @@ export class WpchatComponent implements OnInit, OnDestroy {
           this.chatService.getChat(this.elementid).subscribe((res:any) => {
             this.messages = res
             this.ready = true;
-            setTimeout(()=>this.adjustScrollSize(),200);
+            setTimeout(()=>this.viewport.scrollToIndex(this.messages.length), 100);
           }, (error) => console.log(error));
         }
 
@@ -63,34 +64,42 @@ export class WpchatComponent implements OnInit, OnDestroy {
           this.chatService.getTaskChat(this.elementid).subscribe((res:any) => {
             this.messages = res;
             this.ready = true;
-            this.viewport.scrollToIndex(0)
+            setTimeout(()=>this.viewport.scrollToIndex(this.messages.length), 100);
           }, (error) => console.log(error));
 
         }
 
 
 
-        /*
-        this.chatService.newMessage().pipe(
-          flatMap((data:any) => this.userService.getUser(data.user)),
-        ).subscribe((res:any) => {
-          console.log(res);
-        });*/
+      
 
         
+        //ici ça marche, mais ça reste bof. Pourquoi? parce que d'abord on attribue le message reçu à this.msg_received ; puis 
+        //on va chercher l'utilisateur.
+        //le pb c'est que si on cherche pas l'utilisateur assez vite, c'est possible que le message soit remplacé pendant ce temps...
+        this.chatService.newMessage().pipe(
+          flatMap((data:any) => ((this.msg_received = data) && this.userService.getUser(data.user)))).subscribe((res:any) => {
+          
+            this.msg_received.realuser = res;
+            this.messages = [ ...this.messages, this.msg_received];
+            this.cdRef.detectChanges();
+          this.viewport.scrollToIndex(this.messages.length);
+        })
+
+        /*
         this.chatService.newMessage().subscribe((data:any) => {
 
 
           
           this.messages = [...this.messages, data];
           this.cdRef.detectChanges();
-          setTimeout(()=>this.adjustScrollSize(),200);
+          this.viewport.scrollToIndex(this.messages.length);
 
           console.log(this.messages)
           
           
         }
-          , (error) => console.log(error));
+          , (error) => console.log(error));*/
       });
 
 

@@ -5,7 +5,8 @@ import { Task, TaskService } from 'src/app/services/task.service';
 import { WorkpackagesService } from 'src/app/services/workpackages.service';
 
 export interface DialogData {
-  id:string
+  id:string,
+  wptasks: Array<Task>
 }
 
 @Component({
@@ -40,6 +41,7 @@ export class AddTaskDialogComponent implements OnInit {
     
     this.taskService.getMyTasks().subscribe((res:any)=> {
 
+
       this.tasks = res;
 
 
@@ -53,7 +55,6 @@ export class AddTaskDialogComponent implements OnInit {
 
   onSubmit(id){
 
-    console.log(id)
 
     let tasks = [];
 
@@ -63,7 +64,7 @@ export class AddTaskDialogComponent implements OnInit {
 
     })
 
-    this.workpackageService.addTasks({tasks:tasks}, id).subscribe((res:any) => this.dialogRef.close(), (error) => this.error = error);
+    this.workpackageService.addTasks({tasks:tasks}, id).subscribe((res:any) => this.dialogRef.close(this.element_selected), (error) => this.error = error);
 
 
     
@@ -92,7 +93,15 @@ export class AddTaskDialogComponent implements OnInit {
 
   addElement(element){
     if (!this.element_selected.some(e => (e._id == element._id))){
-      this.element_selected.push(element)
+      if (!this.data.wptasks.some(e => e._id == element._id)){
+        this.element_selected.push(element)
+        this.error =null
+      }
+      else {
+        this.error ="Cette tâche est déjà liée à ce WP!"
+        setTimeout(() => this.error = null, 2000)
+      }
+     
     }
       this.recherche = ''
       this.element_searched = []

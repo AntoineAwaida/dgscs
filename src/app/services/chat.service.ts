@@ -16,7 +16,8 @@ export interface WPChatMessage {
   content:string,
   date:number,
   user:string,
-  wp:string
+  wp:string,
+  realuser?:Array<any>
 
 
 }
@@ -27,7 +28,8 @@ export interface TaskChatMessage {
   content:string,
   date:number,
   user:string,
-  task:string
+  task:string,
+  realuser?:Array<any>
 
 
 }

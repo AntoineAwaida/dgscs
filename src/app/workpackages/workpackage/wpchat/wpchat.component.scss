@@ -43,6 +43,8 @@
 
 //template
 
+button:focus {outline:0;}
+
 body,html{
     height: 100%;
     margin: 0;
@@ -109,8 +111,6 @@ border-radius: 0 0 15px 15px !important;
     border:0 !important;
     color:white !important;
     height: 45px !important;
-    overflow-y: auto;
-    width: 100%;
     border-radius: 20px;
 }
     .type_msg:focus{

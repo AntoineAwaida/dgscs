@@ -31,7 +31,7 @@
                 
 
                 
-                <ng-container *ngIf="isSocketMsg(msg)">
+                <ng-container *ngIf="isSocketMsg(msg)"> 
 
                     <div *ngIf ="msg.user == this.auth.getPayload()._id">
       
@@ -40,7 +40,7 @@
                             <div class="msg_cotainer_send">
                               {{msg.content}}
                             </div>
-                            <ng-container *ngIf="i==messages.length-1 || (messages[i+1] && msg.user[0]._id != messages[i+1].user[0]._id)">
+                            <ng-container *ngIf="i==messages.length-1 || (messages[i+1] && msg.realuser._id != messages[i+1].realuser._id)">
                                 <div class="msg_time_send">{{this.auth.getPayload().first_name}} , {{hour(msg.date)}}</div>
                             </ng-container>
                            
@@ -56,7 +56,7 @@
       
                         <div class="d-flex justify-content-start chat_mb">
                             <div class="img_cont_msg">
-                              <img [src]="msg.user[0].photoURL" class="rounded-circle user_img_msg">
+                              <img [src]="msg.realuser.photoURL" class="rounded-circle user_img_msg">
                             </div>
                             <div fxLayout="column">
                                 <div class="msg_cotainer">
@@ -65,8 +65,8 @@
                                     
                                     
                                 </div>
-                                <ng-container *ngIf="i==messages.length-1 || (messages[i+1] && msg.user[0]._id != messages[i+1].user[0]._id)">
-                                    <div class="msg_time">{{msg.user[0].first_name}} , {{hour(msg.date)}}</div>
+                                <ng-container *ngIf="i==messages.length-1 || (messages[i+1] && msg.realuser._id != messages[i+1].realuser._id)">
+                                    <div class="msg_time">{{msg.realuser.first_name}} , {{hour(msg.date)}}</div>
                                 </ng-container>
 
                             </div>
@@ -148,11 +148,11 @@
           </div>
           <div class="card-footer">
             <div class="input-group">
-              <div class="input-group-append">
-                <!--<span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>-->
-              </div>
+              
               <form style="width:100%" (keyup.enter)="submit($event)">
-                      <input placeholder="Votre message..." [value]="message" class="form-control type_msg" name="message" required>
+                      <input placeholder="Votre message..." [value]="message" class="form-control type_msg" name="message" maxlength="75" required>
+                      <span style="font-size: 8px; color:gray; position:absolute; bottom:15">75 caractères max.</span>
+                      
               </form>
             </div>
           </div>

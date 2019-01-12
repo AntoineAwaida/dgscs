@@ -89,6 +89,9 @@
   </div>
 
   <h3>Vos favoris</h3>
+  <div *ngIf="ready_favs">
+
+
   <div style="font-style:italic">Workpackages</div>
   <ul>
     <div *ngFor="let element of element_selected">
@@ -105,7 +108,13 @@
       </div>
     </div> 
   </ul>
+      
+  </div>
 
+  <div *ngIf="!ready_favs" fxLayoutAlign="space-around center" style="overflow:hidden">
+      <div class="loader">
+      </div> 
+  </div>
 
   <button mat-raised-button [color]="'edit'" type="submit" value="submit">Modifiez votre liste de favoris</button>
  

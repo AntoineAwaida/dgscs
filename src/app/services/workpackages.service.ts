@@ -3,15 +3,17 @@ import { HttpClient } from '@angular/common/http'
 import {Observable} from 'rxjs'
 
 import { api, server } from '../constants';
+import { Task } from './task.service';
+import { Group } from './groups.service';
 
 
 export interface WorkPackage {
 
   name:string,
   description:string,
-  tasks: Array<string>,
+  tasks: Array<Task>,
   status: string,
-  groups: Array<any>,
+  groups: Array<Group>,
   files? : Array<any>,
   _id?:string
 
