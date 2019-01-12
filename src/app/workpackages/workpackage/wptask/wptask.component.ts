@@ -3,7 +3,6 @@ import { WorkPackage, WorkpackagesService } from 'src/app/services/workpackages.
 
 import { MatDialog } from '@angular/material';
 import { AddTaskDialogComponent } from '../add-task-dialog/add-task-dialog.component';
-import { timingSafeEqual } from 'crypto';
 
 
 @Component({
