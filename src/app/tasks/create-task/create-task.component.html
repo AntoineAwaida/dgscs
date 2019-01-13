@@ -3,79 +3,61 @@
 <div class="container">
   <h2>Créer une nouvelle tâche</h2>
 
-  <!-- <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <div class="form-group">
+    <label for="name">Titre</label>
+    <input maxlength="30" type="text" class="form-control" id="name" name="name" [(ngModel)]="name">
+  </div>
 
-    <div class="form-group">
-      <label for="name">Titre</label>
-      <input maxlength="30" type="text" class="form-control" id="name" name="title" ngModel required>
-    </div>
-
-    <div class="form-group">
-      <label for="description">Description de la tâche</label>
-      <input type="text" class="form-control" id="description" name="description" ngModel required>
-    </div>
-
-    <div class="form-group">
-      <label for="groupes">Groupes associés</label>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text" [ngStyle]="{height:'calc(2.25rem + 2px)'}"><i class="fa fa-search"></i></span>
-        </div>
-        <div id="myDropdown" class="dropdown-content">
-          <input type="search" class="form-control" (keyup)="onSearch()" placeholder="Rechercher un groupe..."
-            [(ngModel)]="recherche" [ngModelOptions]="{standalone: true}">
-          <div *ngFor="let group_s of groups_searched">
-            <a class="pointer" (click)="addGroup(group_s)">{{group_s.name}}</a>
-          </div>
-        </div>
-      </div>
-      <br>
-      <div *ngFor="let group of groups_selected" class="grouplist">
-        <button type="button" class="btn btn-danger nopointer">{{group.name + " | "}}<div class="pointer" (click)="deleteGroup(group)"><i
-              class="fa fa-times"></i></div></button>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <mat-form-field>
-        <input matInput [matDatepicker]="startingDate" placeholder="Date de début" name="startingDate" ngModel required>
-        <mat-datepicker-toggle matSuffix [for]="startingDate"></mat-datepicker-toggle>
-        <mat-datepicker touchUi #startingDate></mat-datepicker>
-      </mat-form-field>
-    </div>
-
-    <div class="form-group">
-      <mat-form-field>
-        <input matInput [matDatepicker]="endingDate" placeholder="Date de fin" name="endingDate" ngModel required>
-        <mat-datepicker-toggle matSuffix [for]="endingDate"></mat-datepicker-toggle>
-        <mat-datepicker touchUi #endingDate></mat-datepicker>
-      </mat-form-field>
-    </div>
-
-    <button *ngIf="!isSent" type="submit" class="btn btn-success" [disabled]="(!f.form.valid)||(groups_selected.length==0)">Créer
-      la tâche</button>
-    <div *ngIf="isSent" fxLayoutAlign="space-around center" style="overflow:hidden">
-      <div class="loader">
-      </div>
-    </div>
-  </form> -->
+  <div class="form-group">
+    <label for="description">Description de la tâche</label>
+    <input type="text" class="form-control" id="description" name="description" [(ngModel)]="description">
+  </div>
 
   <div class="form-group">
     <mat-form-field>
-      <input matInput [matDatepicker]="startingDate2" placeholder="Date de début" name="startingDate2" [formControl]="startingDateControl"
-        required>
-      <mat-datepicker-toggle matSuffix [for]="startingDate2"></mat-datepicker-toggle>
-      <mat-datepicker touchUi #startingDate2></mat-datepicker>
+      <input matInput [matDatepicker]="startingDatePicker" placeholder="Date de début" name="startingDatePicker" [(ngModel)]="startingDate"
+        >
+      <mat-datepicker-toggle matSuffix [for]="startingDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #startingDatePicker></mat-datepicker>
     </mat-form-field>
   </div>
 
   <div class="form-group">
     <mat-form-field>
-      <input matInput [matDatepicker]="startingDate3" placeholder="Date de début" name="startingDate3" [(ngModel)]="startingDate"
-        required>
-      <mat-datepicker-toggle matSuffix [for]="startingDate3"></mat-datepicker-toggle>
-      <mat-datepicker touchUi #startingDate3></mat-datepicker>
+      <input matInput [matDatepicker]="endingDatePicker" placeholder="Date de fin" name="endingDatePicker" [(ngModel)]="endingDate"
+        >
+      <mat-datepicker-toggle matSuffix [for]="endingDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #endingDatePicker></mat-datepicker>
     </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <label for="groupes">Groupes associés</label>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" [ngStyle]="{height:'calc(2.25rem + 2px)'}"><i class="fa fa-search"></i></span>
+      </div>
+      <div id="myDropdown" class="dropdown-content">
+        <input type="search" class="form-control" (keyup)="onSearch()" placeholder="Rechercher un groupe..."
+          [(ngModel)]="recherche" [ngModelOptions]="{standalone: true}">
+        <div *ngFor="let group_s of groups_searched">
+          <a class="pointer" (click)="addGroup(group_s)">{{group_s.name}}</a>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div *ngFor="let group of groups_selected" class="grouplist">
+      <button type="button" class="btn btn-danger nopointer">{{group.name + " | "}}<div class="pointer" (click)="deleteGroup(group)"><i
+            class="fa fa-times"></i></div></button>
+    </div>
+  </div>
+
+  <button *ngIf="!isSent" type="submit" class="btn btn-success" (click)="onSubmit()" [disabled]="formInvalid()">Créer
+    la tâche</button>
+
+  <div *ngIf="isSent" fxLayoutAlign="space-around center" style="overflow:hidden">
+    <div class="loader">
+    </div>
   </div>
 
 </div>

@@ -23,8 +23,7 @@ const taskRoutes: Routes = [
        { path : '', component : TaskListComponent},
        { path: 'add-file', component : TaskFileComponent},
        { path: 'details/:id', component: TaskDetailsComponent, data: { title: 'Mes Tâches > Détail' }},
-       { path: 'create-task', component: TaskFormComponent, data: { title: 'Mes Tâches > Créer une tâche' }},
-       { path : 'create-task-test', component : CreateTaskComponent, data: { title: 'Mes Tâches > Créer une tâche' }},
+       { path : 'create-task', component : CreateTaskComponent, data: { title: 'Mes Tâches > Créer une tâche' }},
        { path: 'edit-task/:id', component: TaskEditComponent, data: { title: 'Mes Tâches > Editer une tâche' }}
     ],
     

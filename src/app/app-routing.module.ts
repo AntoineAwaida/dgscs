@@ -31,7 +31,7 @@ import { MyGroupsComponent } from './groups/my-groups/my-groups.component';
 const appRoutes: Routes = [
   { path: 'groups', canActivate:[AuthGuardService, PendingGuardService], component: GroupsComponent, data: { title: 'Groupes' }},
   { path: 'missions', canActivate:[AuthGuardService, PendingGuardService], component: MissionsComponent, data: { title: 'Mes Missions' } },
-  { path: 'dashboard', canActivate:[AuthGuardService], component: DashboardComponent,data: { title: 'Mon Dashboard' } },
+  { path: 'dashboard', canActivate:[AuthGuardService, PendingGuardService], component: DashboardComponent,data: { title: 'Mon Dashboard' } },
   { path: 'work-packages',  canActivate:[AuthGuardService, PendingGuardService], component: WorkpackagesComponent, data: { title: 'Mes Work Packages' }},
   { path: 'workpackage/:id', canActivate:[AuthGuardService, PendingGuardService], component: WorkpackageComponent, data: { title: 'Mes Work Packages > Détail' } },
   { path: 'files', canActivate:[AuthGuardService, PendingGuardService], component: UploadsComponent, data: { title: 'Mes Fichiers' } },
