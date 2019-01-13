@@ -20,9 +20,10 @@
         <div class="card-body">
       
         <ng-container *ngIf="announce">
-      
-            <h1>{{announce.title}}</h1>
-      
+            <h4>{{announce.title}}</h4>
+            <em class="small">le {{ announce.date | date : 'dd/MM/yyyy à HH:mm:ss'  }}</em>
+            <br>
+            <br>
             <p>
               {{announce.content}}
             </p>

@@ -16,8 +16,9 @@ export class CreateTaskComponent implements OnInit {
 
 
   createdTask: Task;
-  name: String;
-  description: String;
+
+  name = ""; 
+  description = "";
   startingDate: Date;
   endingDate: Date;
   error: string;
@@ -28,22 +29,20 @@ export class CreateTaskComponent implements OnInit {
   recherche: string;
 
   isSent = false;
-  startingDateControl;
 
   constructor(private auth: AuthService, private taskService: TaskService, private groupService: GroupsService) { }
 
   ngOnInit() {
     this.getGroups();
-    this.startingDateControl = new FormControl(new Date());
-    this.startingDate = new Date();
+    this.startingDate = new Date()
+    this.endingDate = new Date()
   }
 
-  onSubmit(form: NgForm) {
-    this.name = form.value['title'];
-    this.description = form.value['description'];
-    this.startingDate = form.value['startingDate'];
-    this.endingDate = form.value['endingDate'];
+  formInvalid() {
+    return ((this.name.length == 0)||(this.groups_selected.length == 0)||(this.description.length == 0))
+  }
 
+  onSubmit() {
 
     const groups = this.groups_selected.map((g) => g._id);
 
@@ -65,7 +64,6 @@ export class CreateTaskComponent implements OnInit {
       this.taskService.createTask(task);
       this.isSent = true;
     }
-    //console.log(task);
 
   }
 
