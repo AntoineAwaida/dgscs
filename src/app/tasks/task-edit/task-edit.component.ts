@@ -65,7 +65,7 @@ export class TaskEditComponent implements OnInit {
       author: this.auth.getPayload()._id,
       groups: groups,
       startingDate: new Date(this.startingDate),
-      endingDate: new Date(this.endingDate),
+      endingDate: new Date(this.endingDate)
     }; 
 
     if (task.endingDate < task.startingDate) {
