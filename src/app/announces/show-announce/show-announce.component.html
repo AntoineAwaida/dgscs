@@ -1,9 +1,7 @@
 <div class="card">
 
     <h4>{{announce.title}}</h4>
-    <p>
-      {{announce.content}}
-    </p>
+    <div [innerHTML]="sanitizetext(announce.content)"></div>
 
     <span style="font-style: italic">
       Publié par {{announce.author[0].first_name + ' ' + announce.author[0].last_name}}, le {{date(announce.date)}}.
