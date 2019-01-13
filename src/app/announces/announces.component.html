@@ -1,0 +1,71 @@
+<br />
+
+
+<h1 class="title" >Annonces</h1>
+
+<div *ngIf = "this.ready">
+
+        <div *ngIf="showAnnounce">
+                <app-show-announce [announce]="show_announce"></app-show-announce>
+
+                <br />
+                <br />
+                <button mat-raised-button [color]="'back'" (click)="unshow()"><i class="fas fa-chevron-left"></i> Retour</button>
+
+        </div>
+
+        <div *ngIf="!showAnnounce">
+
+                        <mat-form-field>
+                                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrez...">
+                        </mat-form-field>
+                
+                        <div class="mat-elevation-z8">
+
+
+                                        <table mat-table [dataSource]="dataSource">
+
+                                                <ng-container matColumnDef="title">
+                                                        <th mat-header-cell *matHeaderCellDef> Titre </th>
+                                                        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+                                                </ng-container>
+                                        
+                                        
+                                                <ng-container matColumnDef="date">
+                                                        <th mat-header-cell *matHeaderCellDef> Date </th>
+                                                        <td mat-cell *matCellDef="let element"> {{date(element.date)}} </td>
+                                                </ng-container>
+
+                                                <ng-container matColumnDef="author">
+                                                        <th mat-header-cell *matHeaderCellDef> Auteur </th>
+                                                        <td mat-cell *matCellDef="let element"> {{element.author[0].first_name + ' ' + element.author[0].last_name}} </td>
+                                                </ng-container>
+                                        
+                                        
+                                                <ng-container matColumnDef="actions">
+                                                                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                                                                <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary" (click)="show(element)" class="groupbutton"><i class="fas fa-search"></i>  Consulter </button> </td>
+                                                </ng-container>
+                                                        
+                                        
+                                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                                        </table>
+                                                
+                                        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+
+
+                        </div>
+
+
+        </div>
+
+                
+                <br/>
+</div>
+<div *ngIf="!this.ready" fxLayoutAlign="space-around center" style="overflow:hidden">
+        <div class="loader">
+        </div> 
+</div>

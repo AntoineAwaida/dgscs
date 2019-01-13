@@ -4,6 +4,8 @@ import { WorkPackage } from '../services/workpackages.service';
 import { Task } from '../services/task.service';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
+import { ReportService } from '../services/report.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,29 +17,43 @@ export class DashboardComponent implements OnInit {
   announce:Announce;
   ready:boolean = false;
 
+  reports: Array<any> = null
+
   //favs:Array<any> = [];
   favWorkPackages = [];
   favTasks = [];
 
 
-  constructor(private announceService: AnnouncesService, private auth: AuthService, private userService: UserService) { }
+  constructor(private announceService: AnnouncesService, private auth: AuthService, private userService: UserService, private reportService: ReportService) { }
 
   ngOnInit() {
 
-    this.announceService.getLastAnnounce().subscribe((res:any)=> (this.announce = res) && (this.ready = true) && (console.log(res)) , (error)=> console.log(error))
 
+    const obs1 =  this.announceService.getLastAnnounce();
+
+    const obs2 = this.reportService.get3LastReports();
+
+    const obs3 = this.userService.getMyFavs();
+
+    const obs = forkJoin(obs1,obs2,obs3);
+
+   obs.subscribe((res:any)=> {
+     this.announce = res[0];
+     this.reports = res[1];
+     console.log(this.reports)
+     this.favWorkPackages=res[2].favWorkPackages;
+     this.favTasks=res[2].favTasks;
+     this.ready = true;
+
+   }, (error)=> console.log(error))
+
+    
+
+   /*
     this.getFavs();
+    this.getReports();
 
-  }
-
-  getFavs(){
-
-    this.userService.getMyFavs().subscribe((res:any) => {
-      this.favWorkPackages = res.favWorkPackages;
-      this.favTasks = res.favTasks;
-    },
-    (error) => console.log(error)
-    )
+    */
 
   }
 

@@ -27,6 +27,7 @@ import { NotFoundComponent } from './routing-error/not-found/not-found.component
 import { TitleService } from './services/title.service';
 import { UploadsComponent } from './files/uploads/uploads.component';
 import { MyGroupsComponent } from './groups/my-groups/my-groups.component';
+import { AnnouncesComponent } from './announces/announces.component';
 
 const appRoutes: Routes = [
   { path: 'groups', canActivate:[AuthGuardService, PendingGuardService], component: GroupsComponent, data: { title: 'Groupes' }},
@@ -35,6 +36,7 @@ const appRoutes: Routes = [
   { path: 'work-packages',  canActivate:[AuthGuardService, PendingGuardService], component: WorkpackagesComponent, data: { title: 'Mes Work Packages' }},
   { path: 'workpackage/:id', canActivate:[AuthGuardService, PendingGuardService], component: WorkpackageComponent, data: { title: 'Mes Work Packages > Détail' } },
   { path: 'files', canActivate:[AuthGuardService, PendingGuardService], component: UploadsComponent, data: { title: 'Mes Fichiers' } },
+  { path: 'announces', canActivate:[AuthGuardService, PendingGuardService], component: AnnouncesComponent, data: {title: 'Annonces'}},
 
   { path: 'register', canActivate:[AuthGuardService], component: RegisterComponent, data: { title: 'Inscription' } },
   { path: 'login', canActivate:[AuthGuardService], component: LoginComponent, data: { title: 'Connexion' } },

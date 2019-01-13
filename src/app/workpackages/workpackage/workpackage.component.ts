@@ -41,6 +41,8 @@ export class WorkpackageComponent implements OnInit, OnDestroy {
         this.workpackage$ = res
         this.workpackageID = res._id;
 
+        console.log(res.files)
+
       } , (error)=> console.log(error));
 
     this.getMyWorkPackages();

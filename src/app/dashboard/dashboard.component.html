@@ -21,15 +21,21 @@
       
         <ng-container *ngIf="announce">
             <h4>{{announce.title}}</h4>
-            <em class="small">le {{ announce.date | date : 'dd/MM/yyyy à HH:mm:ss'  }}</em>
-            <br>
-            <br>
             <p>
               {{announce.content}}
             </p>
 
             <span style="font-style: italic">
-              Publié par {{announce.author[0].first_name + ' ' + announce.author[0].last_name}}, le {{date(announce.date)}}.
+              <div fxLayout="row" fxLayoutAlign="space-between" >
+                <div>
+                    Publié par {{announce.author[0].first_name + ' ' + announce.author[0].last_name}}, le {{date(announce.date)}}.
+                </div>  
+                <div>
+                  <a routerLink='/announces' style="font-style:normal">>>Toutes les annonces</a>
+                </div>
+
+              </div>
+              
             </span>
       
         </ng-container>
@@ -55,7 +61,13 @@
                 <i class="fas fa-file"></i> Les derniers compte-rendus
             </div>
             <div class="card-body">
-              Vous n'avez entré aucun compte-rendu.
+              <div *ngIf="!reports">
+                  Aucun compte-rendu n'est disponible.
+              </div>
+              <div *ngIf="reports">
+                  <app-dashboard-reports [files]="reports"></app-dashboard-reports>
+              </div>
+              
             </div>
           </div>
           <br>

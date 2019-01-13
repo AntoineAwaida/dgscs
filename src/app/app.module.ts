@@ -76,6 +76,9 @@ import { WptaskComponent } from './workpackages/workpackage/wptask/wptask.compon
 import { TaskTasksComponent } from './tasks/task-details/task-tasks/task-tasks.component';
 import { AdminRapportsComponent } from './admin/admin-rapports/admin-rapports.component';
 import { AddRapportFormComponent } from './admin/admin-rapports/add-rapport-form/add-rapport-form.component';
+import { DashboardReportsComponent } from './dashboard/dashboard-reports/dashboard-reports.component';
+import { AnnouncesComponent } from './announces/announces.component';
+import { ShowAnnounceComponent } from './announces/show-announce/show-announce.component';
 
 @NgModule({
   declarations: [
@@ -136,7 +139,13 @@ import { AddRapportFormComponent } from './admin/admin-rapports/add-rapport-form
 
     AdminRapportsComponent,
 
-    AddRapportFormComponent
+    AddRapportFormComponent,
+
+    DashboardReportsComponent,
+
+    AnnouncesComponent,
+
+    ShowAnnounceComponent
   ],
   imports: [
     HttpClientModule,

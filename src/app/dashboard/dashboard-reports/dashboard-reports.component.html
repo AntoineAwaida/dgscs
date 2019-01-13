@@ -1,0 +1,21 @@
+<ul class="list-group list-group-flush">
+    <li *ngFor="let myfile of files" class="list-group-item list-group-item-action small" >
+      
+
+        <div fxLayout="row">
+          <div style="margin-right: 10px">
+              <i class="far fa-file-word" style="font-size:34px"></i>
+          </div>
+          <div>
+            <a [href]="getFile(myfile.file)">{{ myfile.file.name }}</a> 
+            <span *ngIf="myfile.file.description" matTooltipClass="tooltip_class"  matTooltipPosition="after" [matTooltip]="myfile.file.description"> <i class="fas fa-info-circle ml-1"></i></span>
+    
+            <div class="small" *ngIf="(myfile.file.name!=myfile.file.originalName)&&(myfile.file.originalName)">({{ myfile.file.originalName }})</div>
+          </div>
+        </div>
+        <div>
+          <em>{{ myfile.file.author.first_name }} {{ myfile.file.author.last_name }}, le {{ myfile.file.date | date : 'dd/MM/yyyy à HH:mm:ss' }}</em>
+        </div>
+  
+    </li>
+  </ul>
