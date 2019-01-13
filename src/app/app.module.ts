@@ -80,7 +80,8 @@ import { DashboardReportsComponent } from './dashboard/dashboard-reports/dashboa
 import { AnnouncesComponent } from './announces/announces.component';
 import { ShowAnnounceComponent } from './announces/show-announce/show-announce.component';
 
-import {FroalaEditorModule, FroalaViewModule} from 'angular-froala-wysiwyg';
+
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
   declarations: [
@@ -151,8 +152,7 @@ import {FroalaEditorModule, FroalaViewModule} from 'angular-froala-wysiwyg';
   ],
   imports: [
 
-    FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot(),
+    CKEditorModule,
 
     HttpClientModule,
     BrowserModule,

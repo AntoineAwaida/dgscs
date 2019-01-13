@@ -22,7 +22,6 @@ export class TaskListComponent implements OnInit {
     this.taskService.getMyTasks()
     .subscribe(
       (res) =>{
-        console.log(res);
         this.tasks = res;
         this.loader = false;
       }

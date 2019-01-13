@@ -21,7 +21,7 @@
       
         <ng-container *ngIf="announce">
             <h4>{{announce.title}}</h4>
-            <div [froalaView]="announce.content"></div>
+            <div [innerHTML]="sanitizetext(announce.content)"></div>
 
             <span style="font-style: italic">
               <div fxLayout="row" fxLayoutAlign="space-between" >

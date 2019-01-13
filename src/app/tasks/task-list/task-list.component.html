@@ -12,22 +12,29 @@
 
         <ol *ngIf="!loader">
           <li *ngFor="let task of tasks">
-            <button mat-button class="buttonTask" [routerLink]=" '/tasks/details/' + task._id">
 
-              {{task.name}} 
+            <ng-container *ngIf="task.status !='done'">
 
-              <i *ngIf="isAuthor(task)" class="ml-1 fas fa-pencil-alt"></i>
+                <button mat-button class="buttonTask" [routerLink]=" '/tasks/details/' + task._id">
 
-              <span class="small" [ngStyle] = "{
-              'color' : task.status == 'pending' ? 'red' : task.status == 'ongoing' ? 'rgb(255, 81, 0)' : 'green',
-              'fontWeight' : 'bold',
-              'marginLeft' : '5px',
-              'fontStyle' : 'italic'
-            }">{{ getStatus(task) }}
-          </span>
+                  {{task.name}} 
+    
+                  <i *ngIf="isAuthor(task)" class="ml-1 fas fa-pencil-alt"></i>
+    
+                  <span class="small" [ngStyle] = "{
+                  'color' : task.status == 'pending' ? 'red' : task.status == 'ongoing' ? 'rgb(255, 81, 0)' : 'green',
+                  'fontWeight' : 'bold',
+                  'marginLeft' : '5px',
+                  'fontStyle' : 'italic'
+                }">{{ getStatus(task) }}
+              </span>
+    
+            
+            </button>
 
-        
-        </button>
+
+            </ng-container>
+            
           </li>
         </ol>
 

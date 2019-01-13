@@ -2,6 +2,9 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { AnnouncesService } from 'src/app/services/announces.service';
 import { AuthService } from 'src/app/services/auth.service';
 
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
+
 @Component({
   selector: 'app-add-announces-form',
   templateUrl: './add-announces-form.component.html',
@@ -19,11 +22,11 @@ export class AddAnnouncesFormComponent{
     }
   };
 
+  public Editor = ClassicEditor;
+
   editform:string;
 
-  public options: Object = {
-    placeholderText: "Contenu de l'annonce..."
-  }
+
   
   title:string;
 
@@ -31,7 +34,7 @@ export class AddAnnouncesFormComponent{
 
   author:any; //à remplacer par une interface User
 
-  content:string;
+  content:string = '';
 
 
   error:string;
@@ -46,6 +49,9 @@ export class AddAnnouncesFormComponent{
 
   async onSubmit(f) {
 
+    console.log(this.content)
+
+    
     
 
 
@@ -108,6 +114,8 @@ export class AddAnnouncesFormComponent{
       
       
     }
+
+    
 
 
 

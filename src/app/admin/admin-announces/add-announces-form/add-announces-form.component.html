@@ -7,14 +7,35 @@
       <input type="text" maxlength="24" placeholder="Titre de l'annonce" class="form-control" name="title" [(ngModel)]="title" required>
     </div>
 
+    <ckeditor [editor]="Editor" [config]="{highlight: {
+      options: [
+          {
+              model: 'greenMarker',
+              class: 'marker-green',
+              title: 'Green marker',
+              color: 'var(--ck-highlight-marker-green)',
+              type: 'marker'
+          },
+          {
+              model: 'redPen',
+              class: 'pen-red',
+              title: 'Red pen',
+              color: 'var(--ck-highlight-pen-red)',
+              type: 'pen'
+          }
+      ]
+  }, toolbar: [
+  'heading', '|', 'bulletedList', 'numberedList', 'highlight', 'undo', 'redo', 'bold', 'italic'
+] }" [(ngModel)]="content" placholder="'Contenu de l\'annonce...'" name="content"></ckeditor>
+  
+  
     <!--
     <div class="form-group">
       <textarea placeholder="Contenu de l'annonce" class="form-control" name="content" [(ngModel)]="content" required></textarea>
-    </div>-->
-
-    <div class="form-group">
-        <textarea [froalaEditor]='options' [(ngModel)]="content" name="content"></textarea>
     </div>
+
+    -->
+
 
 
   

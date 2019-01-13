@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Sanitizer, SecurityContext } from '@angular/core';
 import { AnnouncesService, Announce } from '../services/announces.service';
 import { WorkPackage } from '../services/workpackages.service';
 import { Task } from '../services/task.service';
@@ -6,6 +6,7 @@ import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 import { ReportService } from '../services/report.service';
 import { forkJoin } from 'rxjs';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,7 +25,7 @@ export class DashboardComponent implements OnInit {
   favTasks = [];
 
 
-  constructor(private announceService: AnnouncesService, private auth: AuthService, private userService: UserService, private reportService: ReportService) { }
+  constructor(private announceService: AnnouncesService, private auth: AuthService, private userService: UserService, private reportService: ReportService, private sanitize: DomSanitizer) { }
 
   ngOnInit() {
 
@@ -79,6 +80,13 @@ export class DashboardComponent implements OnInit {
     const options_time = { hour:"2-digit", minute:"2-digit"}
 
     return mydate.toLocaleDateString('fr-FR', options) + " à " + mydate.toLocaleTimeString('fr-FR',options_time)
+
+  }
+
+  sanitizetext(text){
+
+    return this.sanitize.sanitize(SecurityContext.HTML,text);
+
 
   }
 
