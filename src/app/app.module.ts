@@ -80,6 +80,8 @@ import { DashboardReportsComponent } from './dashboard/dashboard-reports/dashboa
 import { AnnouncesComponent } from './announces/announces.component';
 import { ShowAnnounceComponent } from './announces/show-announce/show-announce.component';
 
+import {FroalaEditorModule, FroalaViewModule} from 'angular-froala-wysiwyg';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -148,6 +150,10 @@ import { ShowAnnounceComponent } from './announces/show-announce/show-announce.c
     ShowAnnounceComponent
   ],
   imports: [
+
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot(),
+
     HttpClientModule,
     BrowserModule,
 
