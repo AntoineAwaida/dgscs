@@ -21,6 +21,9 @@ export class AddAnnouncesFormComponent{
 
   editform:string;
 
+  public options: Object = {
+    placeholderText: "Contenu de l'annonce..."
+  }
   
   title:string;
 
@@ -43,11 +46,14 @@ export class AddAnnouncesFormComponent{
 
   async onSubmit(f) {
 
+    
+
 
     this.waiting_result = true;
 
+  
 
-    if (!f.value.title || !f.value.content){
+    if (!f.value.title || !this.content){
 
       this.error = "Merci de bien donner un titre et un contenu à l'annonce."
       setTimeout(() => {this.error=null}, 4000)
@@ -98,6 +104,8 @@ export class AddAnnouncesFormComponent{
 
 
       }
+
+      
       
     }
 
