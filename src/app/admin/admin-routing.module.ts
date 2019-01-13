@@ -8,6 +8,7 @@ import { AdminWorkpackagesComponent } from './admin-workpackages/admin-workpacka
 import { AdminGuardService } from '../services/admin-guard.service';
 import { TitleService } from '../services/title.service';
 import { AdminAnnouncesComponent } from './admin-announces/admin-announces.component';
+import { AdminRapportsComponent } from './admin-rapports/admin-rapports.component';
 
 const adminRoutes: Routes = [
   {
@@ -19,7 +20,8 @@ const adminRoutes: Routes = [
        { path: 'groups', component: AdminGroupsComponent, data : { title : 'Admin > Groupes'} },
        { path: 'users', component: AdminUsersComponent, data : { title : 'Admin > Utilisateurs'} }, 
        { path: 'workpackages', component: AdminWorkpackagesComponent, data : { title : 'Admin > Work-Packages'}},
-       { path: 'announces', component: AdminAnnouncesComponent, data : { title : 'Admin > Annonces'}}
+       { path: 'announces', component: AdminAnnouncesComponent, data : { title : 'Admin > Annonces'}},
+       { path: 'rapports', component: AdminRapportsComponent, data : { title : 'Admin > Compte-rendus'}}
     ]
   }
 ]

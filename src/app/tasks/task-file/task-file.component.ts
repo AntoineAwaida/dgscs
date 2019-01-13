@@ -18,7 +18,7 @@ import { api } from '../../constants';
 export class TaskFileComponent implements OnInit, OnChanges {
 
   @Input() status: string; //readonly, active, inactive
-  @Input() type: string; //"workpackages","tasks"
+  @Input() type: string; //"workpackages","tasks","reports"
   @Input() parentID: string; //l'id de task, wp, etc. parent
 
   @Output() newFile = new EventEmitter<any>();

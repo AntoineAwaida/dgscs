@@ -65,8 +65,6 @@ import { TaskFileComponent } from './tasks/task-file/task-file.component';
 
 import { AdminAnnouncesComponent } from './admin/admin-announces/admin-announces.component';
 import { AddAnnouncesFormComponent } from './admin/admin-announces/add-announces-form/add-announces-form.component';
-import { AdminReportsComponent } from './admin/admin-reports/admin-reports.component';
-import { AddReportFormComponent } from './admin/admin-reports/add-report-form/add-report-form.component';
 import { AddTaskDialogComponent } from './workpackages/workpackage/add-task-dialog/add-task-dialog.component';
 import { TaskFileListComponent } from './tasks/task-file-list/task-file-list.component';
 import { UploadsComponent } from './files/uploads/uploads.component';
@@ -76,6 +74,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import { WptaskComponent } from './workpackages/workpackage/wptask/wptask.component';
 import { TaskTasksComponent } from './tasks/task-details/task-tasks/task-tasks.component';
+import { AdminRapportsComponent } from './admin/admin-rapports/admin-rapports.component';
+import { AddRapportFormComponent } from './admin/admin-rapports/add-rapport-form/add-rapport-form.component';
 
 @NgModule({
   declarations: [
@@ -116,8 +116,7 @@ import { TaskTasksComponent } from './tasks/task-details/task-tasks/task-tasks.c
 
     AdminAnnouncesComponent,
     AddAnnouncesFormComponent,
-    AdminReportsComponent,
-    AddReportFormComponent,
+
 
     FileSelectDirective,
 
@@ -133,7 +132,11 @@ import { TaskTasksComponent } from './tasks/task-details/task-tasks/task-tasks.c
 
     WptaskComponent,
 
-    TaskTasksComponent
+    TaskTasksComponent,
+
+    AdminRapportsComponent,
+
+    AddRapportFormComponent
   ],
   imports: [
     HttpClientModule,

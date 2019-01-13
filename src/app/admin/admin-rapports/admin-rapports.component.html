@@ -1,0 +1,11 @@
+<br />
+
+
+<button mat-raised-button [color]="'success'" (click)="toggleAddForm()">
+    <div *ngIf="!this.showAddForm">Ajouter un compte-rendu</div>
+    <div *ngIf="this.showAddForm">Fermer</div>
+</button>
+
+<div *ngIf="this.showAddForm">
+  <app-add-rapport-form></app-add-rapport-form>
+</div>
