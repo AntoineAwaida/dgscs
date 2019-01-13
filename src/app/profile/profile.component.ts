@@ -142,7 +142,6 @@ export class ProfileComponent implements OnInit {
       this.modified_profile = true;
       this.loaderPhoto = false;
       this.auth.changePhotoDate();
-      console.log(res);
       setTimeout(() => this.modified_profile = false, 4000);
     }, (error) => {
       this.error = error;

@@ -24,7 +24,7 @@ export class WptaskComponent implements OnInit {
 
 
     const dialogRef = this.dialog.open(AddTaskDialogComponent, {
-      data: {id : e, wptasks: this.workpackage.tasks}
+      data: {id : e, tasks: this.workpackage.tasks, type:'workpackage'}
     })
 
 

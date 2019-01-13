@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 
 import { server } from '../../constants';
 import { WorkPackage } from 'src/app/services/workpackages.service';
+import { flatMap } from 'rxjs/operators';
 
  
 @Component({
@@ -19,7 +20,7 @@ export class TaskDetailsComponent implements OnInit {
   loader = true;
   initialStatus;
   taskID;
-  linked_wp: Array<WorkPackage>;
+  linked_wp: Array<any>;
 
   constructor(
     private route: ActivatedRoute,
@@ -43,29 +44,22 @@ export class TaskDetailsComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.taskID = id;
     
-    this.taskService.getTask(id)
-    .subscribe(
-      (task:any) => {
-        if(task){
-          console.log(task);
-          this.selectedTask = task;
-          this.loader = false;
-          this.initialStatus = task.status;
-        }
-        else {
-          console.log("erreur : impossible de récupérer la tâche");
-          this.router.navigate(['tasks']);
-        }   
-      }, (err) => {
-        console.log("erreur : impossible de récupérer la tâche");
-        this.router.navigate(['tasks']);
-      }
-    )
+    this.taskService.getTask(id).pipe(
+    flatMap((task:any)=>(this.selectedTask = task) && (this.initialStatus = task.status) && (this.taskService.getWP(task._id)))) 
+    .subscribe((res:any)=> {
+      this.linked_wp = res;
+      this.loader = false;
+    }, (err) => {
+      console.log("erreur : impossible de récupérer les wp ou les tâches liés.");
+      this.router.navigate(['tasks']);
+    })
   }
 
-  getWP() :void {
+  getWP(taskid) :void {
 
-    //la suite demain!
+    this.taskService.getWP(taskid).subscribe((res:any)=> {
+      console.log(res)
+    })
 
   }
 

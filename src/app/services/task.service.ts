@@ -15,7 +15,8 @@ export interface Task {
   groups:[string],
   startingDate:Date,
   endingDate:Date,
-  status:String
+  status:String,
+  tasks:Array<Task>
 
 
 }
@@ -48,6 +49,24 @@ export class TaskService {// service qui met à jour les tâches
 
   editTaskStatus(id: string, status: string) : Observable<any>  {
     return this.httpClient.put(api+"tasks/edittaskstatus/"+this.auth.getPayload()._id, { taskID : id, status : status });
+  }
+
+  deleteLinkTask(data): Observable<Object> {
+
+    return this.httpClient.put(api + "tasks/deletelinktask/", data);
+
+  }
+
+  addLinkTask(data): Observable<Object> {
+
+    return this.httpClient.put(api + "tasks/addlinktask", data);
+
+  }
+  
+  getWP(taskid:string): Observable<Object>{
+
+    return this.httpClient.get(api + "tasks/getwp/" + taskid)
+
   }
 
 }

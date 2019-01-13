@@ -17,108 +17,127 @@
   {{user.first_name + ' ' + user.last_name }}
 </h2>
 
+<div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column">
 
-<form [formGroup]="form" (ngSubmit)="onPPSubmit()">
+  <div fxFlex>
+      <form [formGroup]="form" (ngSubmit)="onPPSubmit()">
 
-  <div class="form-group">
-    <label><strong>Votre photo de profil</strong></label>
-    <br />
-    <input type="file" (change)="onPPChange($event)" id="profilepicture" name="profilepicture"  #fileInput />
-    <ng-container *ngIf="preview">
-        <img [src]="preview" class="profilepicture" />
-    </ng-container>
-  </div>
-
-  <button *ngIf="!loaderPhoto" mat-raised-button [color]="'info'" type="submit" value="submit" [disabled] = "loaderPhoto">Modifiez votre photo</button>
-  <div *ngIf="loaderPhoto" fxLayoutAlign="space-around center" style="overflow:hidden">
-    <div class="loader">
-    </div><br>
-  </div>
-
-</form>
-
-<br />
-<br />
-
-
-<form [formGroup]="f2" (ngSubmit)="onPasswordSubmit()">
-
-    <div class="form-group">
-      <label><strong>Changez votre mot de passe</strong></label>
-      <br />
-      <div class="form-group">
-          <input type="password" class="form-control" placeholder="Mot de passe" formControlName="password" (keyup)="onChange()">
-          <small [ngStyle]="{color:'red', fontSize:'70%'}" *ngIf="(f2.controls.password.status!='VALID')&&(f2.controls.password.value!='')">Le
-              mot de passe doit avoir plus de 8 caractères</small>
-
-      </div>
-      <div class="form-group">
-          <input type="password" class="form-control" placeholder="Confirmation du mot de passe" formControlName="password2">
-          <small [ngStyle]="{color:'red', fontSize:'70%'}" *ngIf="(f2.controls.password2.value!='')&&(f2.controls.password.value!='')&&(f2.value.password!=f2.value.password2)">Les
-              mots de passe ne sont pas identiques</small>
-      </div>
-      
-      
-    </div>
-  
-    <button mat-raised-button [color]="'info'" type="submit" value="submit" [disabled]="(f2.invalid)||(f2.value.password!=f2.value.password2)" >Modifiez votre mot de passe</button>
-  
-</form>
-
-<br />
-<br />
-
-<form #f="ngForm" (ngSubmit)="onFavSubmit()">
-
-  <div class="form-group">
-    <label><strong>Modifiez votre liste de favoris</strong></label>
-  </div>
-
-  <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text" [ngStyle]="{height:'calc(2.25rem + 2px)'}"><i class="fa fa-search"></i></span>
-      </div>
-
-        <div id="myDropdown" class="dropdown-content">
-          <input type="search" class="form-control" (keyup)="onSearch()" placeholder="Rechercher..."
-          [(ngModel)]="recherche" [ngModelOptions]="{standalone: true}">
-          <div *ngFor="let element of element_searched ">
-            <a class="pointer" (click)="addElement(element)">{{element.name}}</a>
+          <div class="form-group">
+            <label><strong>Votre photo de profil</strong></label>
+            <br />
+            <input type="file" (change)="onPPChange($event)" id="profilepicture" name="profilepicture"  #fileInput />
+            <ng-container *ngIf="preview">
+                <img [src]="preview" class="profilepicture" />
+            </ng-container>
           </div>
-        </div>
+        
+          <button *ngIf="!loaderPhoto" mat-raised-button [color]="'info'" type="submit" value="submit" [disabled] = "loaderPhoto">Modifiez votre photo</button>
+          <div *ngIf="loaderPhoto" fxLayoutAlign="space-around center" style="overflow:hidden">
+            <div class="loader">
+            </div><br>
+          </div>
+        
+        </form>
+        
+        <br />
+        <br />
+        
+        
+        <form [formGroup]="f2" (ngSubmit)="onPasswordSubmit()">
+        
+            <div class="form-group">
+              <label><strong>Changez votre mot de passe</strong></label>
+              <br />
+              <div class="form-group">
+                  <input style="width: 70%" type="password" class="form-control" placeholder="Mot de passe" formControlName="password" (keyup)="onChange()">
+                  <small [ngStyle]="{color:'red', fontSize:'70%'}" *ngIf="(f2.controls.password.status!='VALID')&&(f2.controls.password.value!='')">Le
+                      mot de passe doit avoir plus de 8 caractères</small>
+        
+              </div>
+              <div class="form-group">
+                  <input style="width: 70%"  type="password" class="form-control" placeholder="Confirmation du mot de passe" formControlName="password2">
+                  <small [ngStyle]="{color:'red', fontSize:'70%'}" *ngIf="(f2.controls.password2.value!='')&&(f2.controls.password.value!='')&&(f2.value.password!=f2.value.password2)">Les
+                      mots de passe ne sont pas identiques</small>
+              </div>
+              
+              
+            </div>
+          
+            <button mat-raised-button [color]="'info'" type="submit" value="submit" [disabled]="(f2.invalid)||(f2.value.password!=f2.value.password2)" >Modifiez votre mot de passe</button>
+          
+        </form>
+        
+        <br />
+        <br />
+        
+        <form #f="ngForm" (ngSubmit)="onFavSubmit()">
+        
+          <div class="form-group">
+            <label><strong>Modifiez votre liste de favoris</strong></label>
+          </div>
+        
+          <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" [ngStyle]="{height:'calc(2.25rem + 2px)'}"><i class="fa fa-search"></i></span>
+              </div>
+        
+                <div id="myDropdown" class="dropdown-content">
+                  <input type="search" class="form-control" (keyup)="onSearch()" placeholder="Rechercher..."
+                  [(ngModel)]="recherche" [ngModelOptions]="{standalone: true}">
+                  <div *ngFor="let element of element_searched ">
+                    <a class="pointer" (click)="addElement(element)">{{element.name}}</a>
+                  </div>
+                </div>
+          </div>
+        
+          <h3>Mes favoris</h3>
+          <div *ngIf="ready_favs">
+        
+        
+          <div style="font-style:italic">Workpackages</div>
+          <ul>
+            <div *ngFor="let element of element_selected">
+              <div *ngIf="element.type == 'workpackage'">
+                  <li style="list-style: none"><i class="fas fa-star gold" (click)="deleteElement(element)"></i><a [routerLink]="['/workpackage', element._id]">{{element.name}}</a></li>
+              </div>
+            </div>
+          </ul>
+          <div style="font-style:italic">Tâches</div>
+          <ul>
+            <div *ngFor="let element of element_selected">
+              <div *ngIf="element.type == 'task'">
+                  <li style="list-style: none"><i class="fas fa-star gold" (click)="deleteElement(element)"></i><a [routerLink]="['/tasks/details', element._id]">{{element.name}}</a></li>
+              </div>
+            </div> 
+          </ul>
+              
+          </div>
+        
+          <div *ngIf="!ready_favs" fxLayoutAlign="space-around center" style="overflow:hidden">
+              <div class="loader">
+              </div> 
+          </div>
+        
+          <button mat-raised-button [color]="'edit'" type="submit" value="submit">Modifiez votre liste de favoris</button>
+         
+        
+        </form>
   </div>
 
-  <h3>Vos favoris</h3>
-  <div *ngIf="ready_favs">
+  <div>
 
+    <div fxLayout="column">
 
-  <div style="font-style:italic">Workpackages</div>
-  <ul>
-    <div *ngFor="let element of element_selected">
-      <div *ngIf="element.type == 'workpackage'">
-          <li style="list-style: none"><i class="fas fa-star gold" (click)="deleteElement(element)"></i><a [routerLink]="['/workpackage', element._id]">{{element.name}}</a></li>
-      </div>
+        <app-my-groups></app-my-groups>
+        <app-uploads></app-uploads>
+
     </div>
-  </ul>
-  <div style="font-style:italic">Tâches</div>
-  <ul>
-    <div *ngFor="let element of element_selected">
-      <div *ngIf="element.type == 'task'">
-          <li style="list-style: none"><i class="fas fa-star gold" (click)="deleteElement(element)"></i><a [routerLink]="['/tasks/details', element._id]">{{element.name}}</a></li>
-      </div>
-    </div> 
-  </ul>
-      
+    
+
   </div>
 
-  <div *ngIf="!ready_favs" fxLayoutAlign="space-around center" style="overflow:hidden">
-      <div class="loader">
-      </div> 
-  </div>
 
-  <button mat-raised-button [color]="'edit'" type="submit" value="submit">Modifiez votre liste de favoris</button>
- 
+</div>
 
-</form>
 
 

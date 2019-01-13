@@ -75,6 +75,7 @@ import { MyGroupsComponent } from './groups/my-groups/my-groups.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import { WptaskComponent } from './workpackages/workpackage/wptask/wptask.component';
+import { TaskTasksComponent } from './tasks/task-details/task-tasks/task-tasks.component';
 
 @NgModule({
   declarations: [
@@ -130,7 +131,9 @@ import { WptaskComponent } from './workpackages/workpackage/wptask/wptask.compon
 
     MyGroupsComponent,
 
-    WptaskComponent
+    WptaskComponent,
+
+    TaskTasksComponent
   ],
   imports: [
     HttpClientModule,

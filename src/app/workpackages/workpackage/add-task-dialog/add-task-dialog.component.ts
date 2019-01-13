@@ -6,7 +6,8 @@ import { WorkpackagesService } from 'src/app/services/workpackages.service';
 
 export interface DialogData {
   id:string,
-  wptasks: Array<Task>
+  tasks: Array<Task>, //taches déjà reliées à l'élément
+  type: string //workpackage ou task
 }
 
 @Component({
@@ -64,7 +65,19 @@ export class AddTaskDialogComponent implements OnInit {
 
     })
 
-    this.workpackageService.addTasks({tasks:tasks}, id).subscribe((res:any) => this.dialogRef.close(this.element_selected), (error) => this.error = error);
+    if(this.data.type =='workpackage'){
+
+      this.workpackageService.addTasks({tasks:tasks}, id).subscribe((res:any) => this.dialogRef.close(this.element_selected), (error) => this.error = error);
+
+    }
+
+    else if (this.data.type =='task'){
+
+      this.taskService.addLinkTask({task1:tasks, task2:this.data.id}).subscribe((res:any) => this.dialogRef.close(this.element_selected), (error) => this.error = error); 
+
+    }
+
+    
 
 
     
@@ -93,7 +106,14 @@ export class AddTaskDialogComponent implements OnInit {
 
   addElement(element){
     if (!this.element_selected.some(e => (e._id == element._id))){
-      if (!this.data.wptasks.some(e => e._id == element._id)){
+      if (!this.data.tasks.some(e => e._id == element._id)){
+
+        if (this.data.type == 'tasks' && this.element_selected.length==1){
+
+          this.error="Désolé, vous ne pouvez lier qu'une tâche à une autre tâche à la fois."
+          setTimeout(() => this.error = null, 2000);
+
+        }
         this.element_selected.push(element)
         this.error =null
       }

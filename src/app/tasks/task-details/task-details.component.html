@@ -82,8 +82,6 @@
 
 
       <div class="card" >
-        <div class="card-header"> Chat</div>
-        <div class=card-body></div>
         <app-wpchat [type]="'task'"></app-wpchat>
       </div>
 
@@ -94,18 +92,20 @@
       <div class="card">
         <div class="card-header"> Groupes reliés </div>
         <ul class="list-group list-group-flush">
-          <li *ngFor="let group of selectedTask.groups" class="list-group-item list-group-item-action">{{ group.name }}</li>
+          <li *ngFor="let group of selectedTask.groups" class="list-group-item list-group-item-action"><a [routerLink]="['/group',group._id]">{{ group.name }}</a></li>
         </ul>
       </div>
 
       <div class="card">
         <div class="card-header"> WP reliés </div>
+        <ul class="list-group list-group-flush">
+          <li *ngFor="let wp of linked_wp" class="list-group-item list-group-item-action"><a [routerLink]="['/workpackage',wp._id]">{{ wp.name }}</a></li>
+        </ul>
         <div class=card-text></div>
       </div>
 
       <div class="card">
-        <div class="card-header">Tâches reliées</div>
-        <div class=card-text></div>
+          <app-task-tasks [task]="selectedTask"></app-task-tasks>
       </div>
 
 
@@ -117,7 +117,7 @@
       </div>
 
       <div class="card">
-        <div class="card-header"> Fichiés reliés </div>
+        <div class="card-header"> Fichiers reliés </div>
         <app-task-file-list [files]="selectedTask.files"></app-task-file-list>
       </div>
 
