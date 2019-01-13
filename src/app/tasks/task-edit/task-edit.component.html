@@ -52,8 +52,7 @@
     </div>
   </div>
 
-  <button *ngIf="!isSent" type="submit" class="btn btn-success" (click)="onSubmit()" [disabled]="formInvalid()">Modifier la tâche
-    la tâche</button>
+  <button *ngIf="!isSent" type="submit" mat-raised-button color="success" (click)="onSubmit()" [disabled]="formInvalid()">Modifier la tâche</button>
 
   <div *ngIf="isSent" fxLayoutAlign="space-around center" style="overflow:hidden">
     <div class="loader">

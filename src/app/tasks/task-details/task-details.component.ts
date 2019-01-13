@@ -119,4 +119,9 @@ export class TaskDetailsComponent implements OnInit {
   isAuthor(){
     return this.selectedTask.author._id == this.auth.getPayload()._id;
   }
+
+  isAdmin(){
+    return this.auth.getPayload().status=="admin"
+  }
+
 }
