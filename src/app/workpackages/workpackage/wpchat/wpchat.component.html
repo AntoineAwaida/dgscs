@@ -23,7 +23,7 @@
               <ng-container  *cdkVirtualFor="let msg of messages; let i = index">
 
                 
-                  <div *ngIf="i!=0 && messages[i-1] && !isSameDay(msg.date,messages[i-1].date)">
+                  <div *ngIf="i==0 || (messages[i-1] && !isSameDay(msg.date,messages[i-1].date))">
                       <div style="text-align: center; padding: 10px">
                         <span class="badge badge-pill badge-dark" style="font-size:15px"> {{date(msg.date)}} </span>
                       </div>
