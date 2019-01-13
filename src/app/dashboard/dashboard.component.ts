@@ -40,7 +40,6 @@ export class DashboardComponent implements OnInit {
    obs.subscribe((res:any)=> {
      this.announce = res[0];
      this.reports = res[1];
-     console.log(this.reports)
      this.favWorkPackages=res[2].favWorkPackages;
      this.favTasks=res[2].favTasks;
      this.ready = true;

@@ -61,10 +61,10 @@
                 <i class="fas fa-file"></i> Les derniers compte-rendus
             </div>
             <div class="card-body">
-              <div *ngIf="!reports">
+              <div *ngIf="reports.length==0">
                   Aucun compte-rendu n'est disponible.
               </div>
-              <div *ngIf="reports">
+              <div *ngIf="reports.length>0">
                   <app-dashboard-reports [files]="reports"></app-dashboard-reports>
               </div>
               
