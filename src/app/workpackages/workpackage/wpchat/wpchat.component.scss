@@ -71,8 +71,8 @@ body,html{
     border-top: 4px solid #082656;
     border-radius: 0 !important;
     background-color: #961a3d !important;
-    font-family: 'Calibri';
-    font-size:15px;
+    font-family: 'Parisine' , 'Tahoma', 'Geneva', sans-serif;
+    font-size:14px;
     border-left: 0 !important;
     border-right: 0 !important;
 }
@@ -221,6 +221,7 @@ background-color: #82ccdd;
 color:white;
 padding: 10px;
 position: relative;
+max-width:200px;
 }
 .msg_cotainer_send{
 margin-top: auto;
@@ -231,6 +232,7 @@ color:white;
 background-color: #78e08f;
 padding: 10px;
 position: relative;
+max-width:200px;
 }
 .msg_time{
 left: 0;

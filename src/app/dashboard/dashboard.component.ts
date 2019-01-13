@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
 
-    this.announceService.getLastAnnounce().subscribe((res:any)=> (this.announce = res) && (this.ready = true) , (error)=> console.log(error))
+    this.announceService.getLastAnnounce().subscribe((res:any)=> (this.announce = res) && (this.ready = true) && (console.log(res)) , (error)=> console.log(error))
 
     this.getFavs();
 
@@ -35,9 +35,6 @@ export class DashboardComponent implements OnInit {
     this.userService.getMyFavs().subscribe((res:any) => {
       this.favWorkPackages = res.favWorkPackages;
       this.favTasks = res.favTasks;
-      //this.favs = res.favWorkPackages.concat(res.favTasks);
-      console.log(res);
-
     },
     (error) => console.log(error)
     )
@@ -56,6 +53,18 @@ export class DashboardComponent implements OnInit {
   
     return false; //à compléter
   
+  }
+
+  date(date:Date){
+
+    let mydate = new Date(date);
+    const options = {month: 'long', day: 'numeric' };
+
+
+    const options_time = { hour:"2-digit", minute:"2-digit"}
+
+    return mydate.toLocaleDateString('fr-FR', options) + " à " + mydate.toLocaleTimeString('fr-FR',options_time)
+
   }
 
 }

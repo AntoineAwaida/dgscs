@@ -19,8 +19,6 @@ export class GroupComponent implements OnInit {
       this.route.paramMap.pipe(switchMap((params:ParamMap) => this.groupService.getGroup(params.get('id'))))
       .subscribe((res:any) => {
         this.group = res
-        console.log(res)
-
       } , (error)=> console.log(error));
   
 
