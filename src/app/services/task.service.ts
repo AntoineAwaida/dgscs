@@ -59,7 +59,7 @@ export class TaskService {// service qui met à jour les tâches
   }
 
   editTaskStatus(id: string, status: string) : Observable<any>  {
-    return this.httpClient.put(api+"tasks/edittaskstatus/"+this.auth.getPayload()._id, { taskID : id, status : status });
+    return this.httpClient.put(api+"tasks/edittaskstatus/", { taskID : id, status : status });
   }
 
   deleteLinkTask(data): Observable<Object> {
