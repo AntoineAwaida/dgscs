@@ -48,7 +48,7 @@ export class TaskService {// service qui met à jour les tâches
   }
 
   editTask(task){
-    this.httpClient.put(api+"tasks/edittask/"+this.auth.getPayload()._id, task).subscribe(
+    this.httpClient.put(api+"tasks/edittask/", task).subscribe(
       (res) => {
         console.log(res);
         this.router.navigate(['tasks/details/'+task._id]);

@@ -62,7 +62,6 @@ export class TaskEditComponent implements OnInit {
       _id: this._id,
       name: this.name,
       description: this.description,
-      author: this.auth.getPayload()._id,
       groups: groups,
       startingDate: new Date(this.startingDate),
       endingDate: new Date(this.endingDate)

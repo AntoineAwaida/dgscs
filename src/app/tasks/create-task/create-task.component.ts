@@ -44,13 +44,10 @@ export class CreateTaskComponent implements OnInit {
 
   onSubmit() {
 
-    const groups = this.groups_selected.map((g) => g._id);
-
     const task = {
       name: this.name,
       description: this.description,
-      author: this.auth.getPayload()._id,
-      groups: groups,
+      groups: this.groups_selected.map((g) => g._id),
       startingDate: this.startingDate,
       endingDate: this.endingDate,
     }; 
@@ -63,7 +60,7 @@ export class CreateTaskComponent implements OnInit {
     else {
       this.taskService.createTask(task);
       this.isSent = true;
-    }
+    } 
 
   }
 

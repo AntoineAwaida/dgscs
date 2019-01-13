@@ -70,7 +70,7 @@
                 <div class="m-1"></div>
               </div>
               <div class="col-md-6 col-12">
-                <button class="buttonStyle" [routerLink]="'/tasks/edit-task/'+selectedTask._id" *ngIf="isAuthor()&&!openSelect"
+                <button class="buttonStyle" [routerLink]="'/tasks/edit-task/'+selectedTask._id" *ngIf="(isAuthor()||isAdmin())&&!openSelect"
                   mat-raised-button color="success"><i class="fas fa-edit"></i> Modifier
                   la tâche</button>
               </div>
@@ -96,7 +96,7 @@
         </ul>
       </div>
 
-      <div class="card">
+      <div class="card"  *ngIf="linked_wp.length>0">
         <div class="card-header"> WP reliés </div>
         <ul class="list-group list-group-flush">
           <li *ngFor="let wp of linked_wp" class="list-group-item list-group-item-action"><a [routerLink]="['/workpackage',wp._id]">{{ wp.name }}</a></li>
@@ -116,7 +116,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" *ngIf="selectedTask.files">
         <div class="card-header"> Fichiers reliés </div>
         <app-task-file-list [files]="selectedTask.files"></app-task-file-list>
       </div>
