@@ -1,0 +1,74 @@
+.title {
+
+    font-family: 'Helvetica 87 Heavy Condensed','Parisine', sans-serif;
+    font-weight: normal;
+    margin-left:5px;
+    text-align: center;
+    color: #082656;
+
+}
+
+.groupcard {
+
+    padding: 5px;
+    border-radius: 0px;
+    margin:10px;
+    font-family: 'Helvetica 87 Heavy Condensed','Parisine', sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+    text-align: center;
+
+}
+
+.groupcardheader {
+
+    border-bottom: 4px solid #082656;
+
+}
+
+.largepp {
+
+    height:130px;
+    width:130px;
+    border-radius: 50%;
+    border: 3px solid #232426;
+
+}
+
+.smallpp {
+
+    height:40px;
+    width:40px;
+    border-radius: 50%;
+    border: 1px solid #232426;
+}
+
+.link:hover{
+    text-decoration: underline;
+    border: 5px 0px 0px 0px solid #232426;
+    cursor: pointer;
+}
+
+.wpcard {
+
+    //border-top: 4px solid #082656;
+    padding: 5px;
+    border-radius: 1px;
+    margin:10px;
+    font-family: 'Helvetica 87 Heavy Condensed','Parisine', sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+    text-align: center;
+    background-color: white;
+    border: 1px solid rgb(218, 218, 218);
+
+
+}
+
+.wpcardbody {
+
+    font-family: 'Parisine', sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+
+}
