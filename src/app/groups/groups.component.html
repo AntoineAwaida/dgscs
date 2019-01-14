@@ -22,10 +22,11 @@
 
     <div fxLayout="row wrap" fxLayoutAlign="space-evenly start">
         <div *ngFor="let group of groups" style="padding: 30px">
-            <div fxLayout="column" style="padding: 5px; padding-bottom: 20px; width: 250px" class="wpcard">
+            <div fxLayout="column" style="padding: 5px; padding-bottom: 20px; height: 300px; width: 250px" class="wpcard">
               <div>
                   <h4 [routerLink]="['/group',group._id]" class="link card-header groupcardheader">{{ group.name }}</h4>
               </div>
+              <div class="wpcardbody">
               <div *ngFor="let member of group.members" style="font-size: 15px; margin-left : 25px ;margin-top: 20px">
                 <div fxLayout="row" fxLayoutAlign="start center"> 
                     <div style="margin-right: 10px">
@@ -38,7 +39,7 @@
     
                   </div>
               </div>
-
+            </div>
             </div>
             
         </div>

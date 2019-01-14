@@ -11,9 +11,9 @@
 
       <div *ngIf="this.ready">
 
-        <ul>
+
           <li style="list-style: none" *ngFor="let wp of this.mywp"><a [routerLink]="['/workpackage', wp._id]">{{ wp.name }}</a></li>
-        </ul>
+
                   
       </div>
       
