@@ -5,16 +5,20 @@
 <div *ngIf = "error">
   <div class="alert alert-danger">Erreur lors de la modification du profil.</div>
 </div>
-
-<h2> Mon profil </h2>
- 
+<div class="title">
+  <h2> Mon profil </h2>
+</div>
 
 <br />
 
 <h2  style="text-align: center">
-  <img *ngIf="!user.photoURL" src="../../assets/img/avatar.png" class="largepp"/> 
-  <img *ngIf="user.photoURL" [src]="user.photoURL + '?' + this.auth.getPhotoDate()" class="largepp"/> 
-  {{user.first_name + ' ' + user.last_name }}
+
+  <div class="badge badge-pill ml-1 ng-star-inserted profilebadge">
+      <img *ngIf="!user.photoURL" src="../../assets/img/avatar.png" class="largepp"/> 
+      <img *ngIf="user.photoURL" [src]="user.photoURL + '?' + this.auth.getPhotoDate()" class="largepp"/> 
+      {{user.first_name + ' ' + user.last_name }}
+  </div>
+  
 </h2>
 
 <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column">
@@ -22,20 +26,35 @@
   <div fxFlex>
       <form [formGroup]="form" (ngSubmit)="onPPSubmit()">
 
-          <div class="form-group">
-            <label><strong>Votre photo de profil</strong></label>
-            <br />
-            <input type="file" (change)="onPPChange($event)" id="profilepicture" name="profilepicture"  #fileInput />
-            <ng-container *ngIf="preview">
-                <img [src]="preview" class="profilepicture" />
-            </ng-container>
+        <div class="card groupcard" style="text-align: left; margin-right: 100px">
+
+          <div class="card-header groupcardheader">
+              <i class="far fa-user-circle" style="font-size: 1.6em"></i> Modifiez votre photo de profil
           </div>
-        
-          <button *ngIf="!loaderPhoto" mat-raised-button [color]="'info'" type="submit" value="submit" [disabled] = "loaderPhoto">Modifiez votre photo</button>
-          <div *ngIf="loaderPhoto" fxLayoutAlign="space-around center" style="overflow:hidden">
-            <div class="loader">
-            </div><br>
+
+          <div class="card-body wpcardbody">
+
+              <div class="form-group">
+                  <input type="file" (change)="onPPChange($event)" id="profilepicture" name="profilepicture"  #fileInput />
+                  <ng-container *ngIf="preview">
+                      <img [src]="preview" class="profilepicture" />
+                  </ng-container>
+                </div>
+              
+                <button *ngIf="!loaderPhoto" mat-raised-button [color]="'info'" type="submit" value="submit" [disabled] = "loaderPhoto">Modifiez votre photo</button>
+                <div *ngIf="loaderPhoto" fxLayoutAlign="space-around center" style="overflow:hidden">
+                  <div class="loader">
+                  </div><br>
+                </div>
+
+
           </div>
+          
+           
+
+
+        </div>
+
         
         </form>
         
@@ -44,27 +63,33 @@
         
         
         <form [formGroup]="f2" (ngSubmit)="onPasswordSubmit()">
-        
-            <div class="form-group">
-              <label><strong>Changez votre mot de passe</strong></label>
-              <br />
-              <div class="form-group">
-                  <input style="width: 70%" type="password" class="form-control" placeholder="Mot de passe" formControlName="password" (keyup)="onChange()">
-                  <small [ngStyle]="{color:'red', fontSize:'70%'}" *ngIf="(f2.controls.password.status!='VALID')&&(f2.controls.password.value!='')">Le
-                      mot de passe doit avoir plus de 8 caractères</small>
-        
+
+            <div class="card groupcard" style="text-align: left; margin-right: 100px">
+
+              <div class="card-header groupcardheader">
+                  <i class="fas fa-key" style="font-size:1.6em"></i>Changez votre mot de passe
               </div>
-              <div class="form-group">
-                  <input style="width: 70%"  type="password" class="form-control" placeholder="Confirmation du mot de passe" formControlName="password2">
-                  <small [ngStyle]="{color:'red', fontSize:'70%'}" *ngIf="(f2.controls.password2.value!='')&&(f2.controls.password.value!='')&&(f2.value.password!=f2.value.password2)">Les
-                      mots de passe ne sont pas identiques</small>
+        
+              <div class="card-body wpcardbody">
+
+                  <div class="form-group">
+                      <input style="width: 70%" type="password" class="form-control" placeholder="Mot de passe" formControlName="password" (keyup)="onChange()">
+                      <small [ngStyle]="{color:'red', fontSize:'70%'}" *ngIf="(f2.controls.password.status!='VALID')&&(f2.controls.password.value!='')">Le
+                          mot de passe doit avoir plus de 8 caractères</small>
+            
+                  </div>
+                  <div class="form-group">
+                      <input style="width: 70%"  type="password" class="form-control" placeholder="Confirmation du mot de passe" formControlName="password2">
+                      <small [ngStyle]="{color:'red', fontSize:'70%'}" *ngIf="(f2.controls.password2.value!='')&&(f2.controls.password.value!='')&&(f2.value.password!=f2.value.password2)">Les
+                          mots de passe ne sont pas identiques</small>
+                  </div>
+
+
               </div>
-              
-              
+          
+              <button mat-raised-button style="width:200px" [color]="'info'" type="submit" value="submit" [disabled]="(f2.invalid)||(f2.value.password!=f2.value.password2)" >Modifiez votre mot de passe</button>
+          
             </div>
-          
-            <button mat-raised-button [color]="'info'" type="submit" value="submit" [disabled]="(f2.invalid)||(f2.value.password!=f2.value.password2)" >Modifiez votre mot de passe</button>
-          
         </form>
         
         <br />
@@ -72,46 +97,53 @@
         
         <form #f="ngForm" (ngSubmit)="onFavSubmit()">
         
-          <div class="form-group">
-            <label><strong>Modifiez votre liste de favoris</strong></label>
-          </div>
-        
-          <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" [ngStyle]="{height:'calc(2.25rem + 2px)'}"><i class="fa fa-search"></i></span>
+          <div class="card groupcard" style="text-align: left; margin-right: 100px">
+          
+              <div class="card-header groupcardheader">
+                  <i class="fas fa-star" style="font-size: 1.6em"></i>Modifiez votre liste de favoris
               </div>
-        
-                <div id="myDropdown" class="dropdown-content">
-                  <input type="search" class="form-control" (keyup)="onSearch()" placeholder="Rechercher..."
-                  [(ngModel)]="recherche" [ngModelOptions]="{standalone: true}">
-                  <div *ngFor="let element of element_searched ">
-                    <a class="pointer" (click)="addElement(element)">{{element.name}}</a>
+
+              <div class="card-body wpcardbody">
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" [ngStyle]="{height:'calc(2.25rem + 2px)'}"><i class="fa fa-search"></i></span>
+                      </div>
+                
+                        <div id="myDropdown" class="dropdown-content">
+                          <input type="search" class="form-control" (keyup)="onSearch()" placeholder="Rechercher..."
+                          [(ngModel)]="recherche" [ngModelOptions]="{standalone: true}">
+                          <div *ngFor="let element of element_searched ">
+                            <a class="pointer" (click)="addElement(element)">{{element.name}}</a>
+                          </div>
+                        </div>
                   </div>
-                </div>
-          </div>
-        
-          <h3>Mes favoris</h3>
-          <div *ngIf="ready_favs">
-        
-        
-          <div style="font-style:italic">Workpackages</div>
-          <ul>
-            <div *ngFor="let element of element_selected">
-              <div *ngIf="element.type == 'workpackage'">
-                  <li style="list-style: none"><i class="fas fa-star gold" (click)="deleteElement(element)"></i><a [routerLink]="['/workpackage', element._id]">{{element.name}}</a></li>
+                
+                  <h3>Mes favoris</h3>
+                  <div *ngIf="ready_favs">
+                
+                
+                  <div style="font-style:italic">Workpackages</div>
+                  <ul>
+                    <div *ngFor="let element of element_selected">
+                      <div *ngIf="element.type == 'workpackage'">
+                          <li style="list-style: none"><i class="fas fa-star gold" (click)="deleteElement(element)"></i><a [routerLink]="['/workpackage', element._id]">{{element.name}}</a></li>
+                      </div>
+                    </div>
+                  </ul>
+                  <div style="font-style:italic">Tâches</div>
+                  <ul>
+                    <div *ngFor="let element of element_selected">
+                      <div *ngIf="element.type == 'task'">
+                          <li style="list-style: none"><i class="fas fa-star gold" (click)="deleteElement(element)"></i><a [routerLink]="['/tasks/details', element._id]">{{element.name}}</a></li>
+                      </div>
+                    </div> 
+                  </ul>
+                      
+                  </div>
               </div>
             </div>
-          </ul>
-          <div style="font-style:italic">Tâches</div>
-          <ul>
-            <div *ngFor="let element of element_selected">
-              <div *ngIf="element.type == 'task'">
-                  <li style="list-style: none"><i class="fas fa-star gold" (click)="deleteElement(element)"></i><a [routerLink]="['/tasks/details', element._id]">{{element.name}}</a></li>
-              </div>
-            </div> 
-          </ul>
-              
-          </div>
+        
+          
         
           <div *ngIf="!ready_favs" fxLayoutAlign="space-around center" style="overflow:hidden">
               <div class="loader">

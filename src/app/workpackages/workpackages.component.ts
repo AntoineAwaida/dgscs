@@ -14,6 +14,8 @@ export class WorkpackagesComponent implements OnInit {
 
   mywp:Array<WorkPackage>;
 
+  ready:boolean = false;
+
   constructor(public auth: AuthService, private userService: UserService, private chatService:ChatService) { }
 
   ngOnInit() {
@@ -27,6 +29,7 @@ export class WorkpackagesComponent implements OnInit {
     this.userService.getMyWorkPackages().subscribe((res:any)=> {
 
       this.mywp = res;
+      this.ready = true;
 
     },
     (error => {

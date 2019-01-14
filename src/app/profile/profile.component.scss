@@ -1,9 +1,20 @@
 @import '../layouts/buttons.scss';
+@import '../groups/group/group.component.scss';
+
+@import '../workpackages/workpackage/workpackage.component.scss';
 
 .gold {
 
   color:gold;
   cursor: pointer;
+
+}
+
+.profilebadge{
+
+  color: black;
+  background-color:white;
+  border:4px solid #082656;
 
 }
 
