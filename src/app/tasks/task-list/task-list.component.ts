@@ -3,6 +3,7 @@ import { TaskService, Task } from '../../services/task.service';
   import { AuthService } from 'src/app/services/auth.service';
 import { forkJoin } from 'rxjs';
 import { MatSort, MatTableDataSource, MatPaginator, MatSortable } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-task-list',
@@ -18,9 +19,17 @@ export class TaskListComponent implements OnInit {
   dataSource_active = new MatTableDataSource();
   dataSource_finished = new MatTableDataSource();
 
+  applyFilterActive(filterValue: string) {
+    this.dataSource_active.filter = filterValue.trim().toLowerCase();
+  }
+
+  applyFilterFinished(filterValue: string) {
+    this.dataSource_finished.filter = filterValue.trim().toLowerCase();
+  }
+
   loader = true;
 
-  constructor(private auth : AuthService, private taskService : TaskService) { }
+  constructor(private auth : AuthService, private taskService : TaskService, private router: Router) { }
 
   
   displayedColumns: string [] = ['name','endingDate', 'status']
@@ -64,9 +73,9 @@ export class TaskListComponent implements OnInit {
     )
   } 
 
-  getStatus(selectedTask) {
+  getStatus(status) {
     let printStatus = "";
-    switch(selectedTask.status){
+    switch(status){
       case "pending":
         printStatus = "En attente";
         break;
@@ -93,6 +102,10 @@ export class TaskListComponent implements OnInit {
 
     return mydate.toLocaleDateString('fr-FR', options);
 
+  }
+
+  navigate(row){
+    this.router.navigate(['/tasks/details/', row._id])
   }
 
 

@@ -10,12 +10,12 @@
       <div class="card-header">Ma liste de tâches</div>
       <div class="card-text">
 
-        <ol *ngIf="!loader">
+        <ng-container *ngIf="!loader">
 
         <div class="title" style="text-align: left">Tâches en cours</div>
 
           <mat-form-field>
-                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrez...">
+                <input matInput (keyup)="applyFilterActive($event.target.value)" placeholder="Filtrez...">
         </mat-form-field>
 
 
@@ -28,7 +28,7 @@
                   <!-- Name Column -->
                   <ng-container matColumnDef="name">
                           <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
-                          <td mat-cell style="border-bottom: none" *matCellDef="let element"> {{element.name}} </td>
+                          <td mat-cell style="border-bottom: none" *matCellDef="let element"> {{element.name}}  <i *ngIf="isAuthor(element)" class="ml-1 fas fa-pencil-alt"></i> </td>
                   </ng-container>
           
           
@@ -41,16 +41,17 @@
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Statut</th>
                     <td mat-cell style="border-bottom: none; margin-right: 0px" *matCellDef="let element"><span class="small" [ngStyle] = "{
                       'color' : element.status == 'pending' ? 'red' : element.status == 'ongoing' ? 'rgb(255, 81, 0)' : 'green',
+                      'fontFamily': 'Helvetica',
                       'fontWeight' : 'bold',
                       'marginLeft' : '5px',
                       'fontStyle' : 'italic'
-                    }"> {{element.status}} </span> </td>
+                    }"> {{getStatus(element.status)}} </span> </td>
                   </ng-container>
 
                           
           
                   <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
-                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"  style="font-family:'Helvetica 87 Heavy Condensed','Parisine', sans-serif"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="navigate(row)" style="font-family:'Helvetica 87 Heavy Condensed','Parisine', sans-serif; cursor: pointer;"></tr>
 
           </table>
           
@@ -65,7 +66,7 @@
         <div class="title" style="text-align: left">Tâches terminées</div>
 
           <mat-form-field>
-                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrez...">
+                <input matInput (keyup)="applyFilterFinished($event.target.value)" placeholder="Filtrez...">
         </mat-form-field>
 
 
@@ -78,7 +79,7 @@
                   <!-- Name Column -->
                   <ng-container matColumnDef="name">
                           <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
-                          <td mat-cell style="border-bottom: none" *matCellDef="let element"> {{element.name}} </td>
+                          <td mat-cell style="border-bottom: none" *matCellDef="let element"> <i *ngIf="isAuthor(element)" class="ml-1 fas fa-pencil-alt"></i> {{element.name}} </td>
                   </ng-container>
           
           
@@ -91,16 +92,17 @@
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Statut</th>
                     <td mat-cell style="border-bottom: none; margin-right: 0px" *matCellDef="let element"><span class="small" [ngStyle] = "{
                       'color' : element.status == 'pending' ? 'red' : element.status == 'ongoing' ? 'rgb(255, 81, 0)' : 'green',
+                      'fontFamily': 'Helvetica',
                       'fontWeight' : 'bold',
                       'marginLeft' : '5px',
                       'fontStyle' : 'italic'
-                    }"> {{element.status}} </span> </td>
+                    }"> {{getStatus(element.status)}} </span> </td>
                   </ng-container>
 
                           
           
                   <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
-                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"  style="font-family:'Helvetica 87 Heavy Condensed','Parisine', sans-serif"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="navigate(row)"  style="font-family:'Helvetica 87 Heavy Condensed','Parisine', sans-serif; cursor: pointer;"></tr>
 
           </table>
           
@@ -136,7 +138,7 @@
             
           </li>
           -->
-        </ol>
+        </ng-container>
 
         <div *ngIf="loader" >
           <div fxLayoutAlign="space-around center" style="overflow:hidden">
