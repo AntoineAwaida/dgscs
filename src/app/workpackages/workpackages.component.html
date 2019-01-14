@@ -1,7 +1,22 @@
-<h2>
-  Mes workpackages
-</h2>
 
-<ul>
-  <li *ngFor="let wp of this.mywp"><a [routerLink]="['/workpackage', wp._id]">{{ wp.name }}</a></li>
-</ul>
+
+<div class="card wpcard">
+
+    <div class="card-header"><h2>Mes workpackages</h2></div>
+
+    <div class="card-body wpcardbody">
+
+        <ul>
+          <li style="list-style: none" *ngFor="let wp of this.mywp"><a [routerLink]="['/workpackage', wp._id]">{{ wp.name }}</a></li>
+        </ul>
+
+    </div>
+
+
+
+
+
+
+
+</div>
+
