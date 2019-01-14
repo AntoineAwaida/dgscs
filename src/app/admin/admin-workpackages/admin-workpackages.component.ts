@@ -76,12 +76,14 @@ export class AdminWorkpackagesComponent implements OnInit {
     this.showAddForm = !this.showAddForm
     this.showTable = !this.showTable
     this.wp_to_edit = null;
+    setTimeout(() => this.dataSource.paginator = this.paginator);
   }
 
   toggleEditForm(wpid){
     this.showAddForm = !this.showAddForm
     this.showTable = !this.showTable
     this.wp_to_edit = wpid
+    setTimeout(() => this.dataSource.paginator = this.paginator);
   }
 
   onSubmitted(msg){

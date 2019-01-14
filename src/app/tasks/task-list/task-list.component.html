@@ -6,12 +6,111 @@
   </div>
 
   <div class="col-12 col-lg-8">
-    <div class="card">
+    <div class="card wpcard">
       <div class="card-header">Ma liste de tâches</div>
       <div class="card-text">
 
         <ol *ngIf="!loader">
-          <li *ngFor="let task of tasks">
+
+        <div class="title" style="text-align: left">Tâches en cours</div>
+
+          <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrez...">
+        </mat-form-field>
+
+
+        <div class="mat-elevation-z8" style="max-height:500px; overflow:auto;">
+
+
+          <table mat-table matSort [dataSource]="dataSource_active">
+
+
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="name">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
+                          <td mat-cell style="border-bottom: none" *matCellDef="let element"> {{element.name}} </td>
+                  </ng-container>
+          
+          
+                  <ng-container matColumnDef="endingDate">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Date limite</th>
+                          <td mat-cell style="border-bottom: none" *matCellDef="let element">{{date(element.endingDate)}}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Statut</th>
+                    <td mat-cell style="border-bottom: none; margin-right: 0px" *matCellDef="let element"><span class="small" [ngStyle] = "{
+                      'color' : element.status == 'pending' ? 'red' : element.status == 'ongoing' ? 'rgb(255, 81, 0)' : 'green',
+                      'fontWeight' : 'bold',
+                      'marginLeft' : '5px',
+                      'fontStyle' : 'italic'
+                    }"> {{element.status}} </span> </td>
+                  </ng-container>
+
+                          
+          
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"  style="font-family:'Helvetica 87 Heavy Condensed','Parisine', sans-serif"></tr>
+
+          </table>
+          
+
+
+
+        </div>
+
+        <br />
+        <br />
+
+        <div class="title" style="text-align: left">Tâches terminées</div>
+
+          <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrez...">
+        </mat-form-field>
+
+
+        <div class="mat-elevation-z8" style="max-height:500px; overflow:auto;">
+
+
+          <table mat-table matSort [dataSource]="dataSource_finished">
+
+
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="name">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
+                          <td mat-cell style="border-bottom: none" *matCellDef="let element"> {{element.name}} </td>
+                  </ng-container>
+          
+          
+                  <ng-container matColumnDef="endingDate">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Date limite</th>
+                          <td mat-cell style="border-bottom: none" *matCellDef="let element">{{date(element.endingDate)}}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Statut</th>
+                    <td mat-cell style="border-bottom: none; margin-right: 0px" *matCellDef="let element"><span class="small" [ngStyle] = "{
+                      'color' : element.status == 'pending' ? 'red' : element.status == 'ongoing' ? 'rgb(255, 81, 0)' : 'green',
+                      'fontWeight' : 'bold',
+                      'marginLeft' : '5px',
+                      'fontStyle' : 'italic'
+                    }"> {{element.status}} </span> </td>
+                  </ng-container>
+
+                          
+          
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"  style="font-family:'Helvetica 87 Heavy Condensed','Parisine', sans-serif"></tr>
+
+          </table>
+          
+
+
+
+        </div>
+
+          <!--
+          <li *ngFor="let task of tasks_active">
 
             <ng-container *ngIf="task.status !='done'">
 
@@ -36,6 +135,7 @@
             </ng-container>
             
           </li>
+          -->
         </ol>
 
         <div *ngIf="loader" >

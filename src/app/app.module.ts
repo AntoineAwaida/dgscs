@@ -27,7 +27,7 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
 import { AddGroupsFormComponent } from './admin/admin-groups/add-groups-form/add-groups-form.component';
 
 
-import { MatTableModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatDialogModule, MatGridListModule, MatCardModule } from '@angular/material';
+import { MatTableModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatDialogModule, MatGridListModule, MatCardModule, MatSortModule } from '@angular/material';
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { PendingUsersComponent } from './admin/admin-dashboard/pending-users/pending-users.component';
 import { AdminWorkpackagesComponent } from './admin/admin-workpackages/admin-workpackages.component';
@@ -180,6 +180,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatSortModule,
     ScrollingModule
   ],
   entryComponents: [ActionsDialogComponent, AddTaskDialogComponent, TaskFileEditDialogComponent],

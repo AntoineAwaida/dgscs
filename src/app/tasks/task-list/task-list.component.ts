@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { TaskService } from '../../services/task.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { TaskService, Task } from '../../services/task.service';
   import { AuthService } from 'src/app/services/auth.service';
+import { forkJoin } from 'rxjs';
+import { MatSort, MatTableDataSource, MatPaginator, MatSortable } from '@angular/material';
 
 @Component({
   selector: 'app-task-list',
@@ -9,20 +11,54 @@ import { TaskService } from '../../services/task.service';
 })
 export class TaskListComponent implements OnInit {
 
-  public tasks: any;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  @ViewChild(MatSort) sort: MatSort;
+
+  dataSource_active = new MatTableDataSource();
+  dataSource_finished = new MatTableDataSource();
+
   loader = true;
 
   constructor(private auth : AuthService, private taskService : TaskService) { }
+
+  
+  displayedColumns: string [] = ['name','endingDate', 'status']
 
   ngOnInit() {
     this.getTasks();
   }
 
   getTasks(): void {
-    this.taskService.getMyTasks()
+
+    const obs1 = this.taskService.getMyActiveTasks();
+    const obs2 = this.taskService.getMyFinsihedTasks();
+    forkJoin(obs1,obs2)
     .subscribe(
       (res) =>{
-        this.tasks = res;
+        this.dataSource_active = new MatTableDataSource(res[0]);
+        this.dataSource_finished = new MatTableDataSource(res[1]);
+        setTimeout(() => {
+          this.sort.sort(<MatSortable>{
+            id: 'endingDate',
+            start: 'asc'
+            }
+          );
+          this.dataSource_active.sort = this.sort
+          this.dataSource_finished.sort = this.sort;
+          this.dataSource_active.sortingDataAccessor = (item:any, property) => {
+            switch (property) {
+              case 'endingDate': return new Date(item.endingDate);
+              default: return item[property];
+            }
+          }; 
+          this.dataSource_finished.sortingDataAccessor = (item:any, property) => {
+            switch (property) {
+              case 'endingDate': return new Date(item.endingDate);
+              default: return item[property];
+            }
+          }; 
+        });
         this.loader = false;
       }
     )
@@ -48,6 +84,15 @@ export class TaskListComponent implements OnInit {
 
   isAuthor(task){
     return task.author == this.auth.getPayload()._id;
+  }
+
+  date(date:Date){
+
+    let mydate = new Date(date);
+    const options = {month: 'long', day: 'numeric', year:'numeric' };
+
+    return mydate.toLocaleDateString('fr-FR', options);
+
   }
 
 

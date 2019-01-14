@@ -108,12 +108,14 @@ export class AdminGroupsComponent implements OnInit {
     this.showAddForm = !this.showAddForm
     this.showTable = !this.showTable
     this.group_to_edit = groupid
+    setTimeout(() => this.dataSource.paginator = this.paginator);
   }
 
   toggleAddForm(){
     this.showAddForm = !this.showAddForm
     this.showTable = !this.showTable
     this.group_to_edit = null;
+    setTimeout(() => this.dataSource.paginator = this.paginator);
   }
 
   onSubmitted(msg){

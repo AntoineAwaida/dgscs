@@ -77,12 +77,14 @@ export class AdminAnnouncesComponent implements OnInit {
     this.showAddForm = !this.showAddForm
     this.showTable = !this.showTable
     this.announce_to_edit = announceid
+    setTimeout(() => this.dataSource.paginator = this.paginator);
   }
 
   toggleAddForm(){
     this.showAddForm = !this.showAddForm
     this.showTable = !this.showTable
     this.announce_to_edit = null;
+    setTimeout(() => this.dataSource.paginator = this.paginator);
   }
 
   onSubmitted(msg){

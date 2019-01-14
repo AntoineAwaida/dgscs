@@ -32,6 +32,14 @@ export class TaskService {// service qui met à jour les tâches
     return this.httpClient.get(api+"users/mytasks/");
   }
 
+  getMyActiveTasks(): Observable<any>{
+    return this.httpClient.get(api+"users/myactivetasks");
+  }
+
+  getMyFinsihedTasks(): Observable<any>{
+    return this.httpClient.get(api+"users/myfinishedtasks");
+  }
+
   getTask(id : string) : Observable<any>  {
     return this.httpClient.post(api+"tasks/gettask/"+this.auth.getPayload()._id, { taskID : id });
   }
