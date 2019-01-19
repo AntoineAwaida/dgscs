@@ -44,7 +44,6 @@ export class AnnouncesComponent implements OnInit {
 
     this.announceService.getAnnounces().subscribe((res:any)=>{
       this.dataSource = new MatTableDataSource(res);
-      console.log(res)
       setTimeout(() => this.dataSource.paginator = this.paginator);
       this.ready = true;
     }, (error:any)=>console.log(error));
@@ -73,6 +72,7 @@ export class AnnouncesComponent implements OnInit {
   unshow(){
     this.show_announce = null;
     this.showAnnounce = false;
+    setTimeout(() => this.dataSource.paginator = this.paginator);
   }
 
 
