@@ -28,6 +28,7 @@ export class TaskListComponent implements OnInit {
   }
 
   loader = true;
+  newDate;
 
   constructor(private auth : AuthService, private taskService : TaskService, private router: Router) { }
 
@@ -35,6 +36,7 @@ export class TaskListComponent implements OnInit {
   displayedColumns: string [] = ['name','endingDate', 'status']
 
   ngOnInit() {
+    this.newDate = new Date();
     this.getTasks();
   }
 
@@ -106,6 +108,11 @@ export class TaskListComponent implements OnInit {
 
   navigate(row){
     this.router.navigate(['/tasks/details/', row._id])
+  }
+
+  oldDate(row){
+    const endingDate = new Date(row.endingDate);
+    return endingDate < this.newDate;
   }
 
 

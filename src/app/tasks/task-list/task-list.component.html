@@ -2,12 +2,12 @@
 
   <div class="row">
  
-    <div class="col-12 col-lg-2">
+    <div class="col-12 col-lg-1">
   </div>
 
-  <div class="col-12 col-lg-8">
+  <div class="col-12 col-lg-10">
     <div class="card wpcard">
-      <div class="card-header">Ma liste de tâches</div>
+      <div class="card-header"><h1>Ma liste de tâches</h1></div>
       <div class="card-text">
 
         <ng-container *ngIf="!loader">
@@ -51,7 +51,7 @@
                           
           
                   <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
-                  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="navigate(row)" style="font-family:'Helvetica 87 Heavy Condensed','Parisine', sans-serif; cursor: pointer;"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{ oldRow : oldDate(row) }" (click)="navigate(row)" style="font-family:'Helvetica 87 Heavy Condensed','Parisine', sans-serif; cursor: pointer;"></tr>
 
           </table>
           
@@ -62,6 +62,7 @@
 
         <br />
         <br />
+        <hr>
 
         <div class="title" style="text-align: left">Tâches terminées</div>
 
@@ -102,7 +103,7 @@
                           
           
                   <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
-                  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="navigate(row)"  style="font-family:'Helvetica 87 Heavy Condensed','Parisine', sans-serif; cursor: pointer;"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{ oldRow : oldDate(row) }"  (click)="navigate(row)"  style="font-family:'Helvetica 87 Heavy Condensed','Parisine', sans-serif; cursor: pointer;"></tr>
 
           </table>
           

@@ -1,4 +1,4 @@
-<div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+<!-- <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
 
     <div *ngFor="let group of groups">
         <div class="card" style="margin-bottom:10px" >
@@ -13,5 +13,37 @@
         </div>
     </div>
 
-</div>
+</div> -->
 
+<h1 class="title"> Les groupes </h1>
+
+  <div class=" groupcard">
+
+
+    <div fxLayout="row wrap" fxLayoutAlign="space-evenly start">
+        <div *ngFor="let group of groups" style="padding: 30px">
+            <div fxLayout="column" style="padding: 5px; padding-bottom: 20px; height: 300px; width: 250px" class="wpcard">
+              <div>
+                  <h4 [routerLink]="['/group',group._id]" class="link card-header groupcardheader">{{ group.name }}</h4>
+              </div>
+              <div class="wpcardbody">
+              <div *ngFor="let member of group.members" style="font-size: 15px; margin-left : 25px ;margin-top: 20px">
+                <div fxLayout="row" fxLayoutAlign="start center"> 
+                    <div style="margin-right: 10px">
+                        <img *ngIf="this.member.photoURL" [src]="this.member.photoURL" class="smallpp" />
+                        <img *ngIf="!(this.member.photoURL)" src="../assets/img/avatar.png" class="smallpp" />
+                    </div>
+                    <div style="font-size: 15px">
+                      {{ this.member.first_name + ' ' + this.member.last_name }}
+                    </div>
+    
+                  </div>
+              </div>
+            </div>
+            </div>
+            
+        </div>
+
+    </div>
+
+    </div>
